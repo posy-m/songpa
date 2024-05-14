@@ -4,9 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .dlt{
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    
+    <div id="content">
+            <span></span>
+        <div>
+            <span>아이디</span>
+            <div class="id-box">
+                <input type="text" name="" id="id_text" placeholder="4~12글자, 영어나 숫자를 입력해주세요">
+            </div>
+            <button id="id_check">중복확인</button>
+            <span>비밀번호</span>
+            <div>
+                <input type="text" name="" id="pw_text" placeholder="8글자 이상, 영문, 숫자, 특수문자를 모두 사용해 입력해주세요">
+            </div>
+            <span>비밀번호 확인</span>
+            <div>
+                <input type="text" name="" id="pw_check" placeholder="비밀번호와 일치하게 적어주세요">
+            </div>
+            <span>닉네임</span>
+            <div class="name-box">
+                <input type="text" name="" id="name_text" placeholder="닉네임을 적어주세요">
+            </div>
+            <span><button id="name_check">중복확인</button></span>
+        </div>
+        <div id="clear_btn">회원가입 완료</div>
+    </div>
 </body>
 <script src="../src/js/signup.js"></script>
 </html>
