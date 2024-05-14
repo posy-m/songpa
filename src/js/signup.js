@@ -1,8 +1,9 @@
 class UserData {
-    constructor(_userId, _userPw, _userName) {
+    constructor(_userId, _userPw, _userName, _date) {
         this.userId = _userId;
         this.userPw = _userPw;
         this.userName = _userName;
+        this.date = _date;
     }
 }
 class UserDataManager {
@@ -18,7 +19,7 @@ class UserDataManager {
         }
     }
     save() {
-        const admin = new UserData("a", "1", "admin");
+        const admin = new UserData("a", "1", "admin", "0");
         localStorage.setItem("sign_data", JSON.stringify([admin]));
         this.init(localStorage.getItem("sign_request"));
         const id_finder = document.getElementById("id_text");
@@ -84,7 +85,11 @@ class UserDataManager {
             }
             if ((pw_finder.value === pw_finder2.value) && (idLength(id_finder.value)) && (onlyNumberAndEnglish(id_finder.value)) && (strongPassword(pw_finder.value)) && (find.innerHTML !== null) && (find2.innerHTML !== null)) {
                 console.log(1);
-                const newData = new UserData(id_finder.value, pw_finder.value, name_finder.value);
+                const date = new Date();
+                const year = date.getFullYear();
+                const month = date.getMonth();
+                const day = date.getDate();
+                const newData = new UserData(id_finder.value, pw_finder.value, name_finder.value, `${year}` + `-` + `${month + 1}` + `-` + `${day}`);
                 this.userList.push(newData);
                 localStorage.setItem("sign_request", JSON.stringify(this.userList));
             }
