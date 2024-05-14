@@ -19,9 +19,12 @@ class UserDataManager {
         }
     }
     save() {
-        const admin = new UserData("a", "1", "admin", "0");
-        localStorage.setItem("sign_data", JSON.stringify([admin]));
-        this.init(localStorage.getItem("sign_request"));
+        if (localStorage.getItem("sign_data") === null) {
+            const admin = new UserData("a", "1", "admin", "0");
+            localStorage.setItem("sign_data", JSON.stringify([admin]));
+        }
+        else
+            this.init(localStorage.getItem("sign_request"));
         const id_finder = document.getElementById("id_text");
         const pw_finder = document.getElementById("pw_text");
         const pw_finder2 = document.getElementById("pw_check");
@@ -38,6 +41,8 @@ class UserDataManager {
                         fail.classList.add("id_impossible");
                         const finder = document.querySelector(".id-box");
                         finder.append(fail);
+                        const dlt = document.querySelector(".id_possible");
+                        dlt.classList.add("dlt");
                     }
                     else {
                         const success = document.createElement("span");

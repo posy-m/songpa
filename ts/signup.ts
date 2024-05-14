@@ -26,8 +26,10 @@ class UserDataManager {
     }
 
     save(){
-        const admin = new UserData("a", "1", "admin", "0");
-        localStorage.setItem("sign_data", JSON.stringify([admin]));
+        if(localStorage.getItem("sign_data") === null){
+            const admin = new UserData("a", "1", "admin", "0");
+            localStorage.setItem("sign_data", JSON.stringify([admin]));
+        }else
         this.init(localStorage.getItem("sign_request"));
         const id_finder = <HTMLInputElement>document.getElementById("id_text");
         const pw_finder = <HTMLInputElement>document.getElementById("pw_text");
@@ -45,6 +47,8 @@ class UserDataManager {
                         fail.classList.add("id_impossible");
                         const finder = document.querySelector(".id-box");
                         finder.append(fail);
+                        const dlt = document.querySelector(".id_possible");
+                        dlt.classList.add("dlt");
                     }else{
                         const success = document.createElement("span");
                         success.innerText = "사용 가능한 아이디입니다";
