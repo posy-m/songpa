@@ -35,20 +35,24 @@ class UserDataManager {
         const name_dbl = <HTMLButtonElement>document.getElementById("name_check");
         id_dbl.onclick = () => {
             const UserData = JSON.parse(localStorage.getItem("sign_data"));
-            for(let i = 0; i < UserData.length; i++){
-                if(UserData[i].userId === id_finder.value){
-                    const fail = document.createElement("span");
-                    fail.innerText = "이미 사용중인 아이디입니다";
-                    fail.classList.add("id_impossible");
-                    const finder = document.querySelector(".id-box");
-                    finder.append(fail);
-                }else{
-                    const success = document.createElement("span");
-                    success.innerText = "사용 가능한 아이디입니다";
-                    success.classList.add("id_possible");
-                    const finder = document.querySelector(".id-box");
-                    finder.append(success);
+            if((idLength(id_finder.value)) && (onlyNumberAndEnglish(id_finder.value))){
+                for(let i = 0; i < UserData.length; i++){
+                    if(UserData[i].userId === id_finder.value){
+                        const fail = document.createElement("span");
+                        fail.innerText = "이미 사용중인 아이디입니다";
+                        fail.classList.add("id_impossible");
+                        const finder = document.querySelector(".id-box");
+                        finder.append(fail);
+                    }else{
+                        const success = document.createElement("span");
+                        success.innerText = "사용 가능한 아이디입니다";
+                        success.classList.add("id_possible");
+                        const finder = document.querySelector(".id-box");
+                        finder.append(success);
+                    }
                 }
+            }else{
+                alert("아이디를 규칙에 맞게 다시 입력해주세요");
             }
         }
         name_dbl.onclick = () => {
@@ -77,6 +81,10 @@ class UserDataManager {
             const find2 = document.querySelector(".name_possible");
             if(pw_finder.value !== pw_finder2.value){
                 alert("비밀번호가 일치하지 않습니다");
+                window.location.reload();
+            }
+            if(!strongPassword(pw_finder.value)){
+                alert("비밀번호를 규칙에 맞게 다시 입력해주세요");
                 window.location.reload();
             }
             if((pw_finder.value === pw_finder2.value) && (idLength(id_finder.value)) && (onlyNumberAndEnglish(id_finder.value)) && (strongPassword(pw_finder.value)) && (find.innerHTML !== null) && (find2.innerHTML !== null)){
