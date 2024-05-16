@@ -3,6 +3,13 @@
   padding: 0;
 }
 
+body {
+  background-image: url(https://gontrancherrier.kr/images/sub/sub1_bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
 #sectionBoard> :nth-child(1) {
   text-align: center;
   font-size: 30px;
@@ -26,7 +33,7 @@
 }
 
 #sectionBoard #board> :nth-child(5) {
-  width: 70px;
+  width: 100px;
 }
 
 
@@ -55,4 +62,13 @@
 #sectionBoard #board .boardStyle {
   font-weight: 600;
   font-size: 20px;
+}
+
+/* 페이지 네이션 */
+
+.pagination-container {
+  margin-top: 500px;
+  justify-content: center;
+  display: flex;
+  gap: 20px;
 }

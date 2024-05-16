@@ -1,23 +1,23 @@
 class AdminPageManager {
     signList: UserData[];
-    constructor(){
+    constructor() {
         this.signList = [];
     }
 
-    init(LocalStorage){
-        if(LocalStorage === null){
+    init(LocalStorage) {
+        if (LocalStorage === null) {
             localStorage.setItem("sign_data", JSON.stringify(this.signList));
-        }else{
+        } else {
             this.signList = JSON.parse(LocalStorage);
         }
     }
 
-    register(){
+    register() {
         const request = JSON.parse(localStorage.getItem("sign_request"));
         this.init(localStorage.getItem("sign_data"));
         const view = <HTMLElement>document.getElementById("content");
         view.innerHTML = `<div class="top"><span>아이디</span><span>닉네임</span><span>날짜</span><span>수락여부</span></div>`
-        for(let i = 0; i < request.length; i++){
+        for (let i = 0; i < request.length; i++) {
             const div = document.createElement("div");
             const id_span = document.createElement("span");
             const name_span = document.createElement("span");
@@ -40,20 +40,20 @@ class AdminPageManager {
                 localStorage.setItem("sign_request", JSON.stringify(request));
                 window.location.reload();
             }
-            
+
             img2.onclick = () => {
-                if(confirm("삭제?")){
+                if (confirm("삭제?")) {
                     request.splice(i, 1);
                     localStorage.setItem("sign_request", JSON.stringify(request));
                     console.log(request);
                     window.location.reload();
-                }else {
+                } else {
                     return;
                 }
             }
         }
     }
-    render(){
+    render() {
         const loginData = JSON.parse(localStorage.getItem("sign_data"));
         const box = document.getElementById("box");
         box.innerHTML = `<div class="sign-title-box">
@@ -62,7 +62,7 @@ class AdminPageManager {
         <span>닉네임</span>
         <span>생성날짜</span>
     </div>`
-        for(let i = 1; i < loginData.length; i++){
+        for (let i = 1; i < loginData.length; i++) {
             const div = document.createElement("div");
             const span1 = document.createElement("span");
             const span2 = document.createElement("span");

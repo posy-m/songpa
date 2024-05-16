@@ -54,6 +54,23 @@ function paintBoard() {
 paintBoard();
 
 // 페이지 네이션
+const boardData = JSON.parse(localStorage.getItem("board_data"));
+const countPage = 6;
+const getPageCount = () => {
+  return Math.ceil(100 / countPage)
+}
+
+const numButtonWapper = document.querySelector('.number-button-wraper');
+const setPageButtons = () => {
+  numButtonWapper.innerHTML = '';
+  for (let i = 1; i <= getPageCount(); i++) {
+    numButtonWapper.innerHTML += `<span class= "number-butto"> ${i} </span>`
+  }
+}
+
+setPageButtons()
+
+
 
 
 
