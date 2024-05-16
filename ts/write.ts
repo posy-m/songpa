@@ -1,5 +1,4 @@
 // 작성받을 데이터
-
 type WritePageData = {
     title: string
     content: string
@@ -20,21 +19,19 @@ class SaveManager {
         }
     }
 
-    // 로컬스토리지에 저장
     setLocalStorage(a) {
         this.boardDataList.push(a);
         localStorage.setItem("board_data", JSON.stringify(this.boardDataList))
     }
 
 
-    write() {
+    save() {
         this.getLocalStorage(localStorage.getItem("board_data"))
+
         const title = <HTMLInputElement>document.querySelector("#write_title")
         const content = <HTMLInputElement>document.querySelector("#write_content")
-
         const btnCancel = <HTMLInputElement>document.querySelector("#btn_cancel")
         const btnConfirm = <HTMLInputElement>document.querySelector("#btn_confirm")
-
 
         // 취소버튼
         btnCancel.onclick = () => {
@@ -44,7 +41,6 @@ class SaveManager {
                 return;
             }
         }
-
 
         // 작성완료버튼
         btnConfirm.onclick = () => {
@@ -68,4 +64,4 @@ class SaveManager {
 }
 
 const BoardManager = new SaveManager();
-BoardManager.write();
+BoardManager.save();

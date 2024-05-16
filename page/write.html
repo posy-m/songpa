@@ -9,21 +9,32 @@
 </head>
 
 <body>
-    <div>
-        header
-    </div>
-    <h1>Contact</h1>
-    <div>
-        <span>제목</span>
-        <input type="text" placeholder="제목을 입력하세요." id="write_title">
-    </div>
-    <div>
-        <span>내용</span>
-        <input type="text" placeholder="내용을 입력하세요." id="write_content">
-    </div>
-    <div>
-        <button id="btn_cancel">목록으로</button>
-        <button id="btn_confirm">작성완료 </button>
+    <div class="wrap">
+        <div>
+            header
+        </div>
+        <h1>Contact</h1>
+        <div>
+            <div class="titlebox">
+                <div class="name">제목</div>
+                <div class="titleinputbox">
+                    <input type="text" placeholder="제목을 입력하세요." id="write_title">
+                </div>
+            </div>
+            <div class="contentbox">
+                <div class="name">내용</div>
+                <div class="contentinputbox">
+                    <textarea name="" id="write_content" placeholder="내용을 입력하세요."></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="btnbox">
+            <div class="btnleft"></div>
+            <div class="btnright">
+                <button id="btn_cancel">목록으로</button>
+                <button id="btn_confirm">작성완료 </button>
+            </div>
+        </div>
     </div>
 </body>
 

@@ -14,7 +14,7 @@ class SaveManager {
         this.boardDataList.push(a);
         localStorage.setItem("board_data", JSON.stringify(this.boardDataList));
     }
-    write() {
+    save() {
         this.getLocalStorage(localStorage.getItem("board_data"));
         const title = document.querySelector("#write_title");
         const content = document.querySelector("#write_content");
@@ -49,4 +49,4 @@ class SaveManager {
     }
 }
 const BoardManager = new SaveManager();
-BoardManager.write();
+BoardManager.save();
