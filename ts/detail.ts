@@ -21,12 +21,12 @@ class DetailRenderManager {
 
         const localdata = JSON.parse(localStorage.getItem("board_data"))[parseInt(param)];
         const detail_title = localdata.title;
-        const detail_writer = localdata.writer;
+        const detail_userName = localdata.userName;
         const detail_date = localdata.date;
         const detail_content = localdata.content;
 
         const title = <HTMLElement>document.querySelector("#title");
-        const writer = <HTMLElement>document.querySelector(".writer");
+        const userName = <HTMLElement>document.querySelector(".writer");
         const date = <HTMLElement>document.querySelector(".date");
         const content = <HTMLElement>document.querySelector("#content");
 
@@ -35,10 +35,19 @@ class DetailRenderManager {
         const btnConfirm = <HTMLElement>document.querySelector("#btn_confirm");
 
         title.innerHTML = detail_title;
-        writer.innerHTML = detail_writer;
+        userName.innerHTML = detail_userName;
         date.innerHTML = detail_date;
         content.innerHTML = detail_content;
 
+        // 목록으로 버튼
+        btnCancel.onclick = () => {
+            location.href = "./board.html"
+        }
+
+        // 수정하기 버튼
+        btnConfirm.onclick = () => {
+            location.href = "./modify.html"
+        }
 
         // 삭제 버튼
         btnDelete.onclick = () => {
@@ -52,14 +61,12 @@ class DetailRenderManager {
             }
         }
 
-        // 목록으로 버튼
-        btnCancel.onclick = () => {
-            location.href = "./board.html"
-        }
-
-        // 수정하기 버튼
-        btnConfirm.onclick = () => {
-            location.href = "./modify.html"
+        // 내 글이 하단 버튼 비활성화
+        if (
+            detail_userName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName
+        ) {
+            const btnBox = <HTMLElement>document.querySelector(".btnright")
+            btnBox.innerHTML = "";
         }
     }
 }

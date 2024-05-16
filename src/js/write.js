@@ -33,10 +33,13 @@ class WriteSaveManager {
             const year = date.getFullYear();
             const month = date.getMonth() + 1;
             const day = date.getDate();
+            const count = 0;
             const writeData = {
+                userName: (JSON.parse(sessionStorage.getItem("login_status"))).userName,
                 title: title.value,
                 content: content.value,
-                date: `${year}-${month}-${day}`
+                date: `${year}-${month}-${day}`,
+                count: count
             };
             if (confirm("작성을 완료하시겠습니까? 작성중인 내용이 저장됩니다.")) {
                 this.setLocalStorage(writeData);
