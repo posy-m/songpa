@@ -9,6 +9,24 @@ body {
   background-size: cover;
 }
 
+#writeBtn {
+  margin: 30px;
+  margin-left: 1100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 40px;
+  /* border: 1px solid; */
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  background-color: #414581;
+  color: white;
+  text-decoration: none;
+}
+
 
 #sectionBoard> :nth-child(1) {
   text-align: center;
@@ -48,7 +66,7 @@ body {
 
 #board {
   width: 1200px;
-  height: 50px;
+  /* height: 20px; */
   margin-top: 50px;
   display: flex;
   justify-content: center;
@@ -71,4 +89,43 @@ body {
   justify-content: center;
   display: flex;
   gap: 20px;
+}
+
+ul {
+  width: 1200px;
+  margin-top: 30px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  background-color: rgb(224, 224, 224);
+}
+
+ul>li {
+  display: flex;
+
+}
+
+ul>li>span {
+  text-align: center;
+}
+
+ul>li>span:nth-child(1) {
+  width: 70px;
+}
+
+ul>li>span:nth-child(2) {
+  width: 200px;
+}
+
+ul>li>span:nth-child(3) {
+  width: 800px;
+}
+
+ul>li>span:nth-child(4) {
+  width: 200px;
+}
+
+ul>li>span:nth-child(5) {
+  width: 100px;
 }

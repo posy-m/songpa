@@ -57,7 +57,7 @@ class WriteSaveManager {
             }
             if (confirm("작성을 완료하시겠습니까? 작성중인 내용이 저장됩니다.")) {
                 this.setLocalStorage(writeData)
-                location.href = "./detail.html"
+                location.href = "./board.html"
             } else {
                 return;
             }
