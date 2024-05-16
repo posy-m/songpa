@@ -1,5 +1,5 @@
 // 로그인 기능 구현
-const userRequest = JSON.parse(localStorage.getItem("sign_data"));
+const signData = JSON.parse(localStorage.getItem("sign_data"));
 const loginStateArray = [];
 
 const formbtn = document.querySelector("form") as HTMLElement;
@@ -11,22 +11,26 @@ const userPw = document.querySelector("#userPw") as HTMLInputElement;
 
 formbtn.onsubmit = function(e){
   e.preventDefault();
-  if(userId.value === "" || userPw.value === ""){alert("아이디 비밀번호를 입력해주세요"); return;}
-  for(let i = 0; i < userRequest.length; i++){
-    if(userId.value === userRequest[i].userId && userPw.value === userRequest[i].userPw){
+  if(userId.value === "" || userPw.value === ""){
+    alert("아이디 비밀번호를 입력해주세요"); return;
+  }
+  let text:string = "";
+  for(let i = 0; i < signData.length; i++){
+    if(userId.value == signData[i].userId && userPw.value == signData[i].userPw){
       const loginObj = {
         loginId : userId.value,
         loginPw : userPw.value
       };
       loginStateArray.push(loginObj);
       sessionStorage.setItem("loginState", JSON.stringify(loginStateArray));
-      alert("로그인 완료");
-      return;
+      loginPop.style.display = "none";
+      text = "로그인 완료"
     } else {
-      alert("아이디 비밀번호 확인 요망");
-      return;
+      sessionStorage.removeItem("loginState");
+      text = "로그인 실패"
     }
   }
+  alert(text);
 }
 
 // 로그인 팝업 기능 구현
@@ -43,9 +47,18 @@ loginDeleteBtn.onclick = () => {
 }
 
 // 로그인시 logout으로 변경 및 mypage 생성
+// function originState(){
+//   const loginState = JSON.parse(sessionStorage.getItem("loginState"));
+//   const userArea = document.querySelector(".user-area") as HTMLElement;
+//   const _list = document.querySelector(".user-area > li") as HTMLElement;
+//   const _span = document.querySelector(".user-area > li > span") as HTMLElement;
+  
+//   if( loginState !== null ){
+//     _span.innerHTML = loginState[0].userId+" 님";
+//   }
+// }
 
-
-
+// originState();
 
 
 
