@@ -2,3 +2,90 @@
     margin: 0;
     padding: 0;
 }
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.wrap {
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titlebox,
+.contentbox {
+    display: flex;
+}
+
+.name {
+    font-size: 14px;
+    background-color: #999;
+    color: white;
+    padding: 0px 20px;
+    border: 1px solid #666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.titleinputbox {
+    border: 1px solid #666;
+    width: 700px;
+    height: 40px;
+    overflow: hidden;
+}
+
+#write_title {
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    border: none;
+    padding-left: 10px;
+}
+
+.contentinputbox {
+    border: 1px solid #666;
+    width: 700px;
+    height: 500px;
+    overflow: hidden;
+}
+
+#write_content {
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    border: none;
+    resize: none;
+    line-height: 40px;
+    padding-left: 10px;
+}
+
+.btnbox {
+    width: 750px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.btnleft {
+    width: 200px;
+}
+
+.btnright {
+    width: 210px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#btn_cancel,
+#btn_confirm {
+    width: 100px;
+    height: 28px;
+    border: none;
+    background-color: #999;
+    color: white;
+    cursor: pointer;
+}
