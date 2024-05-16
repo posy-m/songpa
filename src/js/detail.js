@@ -17,20 +17,26 @@ class DetailRenderManager {
         str = str.split("=");
         const localdata = JSON.parse(localStorage.getItem("board_data"))[parseInt(param)];
         const detail_title = localdata.title;
-        const detail_writer = localdata.writer;
+        const detail_userName = localdata.userName;
         const detail_date = localdata.date;
         const detail_content = localdata.content;
         const title = document.querySelector("#title");
-        const writer = document.querySelector(".writer");
+        const userName = document.querySelector(".writer");
         const date = document.querySelector(".date");
         const content = document.querySelector("#content");
         const btnDelete = document.querySelector("#btn_delete");
         const btnCancel = document.querySelector("#btn_cancel");
         const btnConfirm = document.querySelector("#btn_confirm");
         title.innerHTML = detail_title;
-        writer.innerHTML = detail_writer;
+        userName.innerHTML = detail_userName;
         date.innerHTML = detail_date;
         content.innerHTML = detail_content;
+        btnCancel.onclick = () => {
+            location.href = "./board.html";
+        };
+        btnConfirm.onclick = () => {
+            location.href = "./modify.html";
+        };
         btnDelete.onclick = () => {
             const deleteItem = JSON.parse(localStorage.getItem("board_data"));
             if (confirm("삭제하시겠습니까?")) {
@@ -42,12 +48,10 @@ class DetailRenderManager {
                 return;
             }
         };
-        btnCancel.onclick = () => {
-            location.href = "./board.html";
-        };
-        btnConfirm.onclick = () => {
-            location.href = "./modify.html";
-        };
+        if (detail_userName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
+            const btnBox = document.querySelector(".btnright");
+            btnBox.innerHTML = "";
+        }
     }
 }
 const detailBoard = new DetailRenderManager;

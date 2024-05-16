@@ -45,6 +45,8 @@ body {
     font-size: 14px;
     border: none;
     padding-left: 10px;
+    display: flex;
+    align-items: center;
 }
 
 .writer,
@@ -56,6 +58,7 @@ body {
     display: flex;
     align-items: center;
     padding-left: 10px;
+    font-size: 14px;
 }
 
 
