@@ -37,13 +37,3 @@ loginPopupBtn.onclick = () => {
 loginDeleteBtn.onclick = () => {
     loginPop.style.display = "none";
 };
-function originState() {
-    const loginState = JSON.parse(sessionStorage.getItem("loginState"));
-    const userArea = document.querySelector(".user-area");
-    const _list = document.querySelector(".user-area > li");
-    const _span = document.querySelector(".user-area > li > span");
-    if (loginState !== null) {
-        _span.innerHTML = loginState[0].userId + " 님";
-    }
-}
-originState();
