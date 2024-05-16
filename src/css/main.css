@@ -225,11 +225,12 @@ a{
   height: 45px;
   padding: 0 10px;
   border: none;
-  background-color:#fff
+  background-color:#fff;
+  font-size: 18px;
 }
 
 .user-info input::placeholder{
-  font-size:20px;
+  font-size:16px;
   background-color:#fff
 }
 

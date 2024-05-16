@@ -85,6 +85,8 @@ function originState(){
         _span01.onclick = function(){
           location.href = "#";
           loginPop.style.display = "block";
+          userId.value = "";
+          userPw.value = "";
         }
       }
     }
