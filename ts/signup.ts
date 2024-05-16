@@ -17,7 +17,7 @@ class UserDataManager {
         this.userList = [];
     }
 
-    init(LocalStorage): undefined{
+    init(LocalStorage){
         if(LocalStorage === null){
             localStorage.setItem("sign_request", JSON.stringify(this.userList));
         }else{
@@ -102,6 +102,8 @@ class UserDataManager {
                 const newData = new UserData(id_finder.value, pw_finder.value, name_finder.value, `${year}` + `-` +  `${month + 1}`+ `-` + `${day}`);
                 this.userList.push(newData);
                 localStorage.setItem("sign_request", JSON.stringify(this.userList));
+                alert("회원가입 성공");
+                location.href = "./main.html";
             }
         }
     }
