@@ -53,7 +53,32 @@ class AdminPageManager {
             }
         }
     }
+    render(){
+        const loginData = JSON.parse(localStorage.getItem("sign_data"));
+        const box = document.getElementById("box");
+        box.innerHTML = `<div class="sign-title-box">
+        <span>아이디</span>
+        <span>비밀번호</span>
+        <span>닉네임</span>
+        <span>생성날짜</span>
+    </div>`
+        for(let i = 1; i < loginData.length; i++){
+            const div = document.createElement("div");
+            const span1 = document.createElement("span");
+            const span2 = document.createElement("span");
+            const span3 = document.createElement("span");
+            const span4 = document.createElement("span");
+            span1.innerHTML = loginData[i].userId;
+            span2.innerHTML = loginData[i].userPw;
+            span3.innerHTML = loginData[i].userName;
+            span4.innerHTML = loginData[i].date;
+            div.append(span1, span2, span3, span4);
+            box.append(div);
+            console.log(1);
+        }
+    }
 }
 
 const adminPageManager = new AdminPageManager();
 adminPageManager.register();
+adminPageManager.render();
