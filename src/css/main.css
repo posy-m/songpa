@@ -76,6 +76,14 @@ a{
   cursor: pointer;
 }
 
+.header-content .user-area li:nth-child(1){
+  position:relative
+}
+
+.header-content .user-area li:nth-child(1):content{
+  position: absolute;
+  
+}
 /* #################### footer ###################### */
 .footer{
   width: 100%;
