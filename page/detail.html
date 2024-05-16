@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../src/css/write.css">
+    <link rel="stylesheet" href="../src/css/detail.css">
 </head>
 
 <body>
@@ -18,27 +18,34 @@
             <div class="titlebox">
                 <div class="tag">제목</div>
                 <div class="titleinputbox">
-                    <input type="text" placeholder="제목을 입력하세요." id="title">
+                    <div id="title"></div>
                 </div>
+            </div>
+            <div class="writerdatebox">
+                <div class="tag">작성자</div>
+                <div class="writer"></div>
+                <div class="tag">작성일</div>
+                <div class="date"></div>
             </div>
             <div class="contentbox">
                 <div class="tag">내용</div>
                 <div class="contentinputbox">
-                    <textarea name="" id="content" placeholder="내용을 입력하세요."></textarea>
+                    <div id="content"></div>
                 </div>
             </div>
         </div>
         <div class="btnbox">
             <div class="btnleft">
+                <button id="btn_delete">삭제</button>
             </div>
             <div class="btnright">
                 <button id="btn_cancel">목록으로</button>
-                <button id="btn_confirm">작성완료 </button>
+                <button id="btn_confirm">수정</button>
             </div>
         </div>
     </div>
 </body>
 
-<script src="../src/js/write.js"></script>
+<script src="../src/js/detail.js"></script>
 
 </html>
