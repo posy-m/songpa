@@ -73,9 +73,6 @@ a{
 .header-content .user-area li{
   font-size: 18px;
   padding: 0 10px;
-}
-
-.header-content .user-area li:nth-child(1){
   cursor: pointer;
 }
 
