@@ -57,9 +57,15 @@ function originState() {
             const logoutQ = confirm("로그아웃을 하시겠습니까?");
             if (logoutQ) {
                 sessionStorage.removeItem("login_status");
-                _span01.innerHTML = "Log-out";
+                _span01.innerHTML = "Log-in";
+                logoutList.innerHTML = "Log-out";
                 logoutList.style.display = "none";
                 _span02.style.display = "block";
+                _span01.classList.replace('loginX', 'loginBtn');
+                _span01.onclick = function () {
+                    location.href = "#";
+                    loginPop.style.display = "block";
+                };
             }
         };
     }
