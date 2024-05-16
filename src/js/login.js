@@ -2,6 +2,15 @@ const signData = JSON.parse(localStorage.getItem("sign_data"));
 const formbtn = document.querySelector("form");
 const userId = document.querySelector("#userId");
 const userPw = document.querySelector("#userPw");
+const loginPopupBtn = document.querySelector(".loginBtn");
+const loginPop = document.querySelector(".login-popup");
+const loginDeleteBtn = document.querySelector(".login-delete");
+loginPopupBtn.onclick = () => {
+    loginPop.style.display = "block";
+};
+loginDeleteBtn.onclick = () => {
+    loginPop.style.display = "none";
+};
 formbtn.onsubmit = function (e) {
     e.preventDefault();
     if (userId.value === "" || userPw.value === "") {
@@ -12,40 +21,41 @@ formbtn.onsubmit = function (e) {
     let _bool = false;
     for (let i = 0; i < signData.length; i++) {
         if (userId.value === signData[i].userId && userPw.value === signData[i].userPw) {
-            const loginObj = {
-                loginId: userId.value,
-                loginPw: userPw.value
-            };
-            sessionStorage.setItem("loginState", JSON.stringify(loginObj));
+            const loginObj = signData[i];
+            sessionStorage.setItem("login_status", JSON.stringify(loginObj));
             _bool = true;
+            loginPop.style.display = "none";
         }
     }
     text = _bool ? "성공" : "실패";
     alert(text);
     originState();
-};
-const loginPopupBtn = document.querySelector(".loginBtn");
-const loginPop = document.querySelector(".login-popup");
-const loginDeleteBtn = document.querySelector(".login-delete");
-loginPopupBtn.onclick = () => {
-    loginPop.style.display = "block";
-};
-loginDeleteBtn.onclick = () => {
-    loginPop.style.display = "none";
+    const span = document.querySelector('.loginBtn');
+    span.classList.replace('loginBtn', 'loginX');
+    const span2 = document.querySelector('.loginX');
+    span2.onclick = function () {
+        location.href = "./mypage.html";
+    };
 };
 function originState() {
-    const loginState = JSON.parse(sessionStorage.getItem("loginState"));
+    const login_status = JSON.parse(sessionStorage.getItem("login_status"));
     const userArea = document.querySelector(".user-area");
     const logoutList = document.createElement("li");
     const _span01 = document.querySelector(".user-area > li:nth-child(1) > span");
-    const _span02 = document.querySelector(".user-area > li:nth-child(2) > span > a");
-    if (loginState !== null) {
-        _span01.innerHTML = loginState.loginId + " 님";
-        _span02.innerHTML = "My Page";
-        _span02.onclick = function () {
-            document.getElementById('myPage').href = '';
-        };
+    const _span02 = document.querySelector(".user-area > li:nth-child(2)");
+    if (login_status !== null) {
+        _span01.innerHTML = login_status.userName + " 님";
+        _span02.style.display = "none";
         logoutList.innerHTML = "Log-out";
         userArea.append(logoutList);
+        logoutList.onclick = function () {
+            const logoutQ = confirm("로그아웃을 하시겠습니까?");
+            if (logoutQ) {
+                sessionStorage.removeItem("login_status");
+                _span01.innerHTML = "Log-out";
+                logoutList.style.display = "none";
+                _span02.style.display = "block";
+            }
+        };
     }
 }
