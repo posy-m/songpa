@@ -2,6 +2,8 @@
 *{
   margin: 0;
   padding: 0;
+  background-color: RGB(255,192,152);
+  color:#414581;
 }
 
 ul, li {
@@ -15,13 +17,12 @@ a{
 /* ############# header ################# */
 .header{
   width: 100%;
-  background-color: black;
+  border-bottom: 1px solid #414581;
 }
 
 .header > .header-content{
   width: 1400px;
   height: 120px;
-  background-color: aqua;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -32,12 +33,11 @@ a{
 /* ############### header mennu ################ */
 .header-content > .menu{
   display: flex;
-  background-color: purple;
   justify-content: space-around;
 }
 
 .header-content > .menu > li{
-  font-size: 14px;
+  font-size: 16px;
   padding:0 10px;
   color: #414581;
 }
@@ -46,11 +46,21 @@ a{
 .header-content > h1 {
   width: 200px;
   height: 50px;
-  background-color: yellow;
   position: absolute;
   transform: translate(-50%, -50%);
   left:50%;
   top:50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-content > h1 > img {
+  width: 45px;
+}
+.header-content > h1 > span {
+  font-size: 30px;
 }
 
 /* ################### header user-area ##################### */
@@ -63,14 +73,16 @@ a{
 .header-content .user-area li{
   font-size: 18px;
   padding: 0 10px;
+  cursor: pointer;
 }
 
 /* #################### footer ###################### */
 .footer{
   width: 100%;
-  background-color: blue;
   color: #fff;
   padding: 40px 0;
+  border-top: 1px solid #414581;
+  font-weight: bold;
 }
 
 .footer .footer-content{
@@ -83,14 +95,13 @@ a{
 
 
 .footer-content .footer-list .footer-logo{
-  margin-right: 150px
+  margin-right: 150px;
 }
 
 
 .footer-content .footer-list .footer-logo{
-  width: 200px;
-  height: 50px;
-  background-color: #fff;
+  font-size: 36px;
+  font-weight: bold;
 }
 
 .footer-list li{
@@ -102,22 +113,21 @@ a{
 }
 
 .footer-list .customer-center span:nth-child(1){
-  font-size: 24px;
+  font-size: 26px;
+  margin-bottom: 12px;
+  font-weight: bold;
 }
 
 .footer-list .customer-center span:nth-child(2){
-  font-size: 24px;
+  font-size: 23px;
 }
 
 .footer-list .sns{
-  justify-content: space-between;
+  margin-top:15px;
 }
 
-.footer-list .sns span{
-  display: block;
+.footer-list .sns img{
   width: 40px;
-  height: 40px;
-  background-color: #fff;
   float:left;
   margin-right: 10px;
 }
@@ -142,7 +152,11 @@ a{
   width:100%;
   height: 100vh;
   background-color: rgba(0,0,0,0.4);
-  position:relative;
+  position:absolute;
+  left:0;
+  top:0;
+  display: none;
+  coLOR:#FFF;
 }
 
 .login-popup .login-wrap{
@@ -162,12 +176,31 @@ a{
 .login-wrap > .login-content > p{
   text-align: center;
   font-size: 24px;
-  margin: 20px 0;
+  margin: 30px 0;
 }
 
 .login-wrap > .login-content{
   border: 1px solid #000;
+  position:relative;
 }
+
+/* ############### 로그인 삭제 ############## */
+.login-wrap > .login-content > .login-delete{
+  display:block;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.login-content > .login-delete img{
+  width: 22px;
+  position:relative;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+}
+
 
 /* ################ 아이디 비밀번호 input ############# */
 .user-info{
@@ -181,7 +214,13 @@ a{
   width:400px;
   height: 45px;
   padding: 0 10px;
-  border: none; 
+  border: none;
+  background-color:#fff
+}
+
+.user-info input::placeholder{
+  font-size:20px;
+  background-color:#fff
 }
 
 /* ################# 버튼 ############### */
@@ -192,7 +231,12 @@ form{
 form > button {
   width: 420px;
   height: 50px;
-  background-color:#fff
+  background-color:#414581;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 /* ################# join-area ############### */
