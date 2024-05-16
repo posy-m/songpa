@@ -77,13 +77,15 @@ a{
 }
 
 .header-content .user-area li:nth-child(1){
-  position:relative
+  position:relative;
 }
 
-.header-content .user-area li:nth-child(1):content{
-  position: absolute;
-  
+.header-content .user-area li:nth-child(1) span{
+  display:flex;
+  justify-content: center;
+  align-items:center;
 }
+
 /* #################### footer ###################### */
 .footer{
   width: 100%;

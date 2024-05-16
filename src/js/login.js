@@ -44,7 +44,12 @@ function originState() {
     const _span01 = document.querySelector(".user-area > li:nth-child(1) > span");
     const _span02 = document.querySelector(".user-area > li:nth-child(2)");
     if (login_status !== null) {
-        _span01.innerHTML = login_status.userName + " 님";
+        _span01.innerHTML = `
+      <img src="../src/img/mypageIcon.png" alt="로고">
+      ${login_status.userName} 님
+    `;
+        const _img = document.querySelector(".user-area > li > span > img");
+        _img.style.width = "30px";
         _span02.style.display = "none";
         logoutList.innerHTML = "Log-out";
         userArea.append(logoutList);

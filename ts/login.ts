@@ -49,9 +49,6 @@ formbtn.onsubmit = function(e){
     }
 }
 
-
-
-
 // 로그인시 logout으로 변경 및 mypage 생성
 function originState(){
   const login_status = JSON.parse(sessionStorage.getItem("login_status"));
@@ -63,7 +60,14 @@ function originState(){
   const _span02 = document.querySelector(".user-area > li:nth-child(2)") as HTMLElement;
 
   if( login_status !== null ){
-    _span01.innerHTML = login_status.userName+" 님";
+    _span01.innerHTML = `
+      <img src="../src/img/mypageIcon.png" alt="로고">
+      ${login_status.userName} 님
+    `;
+
+    const _img = document.querySelector(".user-area > li > span > img") as HTMLElement;
+    _img.style.width = "30px";
+
     _span02.style.display = "none";
     logoutList.innerHTML = "Log-out";
     userArea.append(logoutList);  
