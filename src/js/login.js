@@ -1,4 +1,4 @@
-const userRequest = JSON.parse(localStorage.getItem("sign_request"));
+const userRequest = JSON.parse(localStorage.getItem("sign_data"));
 const loginStateArray = [];
 const formbtn = document.querySelector("form");
 const userId = document.querySelector("#userId");
@@ -17,8 +17,6 @@ formbtn.onsubmit = function (e) {
             };
             loginStateArray.push(loginObj);
             sessionStorage.setItem("loginState", JSON.stringify(loginStateArray));
-            const session = sessionStorage.getItem("loginState");
-            console.log(session);
             alert("로그인 완료");
             return;
         }
@@ -27,4 +25,13 @@ formbtn.onsubmit = function (e) {
             return;
         }
     }
+};
+const loginPopupBtn = document.querySelector(".loginBtn");
+const loginPop = document.querySelector(".login-popup");
+const loginDeleteBtn = document.querySelector(".login-delete");
+loginPopupBtn.onclick = () => {
+    loginPop.style.display = "block";
+};
+loginDeleteBtn.onclick = () => {
+    loginPop.style.display = "none";
 };
