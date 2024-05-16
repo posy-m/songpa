@@ -49,9 +49,6 @@ formbtn.onsubmit = function(e){
     }
 }
 
-
-
-
 // 로그인시 logout으로 변경 및 mypage 생성
 function originState(){
   const login_status = JSON.parse(sessionStorage.getItem("login_status"));
@@ -63,7 +60,14 @@ function originState(){
   const _span02 = document.querySelector(".user-area > li:nth-child(2)") as HTMLElement;
 
   if( login_status !== null ){
-    _span01.innerHTML = login_status.userName+" 님";
+    _span01.innerHTML = `
+      <img src="../src/img/mypageIcon.png" alt="로고">
+      ${login_status.userName} 님
+    `;
+
+    const _img = document.querySelector(".user-area > li > span > img") as HTMLElement;
+    _img.style.width = "30px";
+
     _span02.style.display = "none";
     logoutList.innerHTML = "Log-out";
     userArea.append(logoutList);  
@@ -71,9 +75,19 @@ function originState(){
       const logoutQ = confirm("로그아웃을 하시겠습니까?");
       if(logoutQ){
         sessionStorage.removeItem("login_status");
-        _span01.innerHTML = "Log-out";
+        _span01.innerHTML = "Log-in"
+        logoutList.innerHTML = "Log-out";
         logoutList.style.display = "none";
         _span02.style.display = "block";
+        
+        // 해놓아야 로그아웃시 정상적으로 작동함
+        _span01.classList.replace('loginX', 'loginBtn');
+        _span01.onclick = function(){
+          location.href = "#";
+          loginPop.style.display = "block";
+          userId.value = "";
+          userPw.value = "";
+        }
       }
     }
   }
