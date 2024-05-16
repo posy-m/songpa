@@ -77,13 +77,15 @@ a{
 }
 
 .header-content .user-area li:nth-child(1){
-  position:relative
+  position:relative;
 }
 
-.header-content .user-area li:nth-child(1):content{
-  position: absolute;
-  
+.header-content .user-area li:nth-child(1) span{
+  display:flex;
+  justify-content: center;
+  align-items:center;
 }
+
 /* #################### footer ###################### */
 .footer{
   width: 100%;
@@ -223,11 +225,12 @@ a{
   height: 45px;
   padding: 0 10px;
   border: none;
-  background-color:#fff
+  background-color:#fff;
+  font-size: 18px;
 }
 
 .user-info input::placeholder{
-  font-size:20px;
+  font-size:16px;
   background-color:#fff
 }
 
