@@ -1,7 +1,9 @@
 class DetailRenderManager {
     boardDataList: WriteData[]
+    sessionData: any
     constructor() {
         this.boardDataList = []
+        this.sessionData = {}
     }
 
     // 로컬스토리지 값이 없을때 빈배열, 있으면 가져옴
@@ -13,7 +15,16 @@ class DetailRenderManager {
         }
     }
 
+    // 세션스토리지 값이 없을때 빈객체
+    getsessionStorage(a) {
+        if (a === null) {
+            sessionStorage.setItem("login_status", JSON.stringify(this.sessionData));
+        }
+    }
+
     render() {
+        this.getsessionStorage(sessionStorage.getItem("login_status"));
+
         const param = new URLSearchParams(location.search).get("index");
         let str: any = location.search;
         str = str.replace("?", "");
@@ -46,7 +57,7 @@ class DetailRenderManager {
 
         // 수정하기 버튼
         btnConfirm.onclick = () => {
-            location.href = "./modify.html"
+            location.href = "./modify.html?index=" + param;
         }
 
         // 삭제 버튼
@@ -61,10 +72,8 @@ class DetailRenderManager {
             }
         }
 
-        // 내 글이 하단 버튼 비활성화
-        if (
-            detail_userName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName
-        ) {
+        // 내 이름과 일치하지않고 관리자 이름도 아닐 경우 하단 버튼 비활성화
+        if ((detail_userName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) && "admin" !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
             const btnBox = <HTMLElement>document.querySelector(".btnright")
             btnBox.innerHTML = "";
         }

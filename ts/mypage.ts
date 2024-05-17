@@ -1,7 +1,7 @@
 function mypage(){
     const login_data = JSON.parse(sessionStorage.getItem("login_status"));
     const id = <HTMLInputElement>document.getElementById("id-text");
-    const id_btn = document.getElementById("id-rpl");
+    const id_btn = <HTMLButtonElement>document.getElementById("id-rpl");
     const pw = <HTMLInputElement>document.getElementById("pw-text");
     const pw_btn = document.getElementById("pw-rpl")
     const name = <HTMLInputElement>document.getElementById("name-text");
@@ -10,7 +10,8 @@ function mypage(){
     pw.value = login_data.userPw;
     name.value = login_data.userName;
     const sign_data = JSON.parse(localStorage.getItem("sign_data"));
-    id_btn.addEventListener("click", () => {
+    id_btn.onclick = () => {
+        console.log(1);
         if(confirm("정말 변경하시겠습니까?")){
             for(let i = 0; i < sign_data.length; i++){
                 if(sign_data[i] === login_data){
@@ -23,7 +24,7 @@ function mypage(){
         }else{
             return;
         }
-    })
+    }
     pw_btn.addEventListener("click", () => {
         if(confirm("정말 변경하시겠습니까?")){
             for(let i = 0; i < sign_data.length; i++){
@@ -53,3 +54,5 @@ function mypage(){
         }
     })
 }
+
+mypage();
