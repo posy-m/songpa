@@ -11,7 +11,7 @@ function paintBoard() {
   console.log(filter);
   const arr = [];
   const hi = Math.floor(boardData.length/5);
-  for(let i = 0; i < hi+1; i+=5){
+  for(let i = 0; i < boardData.length; i+=5){
     const num = i + 5;
     const page_arr = boardData.slice(i, num);
     arr.push(page_arr);
