@@ -79,6 +79,43 @@ body {
     box-sizing: border-box;
 }
 
+.replybox {
+    display: flex;
+    margin-top: 10px;
+}
+
+#reply {
+    width: 700px;
+    height: 40px;
+    font-size: 14px;
+    resize: none;
+    padding: 11px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+#btn_reply {
+    width: 74px;
+    background-color: #999;
+    color: white;
+    border: 1px solid #666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 500ms;
+}
+
+#btn_reply:hover {
+    background-color: white;
+    color: black;
+}
+
+#replylist {
+    display: flex;
+    flex-direction: column;
+}
+
 .btnbox {
     width: 772px;
     display: flex;
@@ -101,6 +138,22 @@ body {
     background-color: #999;
     color: white;
     cursor: pointer;
+    transition: 500ms
+}
+
+#btn_board:hover {
+    background-color: white;
+    color: black;
+}
+
+#btn_confirm:hover {
+    background-color: white;
+    color: black;
+}
+
+#btn_delete:hover {
+    background-color: white;
+    color: red;
 }
 
 #btn_delete {

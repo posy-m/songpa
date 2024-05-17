@@ -101,4 +101,20 @@ body {
     background-color: #999;
     color: white;
     cursor: pointer;
+    transition: 500ms;
+}
+
+#btn_board:hover {
+    background-color: white;
+    color: black;
+}
+
+#btn_cancel:hover {
+    background-color: white;
+    color: black;
+}
+
+#btn_confirm:hover {
+    background-color: white;
+    color: black;
 }
