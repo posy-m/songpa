@@ -24,16 +24,16 @@ function paintBoard() {
         const span1 = document.createElement("span");
         span1.innerHTML = (i + 1) + "";
         const span2 = document.createElement("span");
-        span2.innerHTML = boardData.userName;
+        span2.innerHTML = arr[param][i].userName;
         const span3 = document.createElement("span");
-        span3.innerHTML = boardData.title;
+        span3.innerHTML = arr[param][i].title;
         const span4 = document.createElement("span");
-        span4.innerHTML = boardData.date;
+        span4.innerHTML = arr[param][i].date;
         const span5 = document.createElement("span");
-        span5.innerHTML = `${boardData.count}`;
+        span5.innerHTML = `${arr[param][i].count}`;
         span3.addEventListener("click", (e) => {
             location.href = "./detail.html?index=" + i;
-            boardData[i].count++;
+            arr[param][i].count++;
         });
         boardList.appendChild(li);
         li.append(span1, span2, span3, span4, span5);
