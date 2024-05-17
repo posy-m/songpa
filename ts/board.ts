@@ -32,7 +32,7 @@ function paintBoard() {
   localStorage.setItem("", JSON.stringify(this._boardList))
   let list: number[] = [];
   for (let i = 0; i < boardData.length; i++) {
-    if (localStorage.getItem("num") !== null) {
+    if (localStorage.getItem("num") === null) {
       localStorage.setItem("num", JSON.stringify(list));
     } else {
       list = JSON.parse(localStorage.getItem("num"));
@@ -63,25 +63,29 @@ function paintBoard() {
 }
 
 paintBoard();
+
+
+
 //
-const b = JSON.parse(localStorage.getItem("num")).length;
-const c = JSON.parse(localStorage.getItem("num"));
-c.push(b);
-localStorage.setItem("num", JSON.stringify(c));
+// const b = JSON.parse(localStorage.getItem("num")).length;
+// const c = JSON.parse(localStorage.getItem("num"));
+// c.push(b);
+// localStorage.setItem("num", JSON.stringify(c));
 //
 
 // 페이지 네이션
 const boardData = JSON.parse(localStorage.getItem("board_data"));
-const countPage = 6;
+const countPage = 6; //페이지 몇개를 올릴건가
 const getPageCount = () => {
   return Math.ceil(50 / countPage)
 }
 
+//번호 페이지 만들기
 const numButtonWapper = document.querySelector('.number-button-wraper');
 const setPageButtons = () => {
   numButtonWapper.innerHTML = '';
   for (let i = 1; i <= getPageCount(); i++) {
-    numButtonWapper.innerHTML += `<span class= "number-butto"> ${i} </span>`
+    numButtonWapper.innerHTML += `<span class= "number-button"> ${i} </span>`
   }
 }
 
@@ -96,6 +100,7 @@ const setPageOf = (pageNumber) => {
 
   for (
     let i = countPage * (pageNumber - 1) + 1;
+    // <= : 왼쪽 피연사즈이 값이 피연사자의 값보다 작거나 같으면 참을 반환함
     i <= countPage * (pageNumber - 1) + 6 && i <= boardData.length;
     i++
   ) {
@@ -124,9 +129,11 @@ const setPageOf = (pageNumber) => {
     //조회수
     const count = document.createElement('span');
     count.className = 'count'
+
+
     const im = i - 1;
     const num = JSON.parse(localStorage.getItem("num"));
-    console.log(num);
+
     postNumber.textContent = num[i]
     //페이지 번호는 1부터 시작하지만 배열 인덱스는 0q부터 시작하므로 -1 해준다.
     Nickname.textContent = boardData[i - 1].userName;
@@ -138,6 +145,8 @@ const setPageOf = (pageNumber) => {
     ul.append(li);
   }
 }
+
+// setPageOf(3)
 
 const pageNumberButtons = document.querySelectorAll('.number-button');
 

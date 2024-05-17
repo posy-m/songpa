@@ -4,13 +4,8 @@ class AdminPageManager {
         this.signList = [];
     }
 
-<<<<<<< HEAD
     init(LocalStorage) {
         if (LocalStorage === null) {
-=======
-    init(LocalStorage){
-        if(LocalStorage === null){
->>>>>>> hi
             localStorage.setItem("sign_data", JSON.stringify(this.signList));
         } else {
             this.signList = JSON.parse(LocalStorage);

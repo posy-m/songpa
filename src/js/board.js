@@ -5,7 +5,7 @@ function paintBoard() {
     localStorage.setItem("", JSON.stringify(this._boardList));
     let list = [];
     for (let i = 0; i < boardData.length; i++) {
-        if (localStorage.getItem("num") !== null) {
+        if (localStorage.getItem("num") === null) {
             localStorage.setItem("num", JSON.stringify(list));
         }
         else {
@@ -34,10 +34,6 @@ function paintBoard() {
     }
 }
 paintBoard();
-const b = JSON.parse(localStorage.getItem("num")).length;
-const c = JSON.parse(localStorage.getItem("num"));
-c.push(b);
-localStorage.setItem("num", JSON.stringify(c));
 const boardData = JSON.parse(localStorage.getItem("board_data"));
 const countPage = 6;
 const getPageCount = () => {
@@ -47,7 +43,7 @@ const numButtonWapper = document.querySelector('.number-button-wraper');
 const setPageButtons = () => {
     numButtonWapper.innerHTML = '';
     for (let i = 1; i <= getPageCount(); i++) {
-        numButtonWapper.innerHTML += `<span class= "number-butto"> ${i} </span>`;
+        numButtonWapper.innerHTML += `<span class= "number-button"> ${i} </span>`;
     }
 };
 setPageButtons();
@@ -71,7 +67,6 @@ const setPageOf = (pageNumber) => {
         count.className = 'count';
         const im = i - 1;
         const num = JSON.parse(localStorage.getItem("num"));
-        console.log(num);
         postNumber.textContent = num[i];
         Nickname.textContent = boardData[i - 1].userName;
         title.textContent = boardData[i - 1].title;

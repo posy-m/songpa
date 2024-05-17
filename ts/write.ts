@@ -61,11 +61,7 @@ class WriteSaveManager {
                 count: count
             }
             if (confirm("작성을 완료하시겠습니까? 작성중인 내용이 저장됩니다.")) {
-<<<<<<< HEAD
                 this.setLocalStorage(writeData)
-=======
-                this.setLocalStorage(writeData);
->>>>>>> hi
                 location.href = "./board.html"
             } else {
                 return;
