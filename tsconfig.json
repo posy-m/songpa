@@ -2,9 +2,9 @@
   "include": [
     "ts/**/*"
   ],
- "compilerOptions": {
-  "outDir": "./src/js",
-  "target": "ES6",
-  "removeComments": true
- }
+  "compilerOptions": {
+    "outDir": "./src/js",
+    "target": "ES6",
+    "removeComments": true
+  }
 }

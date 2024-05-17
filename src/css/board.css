@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url(https://gontrancherrier.kr/images/sub/sub1_bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+#sectionBoard> :nth-child(1) {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+#sectionBoard #board> :nth-child(1) {
+  width: 70px;
+}
+
+#sectionBoard #board> :nth-child(2) {
+  width: 200px;
+}
+
+#sectionBoard #board> :nth-child(3) {
+  width: 800px;
+}
+
+#sectionBoard #board> :nth-child(4) {
+  width: 200px;
+}
+
+#sectionBoard #board> :nth-child(5) {
+  width: 100px;
+}
+
+
+#sectionBoard {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+#board {
+  width: 1200px;
+  height: 50px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid; */
+  text-align: center;
+  border-bottom: 1px solid;
+  /* background-color: #fac0998b; */
+}
+
+#sectionBoard #board .boardStyle {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+/* 페이지 네이션 */
+
+.pagination-container {
+  margin-top: 500px;
+  justify-content: center;
+  display: flex;
+  gap: 20px;
+}

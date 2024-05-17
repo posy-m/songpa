@@ -16,7 +16,8 @@ body {
 }
 
 .titlebox,
-.contentbox {
+.contentbox,
+.writerdatebox {
     display: flex;
 }
 
@@ -46,10 +47,22 @@ body {
     padding-left: 10px;
 }
 
+.writer,
+.date {
+    width: 303px;
+    height: 40px;
+    border: 1px solid #666;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+
 .contentinputbox {
     border: 1px solid #666;
     width: 700px;
-    height: 500px;
+    height: 458px;
     overflow: hidden;
 }
 
@@ -70,10 +83,6 @@ body {
     margin-top: 10px;
 }
 
-.btnleft {
-    width: 1px;
-}
-
 .btnright {
     width: 210px;
     display: flex;
@@ -81,11 +90,16 @@ body {
 }
 
 #btn_cancel,
-#btn_confirm {
+#btn_confirm,
+#btn_delete {
     width: 100px;
     height: 28px;
     border: none;
     background-color: #999;
     color: white;
     cursor: pointer;
+}
+
+#btn_delete {
+    color: rgb(255, 0, 0);
 }
