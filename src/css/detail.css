@@ -44,9 +44,9 @@ body {
     height: 100%;
     font-size: 14px;
     border: none;
-    padding-left: 10px;
-    display: flex;
-    align-items: center;
+    resize: none;
+    padding: 11px;
+    box-sizing: border-box;
 }
 
 .writer,
@@ -75,8 +75,8 @@ body {
     font-size: 14px;
     border: none;
     resize: none;
-    line-height: 40px;
-    padding-left: 10px;
+    padding: 11px;
+    box-sizing: border-box;
 }
 
 .btnbox {
@@ -92,7 +92,7 @@ body {
     justify-content: space-between;
 }
 
-#btn_cancel,
+#btn_board,
 #btn_confirm,
 #btn_delete {
     width: 100px;
