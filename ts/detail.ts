@@ -6,14 +6,14 @@ class DetailRenderManager {
         this.sessionData = {}
     }
 
-    // 로컬스토리지 값이 없을때 빈배열, 있으면 가져옴
-    getLocalStorage(a) {
-        if (a === null) {
-            localStorage.setItem("board_data", JSON.stringify(this.boardDataList));
-        } else {
-            this.boardDataList = JSON.parse(a);
-        }
-    }
+    // // 로컬스토리지 값이 없을때 빈배열, 있으면 가져옴
+    // getLocalStorage(a) {
+    //     if (a === null) {
+    //         localStorage.setItem("board_data", JSON.stringify(this.boardDataList));
+    //     } else {
+    //         this.boardDataList = JSON.parse(a);
+    //     }
+    // }
 
     // 세션스토리지 값이 없을때 빈객체
     getsessionStorage(a) {
@@ -23,14 +23,12 @@ class DetailRenderManager {
     }
 
     render() {
+        // this.getLocalStorage(localStorage.getItem("board_data"))
         this.getsessionStorage(sessionStorage.getItem("login_status"));
 
         const param = new URLSearchParams(location.search).get("index");
-        let str: any = location.search;
-        str = str.replace("?", "");
-        str = str.split("=");
 
-        const localdata = JSON.parse(localStorage.getItem("board_data"))[parseInt(param)];
+        const localdata = JSON.parse(localStorage.getItem("board_data"))[param];
         const detail_title = localdata.title;
         const detail_userName = localdata.userName;
         const detail_date = localdata.date;
@@ -42,7 +40,7 @@ class DetailRenderManager {
         const content = <HTMLElement>document.querySelector("#content");
 
         const btnDelete = <HTMLElement>document.querySelector("#btn_delete");
-        const btnCancel = <HTMLElement>document.querySelector("#btn_cancel");
+        const btnBoard = <HTMLElement>document.querySelector("#btn_board");
         const btnConfirm = <HTMLElement>document.querySelector("#btn_confirm");
 
         title.innerHTML = detail_title;
@@ -51,8 +49,8 @@ class DetailRenderManager {
         content.innerHTML = detail_content;
 
         // 목록으로 버튼
-        btnCancel.onclick = () => {
-            location.href = "./board.html"
+        btnBoard.onclick = () => {
+            location.href = "./board.html?index=0";
         }
 
         // 수정하기 버튼
@@ -66,7 +64,7 @@ class DetailRenderManager {
             if (confirm("삭제하시겠습니까?")) {
                 deleteItem.splice(param, 1)
                 localStorage.setItem("board_data", JSON.stringify(deleteItem))
-                location.href = "./board.html"
+                location.href = "./board.html?index=0";
             } else {
                 return;
             }
