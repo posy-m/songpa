@@ -20,10 +20,10 @@ loginDeleteBtn.onclick = () => {
   loginPop.style.display = "none";
 }
 
-// 로그인시 logout으로 변경 및 mypage 생성
+// 로그인시 logout으로 변경
+
 function originState(){
   const login_status = JSON.parse(sessionStorage.getItem("login_status"));
-
   const userArea = document.querySelector(".user-area") as HTMLElement;
   const logoutList = document.createElement("li") as HTMLElement;
 
@@ -63,7 +63,20 @@ function originState(){
       }
     }
   }
-  
+}
+// mypage 및 admin 페이지 접속 함수
+function myPage(){
+  const _span01 = document.querySelector(".user-area > li:nth-child(1) > span") as HTMLElement;
+  const login_status = JSON.parse(sessionStorage.getItem("login_status"));
+  if(login_status.userId === signData[0].userId && login_status.userPw === signData[0].userPw){
+    _span01.onclick = function(){
+      location.href = "admin.html";
+    }
+  } else {
+    _span01.onclick = function(){
+      location.href = "mypage.html";
+    }
+  }
 }
 
 formbtn.onsubmit = function(e){
@@ -82,65 +95,11 @@ formbtn.onsubmit = function(e){
     }
   }
   text = _bool ? "로그인이 성공했습니다." : "아이디와 비밀번호를 확인해주세요.";
+  // originState();  
   alert(text);
-  originState();
+  location.reload();
 }
 
+// 함수 실행
 originState();
-
-// function keepLogin(){
-//   const login_status = JSON.parse(sessionStorage.getItem("login_status"));
-
-//   const userArea = document.querySelector(".user-area") as HTMLElement;
-//   const logoutList = document.createElement("li") as HTMLElement;
-
-//   const _span01 = document.querySelector(".user-area > li:nth-child(1) > span") as HTMLElement;
-//   const _span02 = document.querySelector(".user-area > li:nth-child(2)") as HTMLElement;
-
-//   if( login_status !== null){
-//     _span01.innerHTML = `
-//       <img src="../src/img/mypageIcon.png" alt="로고">
-//       ${login_status.userName} 님
-//     `;
-
-//     const _img = document.querySelector(".user-area > li > span > img") as HTMLElement;
-//     _img.style.width = "30px";
-
-//     _span02.style.display = "none";
-//     logoutList.innerHTML = "Log-out";
-//     userArea.append(logoutList);  
-//     logoutList.onclick = function(){
-//       const logoutQ = confirm("로그아웃을 하시겠습니까?");
-//       if(logoutQ){
-//         sessionStorage.removeItem("login_status");
-//         _span01.innerHTML = "Log-in"
-//         logoutList.innerHTML = "Log-out";
-//         logoutList.style.display = "none";
-//         _span02.style.display = "block";
-        
-//         // 해놓아야 로그아웃시 정상적으로 작동함
-//         _span01.classList.replace('loginX', 'loginBtn');
-//         _span01.onclick = function(){
-//           location.href = "#";
-//           loginPop.style.display = "block";
-//           userId.value = "";
-//           userPw.value = "";
-//         }
-//       }
-//     }
-//   }
-// }
-// keepLogin();
-
-// logoutList.addEventListener('click', function(){
-//   console.log('할수있어..?');
-// }
-// ) 
-
-
-
-
-
-
-// logout 클릭하면 session 버려서
-// 로그인으로 변경하고 마이페이지 삭제
+myPage();
