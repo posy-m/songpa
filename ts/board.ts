@@ -1,3 +1,6 @@
+
+
+
 function paintBoard() {
   const param = new URLSearchParams(location.search).get("index");
   let str: any = location.search;
@@ -10,8 +13,8 @@ function paintBoard() {
   const filter = boardData.filter((value) => value);
   console.log(filter);
   const arr = [];
-  const hi = Math.floor(boardData.length/2);
-  for(let i = 0; i < hi+1; i+=2){
+  const hi = Math.floor(boardData.length / 2);
+  for (let i = 0; i < hi + 1; i += 2) {
     const num = i + 2;
     const page_arr = boardData.slice(i, num);
     arr.push(page_arr);
