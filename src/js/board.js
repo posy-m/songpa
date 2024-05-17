@@ -11,7 +11,7 @@ function paintBoard() {
     console.log(filter);
     const arr = [];
     const hi = Math.floor(boardData.length / 5);
-    for (let i = 0; i < hi + 1; i += 5) {
+    for (let i = 0; i < boardData.length; i += 5) {
         const num = i + 5;
         const page_arr = boardData.slice(i, num);
         arr.push(page_arr);
@@ -21,7 +21,8 @@ function paintBoard() {
     for (let i = 0; i < arr[param].length; i++) {
         const li = document.createElement("li");
         const span1 = document.createElement("span");
-        span1.innerHTML = (i + 1) + "";
+        const no = i + parseInt(param) * 5;
+        span1.innerHTML = (no + 1) + "";
         const span2 = document.createElement("span");
         span2.innerHTML = arr[param][i].userName;
         const span3 = document.createElement("span");
