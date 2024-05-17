@@ -27,15 +27,22 @@ formbtn.onsubmit = function (e) {
             loginPop.style.display = "none";
         }
     }
-    text = _bool ? "성공" : "실패";
+    text = _bool ? "로그인이 성공했습니다." : "아이디와 비밀번호를 확인해주세요.";
     alert(text);
     originState();
     const span = document.querySelector('.loginBtn');
     span.classList.replace('loginBtn', 'loginX');
     const span2 = document.querySelector('.loginX');
-    span2.onclick = function () {
-        location.href = "./mypage.html";
-    };
+    if (userId.value === signData[0].userId && userPw.value === signData[0].userPw) {
+        span2.onclick = function () {
+            location.href = "./admin.html";
+        };
+    }
+    else {
+        span2.onclick = function () {
+            location.href = "./mypage.html";
+        };
+    }
 };
 function originState() {
     const login_status = JSON.parse(sessionStorage.getItem("login_status"));
@@ -72,3 +79,39 @@ function originState() {
         };
     }
 }
+function keepLogin() {
+    const login_status = JSON.parse(sessionStorage.getItem("login_status"));
+    const userArea = document.querySelector(".user-area");
+    const logoutList = document.createElement("li");
+    const _span01 = document.querySelector(".user-area > li:nth-child(1) > span");
+    const _span02 = document.querySelector(".user-area > li:nth-child(2)");
+    if (login_status !== null) {
+        _span01.innerHTML = `
+      <img src="../src/img/mypageIcon.png" alt="로고">
+      ${login_status.userName} 님
+    `;
+        const _img = document.querySelector(".user-area > li > span > img");
+        _img.style.width = "30px";
+        _span02.style.display = "none";
+        logoutList.innerHTML = "Log-out";
+        userArea.append(logoutList);
+        logoutList.onclick = function () {
+            const logoutQ = confirm("로그아웃을 하시겠습니까?");
+            if (logoutQ) {
+                sessionStorage.removeItem("login_status");
+                _span01.innerHTML = "Log-in";
+                logoutList.innerHTML = "Log-out";
+                logoutList.style.display = "none";
+                _span02.style.display = "block";
+                _span01.classList.replace('loginX', 'loginBtn');
+                _span01.onclick = function () {
+                    location.href = "#";
+                    loginPop.style.display = "block";
+                    userId.value = "";
+                    userPw.value = "";
+                };
+            }
+        };
+    }
+}
+keepLogin();
