@@ -46,6 +46,20 @@ function originState() {
         };
     }
 }
+function myPage() {
+    const _span01 = document.querySelector(".user-area > li:nth-child(1) > span");
+    const login_status = JSON.parse(sessionStorage.getItem("login_status"));
+    if (login_status.userId === signData[0].userId && login_status.userPw === signData[0].userPw) {
+        _span01.onclick = function () {
+            location.href = "admin.html";
+        };
+    }
+    else {
+        _span01.onclick = function () {
+            location.href = "mypage.html";
+        };
+    }
+}
 formbtn.onsubmit = function (e) {
     e.preventDefault();
     if (userId.value === "" || userPw.value === "") {
@@ -64,5 +78,7 @@ formbtn.onsubmit = function (e) {
     }
     text = _bool ? "로그인이 성공했습니다." : "아이디와 비밀번호를 확인해주세요.";
     alert(text);
+    location.reload();
 };
 originState();
+myPage();
