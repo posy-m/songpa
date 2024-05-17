@@ -1,6 +1,7 @@
 class DetailRenderManager {
     constructor() {
         this.boardDataList = [];
+        this.sessionData = {};
     }
     getLocalStorage(a) {
         if (a === null) {
@@ -10,7 +11,13 @@ class DetailRenderManager {
             this.boardDataList = JSON.parse(a);
         }
     }
+    getsessionStorage(a) {
+        if (a === null) {
+            sessionStorage.setItem("login_status", JSON.stringify(this.sessionData));
+        }
+    }
     render() {
+        this.getsessionStorage(sessionStorage.getItem("login_status"));
         const param = new URLSearchParams(location.search).get("index");
         let str = location.search;
         str = str.replace("?", "");
@@ -35,7 +42,7 @@ class DetailRenderManager {
             location.href = "./board.html";
         };
         btnConfirm.onclick = () => {
-            location.href = "./modify.html";
+            location.href = "./modify.html?index=" + param;
         };
         btnDelete.onclick = () => {
             const deleteItem = JSON.parse(localStorage.getItem("board_data"));
@@ -48,7 +55,7 @@ class DetailRenderManager {
                 return;
             }
         };
-        if (detail_userName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
+        if ((detail_userName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) && "admin" !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
             const btnBox = document.querySelector(".btnright");
             btnBox.innerHTML = "";
         }
