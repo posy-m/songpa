@@ -20,41 +20,6 @@ loginDeleteBtn.onclick = () => {
   loginPop.style.display = "none";
 }
 
-formbtn.onsubmit = function(e){
-  e.preventDefault();
-  if(userId.value === "" || userPw.value === ""){
-    alert("아이디 비밀번호를 입력해주세요"); return;
-  }
-  let text:string = "";
-  let _bool:boolean = false;
-  for(let i = 0; i < signData.length; i++){
-    if(userId.value === signData[i].userId && userPw.value === signData[i].userPw){
-      const loginObj = signData[i];
-      sessionStorage.setItem("login_status", JSON.stringify(loginObj));
-      _bool = true;
-      loginPop.style.display = "none";
-    }
-  }
-  text = _bool ? "로그인이 성공했습니다." : "아이디와 비밀번호를 확인해주세요.";
-  alert(text);
-  originState();
-
-  // 로그인 되면 닉네임이 마이 페이지로 이동하게 만듦
-  // 어드민 계정은 admin 페이지로 이동
-  const span = document.querySelector('.loginBtn') as HTMLElement;
-  span.classList.replace('loginBtn', 'loginX');
-  const span2 = document.querySelector('.loginX') as HTMLElement;
-  if(userId.value === signData[0].userId && userPw.value === signData[0].userPw){
-    span2.onclick = function(){
-      location.href = "./admin.html";
-    }
-  } else{
-    span2.onclick = function(){
-      location.href = "./mypage.html";
-    }   
-  } 
-}
-
 // 로그인시 logout으로 변경 및 mypage 생성
 function originState(){
   const login_status = JSON.parse(sessionStorage.getItem("login_status"));
@@ -76,7 +41,8 @@ function originState(){
 
     _span02.style.display = "none";
     logoutList.innerHTML = "Log-out";
-    userArea.append(logoutList);  
+    userArea.append(logoutList);
+
     logoutList.onclick = function(){
       const logoutQ = confirm("로그아웃을 하시겠습니까?");
       if(logoutQ){
@@ -97,51 +63,74 @@ function originState(){
       }
     }
   }
+  
 }
 
-function keepLogin(){
-  const login_status = JSON.parse(sessionStorage.getItem("login_status"));
-
-  const userArea = document.querySelector(".user-area") as HTMLElement;
-  const logoutList = document.createElement("li") as HTMLElement;
-
-  const _span01 = document.querySelector(".user-area > li:nth-child(1) > span") as HTMLElement;
-  const _span02 = document.querySelector(".user-area > li:nth-child(2)") as HTMLElement;
-
-  if( login_status !== null){
-    _span01.innerHTML = `
-      <img src="../src/img/mypageIcon.png" alt="로고">
-      ${login_status.userName} 님
-    `;
-
-    const _img = document.querySelector(".user-area > li > span > img") as HTMLElement;
-    _img.style.width = "30px";
-
-    _span02.style.display = "none";
-    logoutList.innerHTML = "Log-out";
-    userArea.append(logoutList);  
-    logoutList.onclick = function(){
-      const logoutQ = confirm("로그아웃을 하시겠습니까?");
-      if(logoutQ){
-        sessionStorage.removeItem("login_status");
-        _span01.innerHTML = "Log-in"
-        logoutList.innerHTML = "Log-out";
-        logoutList.style.display = "none";
-        _span02.style.display = "block";
-        
-        // 해놓아야 로그아웃시 정상적으로 작동함
-        _span01.classList.replace('loginX', 'loginBtn');
-        _span01.onclick = function(){
-          location.href = "#";
-          loginPop.style.display = "block";
-          userId.value = "";
-          userPw.value = "";
-        }
-      }
+formbtn.onsubmit = function(e){
+  e.preventDefault();
+  if(userId.value === "" || userPw.value === ""){
+    alert("아이디 비밀번호를 입력해주세요"); return;
+  }
+  let text:string = "";
+  let _bool:boolean = false;
+  for(let i = 0; i < signData.length; i++){
+    if(userId.value === signData[i].userId && userPw.value === signData[i].userPw){
+      const loginObj = signData[i];
+      sessionStorage.setItem("login_status", JSON.stringify(loginObj));
+      _bool = true;
+      loginPop.style.display = "none";
     }
   }
+  text = _bool ? "로그인이 성공했습니다." : "아이디와 비밀번호를 확인해주세요.";
+  alert(text);
+  originState();
 }
-keepLogin();
+
+originState();
+
+// function keepLogin(){
+//   const login_status = JSON.parse(sessionStorage.getItem("login_status"));
+
+//   const userArea = document.querySelector(".user-area") as HTMLElement;
+//   const logoutList = document.createElement("li") as HTMLElement;
+
+//   const _span01 = document.querySelector(".user-area > li:nth-child(1) > span") as HTMLElement;
+//   const _span02 = document.querySelector(".user-area > li:nth-child(2)") as HTMLElement;
+
+//   if( login_status !== null){
+//     _span01.innerHTML = `
+//       <img src="../src/img/mypageIcon.png" alt="로고">
+//       ${login_status.userName} 님
+//     `;
+
+//     const _img = document.querySelector(".user-area > li > span > img") as HTMLElement;
+//     _img.style.width = "30px";
+
+//     _span02.style.display = "none";
+//     logoutList.innerHTML = "Log-out";
+//     userArea.append(logoutList);  
+//     logoutList.onclick = function(){
+//       const logoutQ = confirm("로그아웃을 하시겠습니까?");
+//       if(logoutQ){
+//         sessionStorage.removeItem("login_status");
+//         _span01.innerHTML = "Log-in"
+//         logoutList.innerHTML = "Log-out";
+//         logoutList.style.display = "none";
+//         _span02.style.display = "block";
+        
+//         // 해놓아야 로그아웃시 정상적으로 작동함
+//         _span01.classList.replace('loginX', 'loginBtn');
+//         _span01.onclick = function(){
+//           location.href = "#";
+//           loginPop.style.display = "block";
+//           userId.value = "";
+//           userPw.value = "";
+//         }
+//       }
+//     }
+//   }
+// }
+// keepLogin();
 
 // logoutList.addEventListener('click', function(){
 //   console.log('할수있어..?');
