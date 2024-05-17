@@ -32,6 +32,7 @@ function paintBoard() {
         const span5 = document.createElement("span");
         span5.innerHTML = `${arr[param][i].count}`;
         span3.addEventListener("click", (e) => {
+            console.log(boardData[i].count);
             location.href = "./detail.html?index=" + i;
             arr[param][i].count++;
         });

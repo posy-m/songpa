@@ -9,13 +9,21 @@ function paintBoard() {
   const boardData = JSON.parse(localStorage.getItem("board_data"));
   const boardList = document.querySelector("#boardList") as HTMLUListElement
   boardList.innerHTML = "";
+
+  //
   localStorage.setItem("", JSON.stringify(this._boardList))
   const filter = boardData.filter((value) => value);
   console.log(filter);
   const arr = [];
+<<<<<<< HEAD
   const hi = Math.floor(boardData.length / 5);
   for (let i = 0; i < boardData.length; i += 5) {
     const num = i + 5;
+=======
+  const hi = Math.floor(boardData.length / 2);
+  for (let i = 0; i < hi + 1; i += 2) {
+    const num = i + 2;
+>>>>>>> nuna
     const page_arr = boardData.slice(i, num);
     arr.push(page_arr);
     console.log(page_arr);
@@ -35,6 +43,7 @@ function paintBoard() {
     const span5 = document.createElement("span")
     span5.innerHTML = `${arr[param][i].count}`
     span3.addEventListener("click", (e) => {
+      console.log(boardData[i].count);
       location.href = "./detail.html?index=" + i;
       arr[param][i].count++;
     }
