@@ -34,13 +34,13 @@ class WriteSaveManager {
 
         const title = <HTMLInputElement>document.querySelector("#title")
         const content = <HTMLInputElement>document.querySelector("#content")
-        const btnCancel = <HTMLElement>document.querySelector("#btn_cancel")
+        const btnBoard = <HTMLElement>document.querySelector("#btn_board")
         const btnConfirm = <HTMLElement>document.querySelector("#btn_confirm")
 
         // 목록으로 버튼
-        btnCancel.onclick = () => {
+        btnBoard.onclick = () => {
             if (confirm("글 작성을 취소하고 목록으로 돌아가시겠습니까? 작성중인 내용은 저장되지 않습니다.")) {
-                location.href = "./board.html"
+                location.href = "./board.html?index=0";
             } else {
                 return;
             }
@@ -62,7 +62,7 @@ class WriteSaveManager {
             }
             if (confirm("작성을 완료하시겠습니까? 작성중인 내용이 저장됩니다.")) {
                 this.setLocalStorage(writeData);
-                location.href = "./board.html"
+                location.href = "./board.html?index=0"
             } else {
                 return;
             }
