@@ -24,6 +24,7 @@ class WriteSaveManager {
 
     // 작성완료시 배열에 푸시후 배열을 로컬스토리지에 저장
     setLocalStorage(a) {
+        //push 말고 unshift이유는 배열을 바꾸기 위해서
         this.boardDataList.push(a);
         localStorage.setItem("board_data", JSON.stringify(this.boardDataList))
     }
@@ -40,7 +41,7 @@ class WriteSaveManager {
         // 목록으로 버튼
         btnBoard.onclick = () => {
             if (confirm("글 작성을 취소하고 목록으로 돌아가시겠습니까? 작성중인 내용은 저장되지 않습니다.")) {
-                location.href = "./board.html?index=0";
+                location.href = "./board.html?index=1&search=";
             } else {
                 return;
             }
@@ -48,12 +49,22 @@ class WriteSaveManager {
 
         // 작성완료 버튼
         btnConfirm.onclick = () => {
+            const no = JSON.parse(localStorage.getItem("board_data")) ? JSON.parse(localStorage.getItem("board_data")).length : 0
             const date = new Date();
             const year = date.getFullYear();
-            const month = date.getMonth() + 1;
-            const day = date.getDate();
+            let month = (date.getMonth() + 1).toString();
+            if (parseInt(month) < 10) {
+                month = "0" + month
+            }
+
+            let day = (date.getDate()).toString();
+            if (parseInt(day) < 10) {
+                day = "0" + day
+            }
+
             const count = 0
             const writeData = {
+                no,
                 userName: (JSON.parse(sessionStorage.getItem("login_status"))).userName,
                 title: title.value,
                 content: content.value,
@@ -62,7 +73,7 @@ class WriteSaveManager {
             }
             if (confirm("작성을 완료하시겠습니까? 작성중인 내용이 저장됩니다.")) {
                 this.setLocalStorage(writeData);
-                location.href = "./board.html?index=0"
+                location.href = "./board.html?index=1&search="
             } else {
                 return;
             }

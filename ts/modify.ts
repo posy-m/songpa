@@ -39,7 +39,7 @@ class ModifyManager {
 
         // 목록으로 버튼
         btnBoard.onclick = () => {
-            location.href = "./board.html?index=0";
+            location.href = "./board.html?index=1&search=";
         }
 
         // 취소하기 버튼
@@ -60,7 +60,7 @@ class ModifyManager {
                 const modifyItem = JSON.parse(localStorage.getItem("board_data"))
                 modifyItem.splice(param, 1, modifiedData)
                 localStorage.setItem("board_data", JSON.stringify(modifyItem))
-                location.href = "./board.html?index=0";
+                location.href = "./board.html?index=1&search=";
             } else {
                 return;
             }
