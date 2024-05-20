@@ -11,13 +11,15 @@ const userPw = document.querySelector("#userPw") as HTMLInputElement;
 const loginPopupBtn = document.querySelector(".loginBtn") as HTMLElement;
 const loginPop = document.querySelector(".login-popup") as HTMLElement;
 const loginDeleteBtn = document.querySelector(".login-delete") as HTMLElement;
-
+const body = document.querySelector("body") as HTMLElement;
 loginPopupBtn.onclick = () => {
   loginPop.style.display = "block";
+  body.style.overflow ="hidden";
 }
 
 loginDeleteBtn.onclick = () => {
   loginPop.style.display = "none";
+  body.style.overflow ="visible";
 }
 
 // 로그인시 logout으로 변경
