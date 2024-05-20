@@ -24,6 +24,15 @@ class DetailRenderManager {
         this.getLocalStorage(localStorage.getItem("reply_data"));
         this.getsessionStorage(sessionStorage.getItem("login_status"));
         const param = new URLSearchParams(location.search).get("index");
+        let boardList = JSON.parse(localStorage.getItem("board_data"));
+        boardList.forEach(board => {
+            if (param !== undefined) {
+                if (board.no === parseInt(param)) {
+                    board.count++;
+                    localStorage.setItem("board_data", JSON.stringify(boardList));
+                }
+            }
+        });
         const localdata = JSON.parse(localStorage.getItem("board_data"))[param];
         const detail_title = localdata.title;
         const detail_userName = localdata.userName;
@@ -61,7 +70,7 @@ class DetailRenderManager {
             }
         }
         btnBoard.onclick = () => {
-            location.href = "./board.html?index=0";
+            location.href = "./board.html?index=1&search=";
         };
         btnConfirm.onclick = () => {
             location.href = "./modify.html?index=" + param;
@@ -71,7 +80,7 @@ class DetailRenderManager {
             if (confirm("삭제하시겠습니까?")) {
                 deleteItem.splice(param, 1);
                 localStorage.setItem("board_data", JSON.stringify(deleteItem));
-                location.href = "./board.html?index=0";
+                location.href = "./board.html?index=1&search=";
             }
             else {
                 return;
