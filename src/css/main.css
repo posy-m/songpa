@@ -3,10 +3,6 @@
   margin: 0;
   padding: 0;
 }
-body{
-  background-color: RGB(255,192,152);
-}
-
 ul,
 li {
   list-style: none;
@@ -182,6 +178,7 @@ a {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -80%);
+  background-color: rgba(255,255,255,0.7) ;
 }
 
 .login-popup .login-wrap h2 {
