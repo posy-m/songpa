@@ -65,7 +65,6 @@ prevBtn.onclick = function(){
 
 const posY = [];
 const mainContent = document.querySelectorAll(".scroll-js");
-const mainContent1 = document.querySelector(".content1-wrap");
 for(let i = 0; i < mainContent.length; i++){
   posY.push(mainContent[i].getBoundingClientRect().top + window.pageYOffset)
 }
