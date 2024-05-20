@@ -38,13 +38,30 @@ class DetailRenderManager {
 
     render() {
         // this.getLocalStorage(localStorage.getItem("board_data"))
+
         this.getLocalStorage(localStorage.getItem("reply_data"));
+
         this.getsessionStorage(sessionStorage.getItem("login_status"));
 
         const param = new URLSearchParams(location.search).get("index");
 
+
+        //조회수 만드는 페이지 
+        let boardList: IBoard[] = JSON.parse(localStorage.getItem("board_data"))
+        boardList.forEach(board => {
+            if (param !== undefined) {
+                if (board.no === parseInt(param)) {
+                    board.count++
+                    localStorage.setItem("board_data", JSON.stringify(boardList))
+                }
+            }
+        });
+      
         // 보드 데이터
+
         const localdata = JSON.parse(localStorage.getItem("board_data"))[param];
+
+
         const detail_title = localdata.title;
         const detail_userName = localdata.userName;
         const detail_date = localdata.date;
@@ -95,7 +112,7 @@ class DetailRenderManager {
 
         // 목록으로 버튼
         btnBoard.onclick = () => {
-            location.href = "./board.html?index=0";
+            location.href = "./board.html?index=1&search=";
         }
 
         // 수정하기 버튼
@@ -109,7 +126,7 @@ class DetailRenderManager {
             if (confirm("삭제하시겠습니까?")) {
                 deleteItem.splice(param, 1)
                 localStorage.setItem("board_data", JSON.stringify(deleteItem))
-                location.href = "./board.html?index=0";
+                location.href = "./board.html?index=1&search=";
             } else {
                 return;
             }
