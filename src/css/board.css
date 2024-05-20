@@ -9,6 +9,22 @@ body {
   background-size: cover;
 }
 
+a {
+  margin-top: 30px;
+  margin-left: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 40px;
+  background-color: #414581;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
 
 #sectionBoard> :nth-child(1) {
   text-align: center;
@@ -36,6 +52,45 @@ body {
   width: 100px;
 }
 
+ul {
+  margin-top: 30px;
+  width: 1230px;
+}
+
+
+ul>li {
+  height: 50px;
+  list-style: none;
+  display: flex;
+  font-size: 18px;
+  margin: 20px;
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: white;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+ul>li>span:nth-child(1) {
+  width: 70px;
+}
+
+ul>li>span:nth-child(2) {
+  width: 200px;
+}
+
+ul>li>span:nth-child(3) {
+  width: 800px;
+}
+
+ul>li>span:nth-child(4) {
+  width: 200px;
+}
+
+ul>li>span:nth-child(5) {
+  width: 100px;
+}
 
 #sectionBoard {
   margin-top: 100px;
@@ -48,7 +103,7 @@ body {
 
 #board {
   width: 1200px;
-  height: 50px;
+  /* height: 20px; */
   margin-top: 50px;
   display: flex;
   justify-content: center;
@@ -67,8 +122,15 @@ body {
 /* 페이지 네이션 */
 
 .pagination-container {
-  margin-top: 500px;
+  margin-top: 70px;
   justify-content: center;
   display: flex;
   gap: 20px;
+}
+
+.pagination-container .number-button-wraper .number-button {
+  display: flex;
+  gap: 30px;
+  cursor: pointer;
+  font-size: 20px;
 }

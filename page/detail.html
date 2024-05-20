@@ -18,7 +18,7 @@
             <div class="titlebox">
                 <div class="tag">제목</div>
                 <div class="titleinputbox">
-                    <div id="title"></div>
+                    <textarea name="" id="title" readonly></textarea>
                 </div>
             </div>
             <div class="writerdatebox">
@@ -30,16 +30,22 @@
             <div class="contentbox">
                 <div class="tag">내용</div>
                 <div class="contentinputbox">
-                    <div id="content"></div>
+                    <textarea name="" id="content" readonly></textarea>
                 </div>
+            </div>
+            <div class="replybox">
+                <textarea name="" id="reply" placeholder="댓글을 남겨주세요!"></textarea>
+                <button id="btn_reply">댓글달기</button>
+            </div>
+            <div id="replylist">
             </div>
         </div>
         <div class="btnbox">
+            <button id="btn_board">목록으로</button>
             <div class="btnleft">
-                <button id="btn_delete">삭제</button>
             </div>
             <div class="btnright">
-                <button id="btn_cancel">목록으로</button>
+                <button id="btn_delete">삭제</button>
                 <button id="btn_confirm">수정</button>
             </div>
         </div>

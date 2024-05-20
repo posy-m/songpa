@@ -16,7 +16,8 @@ body {
 }
 
 .titlebox,
-.contentbox {
+.contentbox,
+.writerdatebox {
     display: flex;
 }
 
@@ -48,10 +49,23 @@ body {
     box-sizing: border-box;
 }
 
+.writer,
+.date {
+    width: 303px;
+    height: 40px;
+    border: 1px solid #666;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+
 .contentinputbox {
     border: 1px solid #666;
     width: 700px;
-    height: 500px;
+    height: 458px;
     overflow: hidden;
 }
 
@@ -72,17 +86,14 @@ body {
     margin-top: 10px;
 }
 
-.btnleft {
-    width: 1px;
-}
-
 .btnright {
-    width: 100px;
+    width: 210px;
     display: flex;
     justify-content: space-between;
 }
 
 #btn_board,
+#btn_cancel,
 #btn_confirm {
     width: 100px;
     height: 28px;
@@ -94,6 +105,11 @@ body {
 }
 
 #btn_board:hover {
+    background-color: white;
+    color: black;
+}
+
+#btn_cancel:hover {
     background-color: white;
     color: black;
 }
