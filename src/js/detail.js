@@ -83,7 +83,10 @@ class DetailRenderManager {
                 const replyReplyBtn = document.createElement("button");
                 const replyDate = document.createElement("div");
                 const replyContent = document.createElement("div");
+                replyContent.classList.add("replycontentbox");
                 const replyReplyList = document.createElement("div");
+                replyReplyList.classList.add("replyreplylist");
+                const replyReplyinput = document.createElement("div");
                 replyWriter.innerHTML = detail_replyUserName;
                 replyDetail.innerHTML = detail_reply;
                 replyDate.innerHTML = detail_replydate;
@@ -91,10 +94,32 @@ class DetailRenderManager {
                 replyDelete.innerHTML = "삭제";
                 replyReplyBtn.innerHTML = "답글달기";
                 replyContent.append(replyWriter, replyDetail, replyDate, replyModify, replyDelete, replyReplyBtn);
-                replyList.append(replyContent, replyReplyList);
+                replyList.append(replyContent, replyReplyList, replyReplyinput);
                 if (detail_replyUserName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName && "admin" !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
                     replyModify.outerHTML = "";
                     replyDelete.outerHTML = "";
+                }
+                for (let x = 0; x < (JSON.parse(localStorage.getItem("replyreply_data"))).length; x++) {
+                    if ((JSON.parse(localStorage.getItem("replyreply_data")))[x].replyreplyindex == i) {
+                        const localReplyReplyData = JSON.parse(localStorage.getItem("replyreply_data"))[x];
+                        const detail_replyReplyUserName = localReplyReplyData.replyUserName;
+                        const detail_replyreply = localReplyReplyData.reply;
+                        const detail_replyreplydate = localReplyReplyData.replydate;
+                        const replyReplyWriter = document.createElement("div");
+                        const replyReplyDetail = document.createElement("div");
+                        const replyReplyDate = document.createElement("div");
+                        const replyReplyContent = document.createElement("div");
+                        replyReplyContent.classList.add("replyreplycontent");
+                        const replyReplyModify = document.createElement("button");
+                        const replyReplyDelete = document.createElement("button");
+                        replyReplyWriter.innerHTML = detail_replyReplyUserName;
+                        replyReplyDetail.innerHTML = detail_replyreply;
+                        replyReplyDate.innerHTML = detail_replyreplydate;
+                        replyReplyModify.innerHTML = "수정";
+                        replyReplyDelete.innerHTML = "삭제";
+                        replyReplyContent.append(replyReplyWriter, replyReplyDetail, replyReplyDate, replyReplyModify, replyReplyDelete);
+                        replyReplyList.append(replyReplyContent);
+                    }
                 }
                 replyReplyBtn.addEventListener("click", () => {
                     const replyReplyInput = document.createElement("textarea");
@@ -103,9 +128,9 @@ class DetailRenderManager {
                     replyReplyCancel.innerHTML = "취소";
                     replyReplySubmit.innerHTML = "작성";
                     replyReplyBtn.innerHTML = "";
-                    replyReplyList.append(replyReplyInput, replyReplyCancel, replyReplySubmit);
+                    replyReplyinput.append(replyReplyInput, replyReplyCancel, replyReplySubmit);
                     replyReplyCancel.onclick = () => {
-                        replyReplyList.innerHTML = "";
+                        replyReplyinput.innerHTML = "";
                         replyReplyBtn.innerHTML = "답글달기";
                     };
                     replyReplySubmit.onclick = () => {

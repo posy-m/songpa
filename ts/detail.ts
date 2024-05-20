@@ -120,10 +120,14 @@ class DetailRenderManager {
                 const replyDelete = <HTMLElement>document.createElement("button");
                 const replyReplyBtn = <HTMLElement>document.createElement("button");
                 const replyDate = <HTMLElement>document.createElement("div");
+                // 댓글 박스
                 const replyContent = <HTMLElement>document.createElement("div");
-
-                // 대댓글 들어갈 공간
+                replyContent.classList.add("replycontentbox")
+                // 대댓글 렌더박스
                 const replyReplyList = <HTMLElement>document.createElement("div");
+                replyReplyList.classList.add("replyreplylist")
+                // 대댓글 쓰기박스
+                const replyReplyinput = <HTMLElement>document.createElement("div");
 
                 replyWriter.innerHTML = detail_replyUserName;
                 replyDetail.innerHTML = detail_reply;
@@ -132,7 +136,7 @@ class DetailRenderManager {
                 replyDelete.innerHTML = "삭제";
                 replyReplyBtn.innerHTML = "답글달기";
                 replyContent.append(replyWriter, replyDetail, replyDate, replyModify, replyDelete, replyReplyBtn);
-                replyList.append(replyContent, replyReplyList);
+                replyList.append(replyContent, replyReplyList, replyReplyinput);
 
                 // 내이름과 일치하지않고 관리자 이름도 아닐경우 비활성화
                 if (detail_replyUserName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName && "admin" !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
@@ -140,29 +144,35 @@ class DetailRenderManager {
                     replyDelete.outerHTML = "";
                 }
 
-                // for (let x = 0; x < (JSON.parse(localStorage.getItem("replyreply_data"))).length; x++) {
-                //     if ((JSON.parse(localStorage.getItem("replyreply_data")))[x].replyreplyindex == i) {
-                //         const localReplyReplyData = JSON.parse(localStorage.getItem("replyreply_data"))[x];
+                // 대댓글 렌더
+                for (let x = 0; x < (JSON.parse(localStorage.getItem("replyreply_data"))).length; x++) {
+                    if ((JSON.parse(localStorage.getItem("replyreply_data")))[x].replyreplyindex == i) {
+                        const localReplyReplyData = JSON.parse(localStorage.getItem("replyreply_data"))[x];
 
-                //         const detail_replyReplyUserName = localReplyReplyData.replyUserName;
-                //         const detail_replyreply = localReplyReplyData.reply;
-                //         const detail_replyreplydate = localReplyReplyData.replydate;
+                        const detail_replyReplyUserName = localReplyReplyData.replyUserName;
+                        const detail_replyreply = localReplyReplyData.reply;
+                        const detail_replyreplydate = localReplyReplyData.replydate;
 
-                //         const replyReplyWriter = <HTMLElement>document.createElement("div");
-                //         const replyReplyDetail = <HTMLElement>document.createElement("div");
-                //         const replyReplyDate = <HTMLElement>document.createElement("div");
-                //         const replyReplyContent = <HTMLElement>document.createElement("div");
+                        const replyReplyWriter = <HTMLElement>document.createElement("div");
+                        const replyReplyDetail = <HTMLElement>document.createElement("div");
+                        const replyReplyDate = <HTMLElement>document.createElement("div");
+                        const replyReplyContent = <HTMLElement>document.createElement("div");
+                        replyReplyContent.classList.add("replyreplycontent");
+                        const replyReplyModify = <HTMLElement>document.createElement("button");
+                        const replyReplyDelete = <HTMLElement>document.createElement("button");
 
-                //         replyReplyWriter.innerHTML = detail_replyReplyUserName;
-                //         replyReplyDetail.innerHTML = detail_replyreply;
-                //         replyReplyDate.innerHTML = detail_replyreplydate;
-                //         replyReplyContent.append(replyReplyWriter, replyReplyDetail, replyReplyDate);
-                //         replyReplyList.append(replyReplyContent);
-                //     }
-                // }
+                        replyReplyWriter.innerHTML = detail_replyReplyUserName;
+                        replyReplyDetail.innerHTML = detail_replyreply;
+                        replyReplyDate.innerHTML = detail_replyreplydate;
+                        replyReplyModify.innerHTML = "수정";
+                        replyReplyDelete.innerHTML = "삭제";
+                        replyReplyContent.append(replyReplyWriter, replyReplyDetail, replyReplyDate, replyReplyModify, replyReplyDelete);
+                        replyReplyList.append(replyReplyContent);
+                    }
+                }
 
 
-                // 대댓글 띄우기 버튼
+                // 대댓글작성창 띄우기 버튼
                 replyReplyBtn.addEventListener("click", () => {
                     const replyReplyInput = <HTMLTextAreaElement>document.createElement("textarea");
                     const replyReplySubmit = <HTMLElement>document.createElement("button");
@@ -171,11 +181,11 @@ class DetailRenderManager {
                     replyReplyCancel.innerHTML = "취소";
                     replyReplySubmit.innerHTML = "작성";
                     replyReplyBtn.innerHTML = "";
-                    replyReplyList.append(replyReplyInput, replyReplyCancel, replyReplySubmit);
+                    replyReplyinput.append(replyReplyInput, replyReplyCancel, replyReplySubmit);
 
                     // 대댓글 취소버튼
                     replyReplyCancel.onclick = () => {
-                        replyReplyList.innerHTML = "";
+                        replyReplyinput.innerHTML = "";
                         replyReplyBtn.innerHTML = "답글달기";
                     }
 

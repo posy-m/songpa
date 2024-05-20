@@ -117,34 +117,38 @@ body {
     margin-top: 10px;
 }
 
-#replylist>div {
+#replylist>.replycontentbox {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
 }
 
-#replylist>div>div:nth-of-type(1) {
+#replylist>.replycontentbox>div:nth-of-type(1) {
     width: 80px;
     display: flex;
     justify-content: center;
 }
 
-#replylist>div>div:nth-of-type(2) {
+#replylist>.replycontentbox>div:nth-of-type(2) {
     width: 470px;
     margin-left: 10px;
     display: flex;
 }
 
-#replylist>div>div:nth-of-type(3) {
+#replylist>.replycontentbox>div:nth-of-type(3) {
     display: flex;
     justify-content: center;
     width: 100px;
 }
 
-#replylist>div>button {
+#replylist>.replycontentbox>button {
     border: none;
     width: 60px;
     background-color: transparent
+}
+
+.replyreplycontent {
+    display: flex;
 }
 
 .textarea {
