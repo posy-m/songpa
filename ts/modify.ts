@@ -62,7 +62,7 @@ class ModifyManager {
                 const modifyItem = JSON.parse(localStorage.getItem("board_data"))
                 modifyItem.splice(param, 1, modifiedData)
                 localStorage.setItem("board_data", JSON.stringify(modifyItem))
-                location.href = "./board.html?index=1&search=";
+                location.href = "./detail.html?index=" + param;
             } else {
                 return;
             }
