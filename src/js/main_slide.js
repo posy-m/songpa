@@ -55,7 +55,6 @@ prevBtn.onclick = function () {
 };
 const posY = [];
 const mainContent = document.querySelectorAll(".scroll-js");
-const mainContent1 = document.querySelector(".content1-wrap");
 for (let i = 0; i < mainContent.length; i++) {
     posY.push(mainContent[i].getBoundingClientRect().top + window.pageYOffset);
 }
@@ -63,12 +62,48 @@ window.onscroll = function () {
     let _scroll = 921 + window.pageYOffset;
     for (let i = 0; i < mainContent.length; i++) {
         if (_scroll > posY[i]) {
-            if (!mainContent[0].classList.contains("is-active1"))
-                mainContent[0].classList.add("is-active1");
+            if (!mainContent[i].classList.contains("is-active1"))
+                mainContent[i].classList.add("is-active1");
         }
         else {
             if (mainContent[i].classList.contains("is-active1"))
                 mainContent[i].classList.remove("is-active1");
         }
+    }
+};
+const flipCard1 = document.querySelector('.content3 > div:nth-child(1)');
+const flipCard2 = document.querySelector('.content3 > div:nth-child(2)');
+const flipCard3 = document.querySelector('.content3 > div:nth-child(3)');
+let flip_bool1 = false;
+let flip_bool2 = false;
+let flip_bool3 = false;
+flipCard1.onclick = () => {
+    if (!flip_bool1) {
+        flipCard1.style.transform = "rotateY(180deg)";
+        flip_bool1 = true;
+    }
+    else {
+        flipCard1.style.transform = "rotateY(0)";
+        flip_bool1 = false;
+    }
+};
+flipCard2.onclick = () => {
+    if (!flip_bool2) {
+        flipCard2.style.transform = "rotateY(180deg)";
+        flip_bool2 = true;
+    }
+    else {
+        flipCard2.style.transform = "rotateY(0)";
+        flip_bool2 = false;
+    }
+};
+flipCard3.onclick = () => {
+    if (!flip_bool3) {
+        flipCard3.style.transform = "rotateY(180deg)";
+        flip_bool3 = true;
+    }
+    else {
+        flipCard3.style.transform = "rotateY(0)";
+        flip_bool3 = false;
     }
 };
