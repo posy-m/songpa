@@ -58,9 +58,7 @@ class DetailRenderManager {
         });
 
         // 보드 데이터
-
         const localdata = JSON.parse(localStorage.getItem("board_data"))[param];
-
 
         const detail_title = localdata.title;
         const detail_userName = localdata.userName;
@@ -84,6 +82,11 @@ class DetailRenderManager {
         date.innerHTML = detail_date;
         content.innerHTML = detail_content;
 
+        // 내 이름과 일치하지않고 관리자 이름도 아닐 경우 댓글 수정삭제 버튼 비활성화
+        if ((detail_userName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) && "admin" !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
+            const btnBox = <HTMLElement>document.querySelector(".btnright")
+            btnBox.outerHTML = "";
+        }
 
         // 댓글 데이터
         for (let i = 0; i < (JSON.parse(localStorage.getItem("reply_data"))).length; i++) {
@@ -96,19 +99,72 @@ class DetailRenderManager {
 
                 const replyList = <HTMLElement>document.querySelector("#replylist");
 
-                const replyWriter = <HTMLElement>document.createElement("span");
-                const replyDetail = <HTMLElement>document.createElement("span");
-                const replyDate = <HTMLElement>document.createElement("span");
+                const replyWriter = <HTMLElement>document.createElement("div");
+                const replyDetail = <HTMLElement>document.createElement("div");
+                const replyReply = <HTMLElement>document.createElement("div");
+                const replyModify = <HTMLElement>document.createElement("button");
+                const replyDelete = <HTMLElement>document.createElement("button");
+                const replyDate = <HTMLElement>document.createElement("div");
                 const replyContent = <HTMLElement>document.createElement("div");
 
                 replyWriter.innerHTML = detail_replyUserName;
                 replyDetail.innerHTML = detail_reply;
                 replyDate.innerHTML = detail_replydate;
-                replyContent.append(replyWriter, replyDetail, replyDate);
+                replyReply.innerHTML = "답글달기";
+                replyModify.innerHTML = "수정";
+                replyDelete.innerHTML = "삭제";
+                replyContent.append(replyWriter, replyDetail, replyDate, replyReply, replyModify, replyDelete);
                 replyList.append(replyContent);
+
+                // 내이름과 일치하지않고 관리자 이름도 아닐경우 비활성화
+                if (detail_replyUserName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName && "admin" !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
+                    replyModify.outerHTML = "";
+                    replyDelete.outerHTML = "";
+                }
+
+                // 대댓글 버튼
+                replyReply.addEventListener("click", () => {
+                    console.log(1);
+                })
+
+                // 댓글 수정 버튼
+                replyModify.onclick = () => {
+                    const textArea = <HTMLTextAreaElement>document.createElement("textarea");
+                    textArea.classList.add("textarea")
+                    replyDetail.innerHTML = "";
+                    replyDetail.append(textArea);
+                    textArea.innerHTML = detail_reply;
+                    replyModify.innerHTML = "수정완료";
+                    replyDelete.innerHTML = "삭제";
+
+                    replyModify.onclick = () => {
+                        replyModify.innerHTML = "수정";
+                        const modifiedReply = {
+                            replyUserName: detail_replyUserName,
+                            reply: textArea.value,
+                            replydate: detail_replydate,
+                            replyindex: param
+                        }
+                        const modifyItem = JSON.parse(localStorage.getItem("reply_data"));
+                        modifyItem.splice(i, 1, modifiedReply);
+                        localStorage.setItem("reply_data", JSON.stringify(modifyItem));
+                        location.reload();
+                    }
+                }
+
+                // 댓글 삭제 버튼
+                replyDelete.onclick = () => {
+                    if (confirm("댓글을 삭제하시겠습니까?")) {
+                        const modifyItem = JSON.parse(localStorage.getItem("reply_data"));
+                        modifyItem.splice(i, 1);
+                        localStorage.setItem("reply_data", JSON.stringify(modifyItem));
+                        location.reload();
+                    } else {
+                        return;
+                    }
+                }
             }
         }
-
 
         // 목록으로 버튼
         btnBoard.onclick = () => {
@@ -123,16 +179,24 @@ class DetailRenderManager {
         // 삭제 버튼
         btnDelete.onclick = () => {
             const deleteItem = JSON.parse(localStorage.getItem("board_data"));
+            const originalReply = JSON.parse(localStorage.getItem("reply_data"));
+            const deleteReply = JSON.parse(localStorage.getItem("reply_data"));
             if (confirm("삭제하시겠습니까?")) {
                 deleteItem.splice(param, 1)
                 localStorage.setItem("board_data", JSON.stringify(deleteItem))
+                for (let i = originalReply.length - 1; i >= 0; i--) {
+                    if ((originalReply[i].replyindex) == param) {
+                        deleteReply.splice(i, 1)
+                    }
+                }
+                localStorage.setItem("reply_data", JSON.stringify(deleteReply))
                 location.href = "./board.html?index=1&search=";
             } else {
                 return;
             }
         }
 
-        // 댓글 달기 버튼 회원이 아닐경우 댓 버튼 클릭시 얼러트
+        // 댓글 달기 버튼 회원이 아닐경우 댓 버튼 클릭시 얼러트, 빈 값 입력시 얼러트
         btnReply.onclick = () => {
             if (JSON.stringify(sessionStorage.getItem("login_status")) == `"{}"`) {
                 alert("로그인을 해주세요!");
@@ -141,8 +205,14 @@ class DetailRenderManager {
             } else {
                 const date = new Date();
                 const year = date.getFullYear();
-                const month = date.getMonth() + 1;
-                const day = date.getDate();
+                let month = (date.getMonth() + 1).toString();
+                if (parseInt(month) < 10) {
+                    month = "0" + month
+                }
+                let day = (date.getDate()).toString();
+                if (parseInt(day) < 10) {
+                    day = "0" + day
+                }
                 const replyData = {
                     replyUserName: (JSON.parse(sessionStorage.getItem("login_status"))).userName,
                     reply: reply.value,
@@ -151,14 +221,8 @@ class DetailRenderManager {
                 }
                 // 로컬스토리지로 저장
                 this.setLocalStorage(replyData);
-                location.href = "./detail.html?index=" + param;
+                location.reload();
             }
-        }
-
-        // 내 이름과 일치하지않고 관리자 이름도 아닐 경우 하단 버튼 비활성화
-        if ((detail_userName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) && "admin" !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
-            const btnBox = <HTMLElement>document.querySelector(".btnright")
-            btnBox.innerHTML = "";
         }
     }
 }
