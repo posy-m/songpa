@@ -2,8 +2,15 @@
 * {
   margin: 0;
   padding: 0;
+<<<<<<< HEAD
   /* background-color: RGB(255, 192, 152); */
   color: #42457D;
+=======
+  color:#414581;
+>>>>>>> weer
+}
+body{
+  background-color: RGB(255,192,152);
 }
 
 ul,
@@ -346,8 +353,19 @@ form>button {
   margin:0 10px;
 }
 /* ################# content 2 ###################### */
+.content2-wrap{
+  width:100%;
+  background:url(../img/contentbg2.jpg) no-repeat center center;
+}
+
+.content2-wrap h2{
+  font-size: 46px;
+}
+
+.content2-wrap p{
+  font-size: 50px;
+}
 .content2-wrap > .content2{
-  background-color: #414581;
   display:flex;
   justify-content: center;
 }
@@ -386,24 +404,26 @@ form>button {
   display:flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
+  width: 180px;
   height: 50px;
-  background-color:#414581;
-  color: #fff;
+  color: #414581;
   border-radius: 6px;
   margin-top: 30px;
   transition: 0.5s;
-  border:1px solid #414581;
+  border:2px solid #414581;
+  background-color:#fff;
+  font-weight: 700;
 }
 
 .content2 > .textArea > a:hover{
-  background-color:#ccc;
-  color: #414581;
+  background-color:#414581;
+  color: #fff;
+
 }
 
 .scroll-js{
   opacity:0;
-  transition:2s;
+  transition:3s 0.3s;
 }
 
 .is-active1{
@@ -413,21 +433,106 @@ form>button {
 
 
 /* ################ content3 #################### */
+
 .content3-wrap h2{
+  font-size: 40px;
   text-align: center;
-  padding: 20px 0;
+  padding: 50px 0 20px;
 }
 
 .content3-wrap > .content3{
   display:flex;
   width: 1100px;
-  margin: 0 auto;
+  margin: 60px auto;
   justify-content: space-around;
-  margin-top: 50px;
 }
 
-.content3-wrap > .content3 > li{
+.content3 > div {
   width: 300px;
   height: 400px;
-  background-color: #000;
+  transform-style:preserve-3d;
+  transition: 300ms all linear;
+  cursor: pointer;
+}
+
+ .content3 > div > p{
+  width: 300px;
+  height: 400px;
+  background-color: rgb(214, 181, 70);
+  border-radius: 10px;
+  position: absolute;
+  top:0;
+}
+
+ .content3 p > img{
+  position:relative;
+  transform: translate(-50%, -50%);
+  left:50%;
+  top:50%;
+  width:200px;
+}
+
+.content3 > div > .front-img{
+  z-index: 1;
+  backface-visibility: hidden;
+}
+
+.content3 > div > .back-text{
+  z-index: 0;
+  transform:rotateY(180deg);
+}
+
+div > .back-text{
+  display: flex;
+  justify-content:center;
+  align-items:center;
+}
+
+div > .back-text >span{
+  font-size: 30px;
+  color: #fff;
+}
+
+.contentBG{
+  height: 500px;
+  background:url(../img/bg5.jpg) no-repeat center center;
+  background-size:100%;
+  background-attachment: fixed;
+  overflow:hidden;
+}
+.contentBG .dark{
+  width:100%;
+  height:100%;
+  background-color: rgba(0,0,0,0.7);
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contentBG .dark h2{
+  position:relative;
+  color:#efefef;
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+.contentBG .dark a{
+  color: #efefef;
+  border:1px solid #efefef;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width:200px;
+  height: 60px;
+  color:#efefef;
+  font-size: 24px;
+  font-weight: 700;
+  transition: 0.5s;
+  border-radius: 6px;
+}
+
+.contentBG .dark a:hover{
+  background-color: #efefef;
+  color: #333;
 }
