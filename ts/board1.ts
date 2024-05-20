@@ -118,3 +118,5 @@ function search(e: SubmitEvent) {
 boardSearch.addEventListener("submit", search)
 
 
+
+
