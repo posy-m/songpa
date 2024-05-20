@@ -5,6 +5,7 @@ class ModifyManager {
     render() {
         const param = new URLSearchParams(location.search).get("index");
         const localdata = JSON.parse(localStorage.getItem("board_data"))[param];
+        const detail_no = localdata.no;
         const detail_title = localdata.title;
         const detail_userName = localdata.userName;
         const detail_date = localdata.date;
@@ -30,6 +31,7 @@ class ModifyManager {
         btnConfirm.onclick = () => {
             if (confirm("수정하시겠습니까? 작성중인 내용이 저장됩니다.")) {
                 const modifiedData = {
+                    no: detail_no,
                     userName: detail_userName,
                     title: title.value,
                     content: content.value,
