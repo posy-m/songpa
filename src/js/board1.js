@@ -19,10 +19,12 @@ function paintPage(page) {
     }
     const showBoardData = resultData.slice(startIndex, endIndex > resultData.length ? resultData.length : endIndex);
     const boardListcontainer = document.querySelector("#boardList");
+    let i = 0;
     showBoardData.forEach((element) => {
         const li = document.createElement("tr");
         const no = document.createElement("td");
-        no.innerHTML = (element.no + 1).toString();
+        i++;
+        no.innerHTML = (i).toString();
         const userName = document.createElement("td");
         userName.innerHTML = element.userName;
         const title1 = document.createElement("td");
@@ -38,6 +40,7 @@ function paintPage(page) {
         boardListcontainer.appendChild(li);
     });
 }
+createPage();
 paintPage(parseInt(currentPage));
 function createPage() {
     boardList = JSON.parse(localStorage.getItem("board_data")).reverse();
@@ -63,7 +66,6 @@ function createPage() {
         createPageItem(i + 1, i + 1 === parseInt(currentPage));
     }
 }
-createPage();
 const boardSearch = document.querySelector("#boardSearch");
 function search(e) {
     e.preventDefault();

@@ -24,7 +24,6 @@ class WriteSaveManager {
 
     // 작성완료시 배열에 푸시후 배열을 로컬스토리지에 저장
     setLocalStorage(a) {
-        //push 말고 unshift이유는 배열을 바꾸기 위해서
         this.boardDataList.push(a);
         localStorage.setItem("board_data", JSON.stringify(this.boardDataList))
     }

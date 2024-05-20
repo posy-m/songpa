@@ -42,10 +42,12 @@ function paintPage(page: number) {
 
   const boardListcontainer = document.querySelector("#boardList")
   //li를 만들거양
+  let i = 0;
   showBoardData.forEach((element: IBoard) => {
     const li = document.createElement("tr")
     const no = document.createElement("td")
-    no.innerHTML = (element.no + 1).toString();
+    i++;
+    no.innerHTML = (i).toString();
     const userName = document.createElement("td")
     userName.innerHTML = element.userName;
     const title1 = document.createElement("td")
@@ -62,7 +64,7 @@ function paintPage(page: number) {
     boardListcontainer.appendChild(li)
   })
 }
-
+createPage()
 paintPage(parseInt(currentPage))
 
 //페이지네이션 만들자!
@@ -99,7 +101,7 @@ function createPage() {
   }
 }
 
-createPage()
+
 
 const boardSearch = document.querySelector("#boardSearch")
 
