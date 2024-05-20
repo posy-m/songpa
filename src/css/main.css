@@ -261,3 +261,72 @@ form > button {
 .login-content .join-area li {
   margin: 0 20px;
 }
+
+/* ############################# content 1 ##################################### */
+.content1-wrap{
+  width: 100%;
+  height: 700px;
+  position: relative;
+}
+
+.slide-area {
+  width: 1600px;
+  overflow:hidden;
+  position:absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.slide-area > .slide{
+  width: 6400px;
+  transition: 0.3s
+}
+
+.slide-area > .slide > li{
+  width:1600px;
+  height:700px;
+  overflow:hidden;
+  float:left;
+}
+
+.slide > li > img{
+  width: 100%;
+}
+
+/* ##################### btn ####################### */
+.content1-wrap .content1-btn{
+  display: block;
+  width: 50px;
+  height: 50px;
+  background-color: black;
+  position: absolute;
+  top: 50%;
+  transform:translateY(-50%);
+}
+
+
+.content1-wrap .prevBtn{
+  left:0;
+}
+
+.content1-wrap .nextBtn{
+  right:0;
+}
+
+.content1-wrap > .pageArea{
+  display: flex;
+  justify-content: center;
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  bottom: 0px;
+}
+
+.content1-wrap > .pageArea span{
+  display: block;
+  background-color: yellow;
+  width: 30px;
+  height: 30px;
+  margin:0 10px;
+}
