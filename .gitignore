@@ -1,14 +1,9 @@
 node_modules
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-node_modules
-=======
-node_modules
->>>>>>> pvek
->>>>>>> sangcheolCSS
-=======
->>>>>>> sangcheolCSS
 donutgame.html
 donutgame.ts
 donutgame.js
+package-lock.json
+package.json
+.package-lock.json
+tsc
+tsserver

@@ -11,13 +11,15 @@ function mypage() {
     name.value = login_data.userName;
     const sign_data = JSON.parse(localStorage.getItem("sign_data"));
     id_btn.onclick = () => {
-        console.log(1);
         if (confirm("정말 변경하시겠습니까?")) {
             for (let i = 0; i < sign_data.length; i++) {
+                console.log(1);
+                console.log(sign_data);
+                console.log(login_data);
                 if (sign_data[i] === login_data) {
                     login_data.userId = id.value;
                     sessionStorage.setItem("login_status", JSON.stringify(login_data));
-                    sign_data[i].userId = login_data.userId;
+                    sign_data[i].userId = id.value;
                     localStorage.setItem("sign_data", JSON.stringify(sign_data));
                 }
             }
@@ -32,7 +34,7 @@ function mypage() {
                 if (sign_data[i] === login_data) {
                     login_data.userPw = pw.value;
                     sessionStorage.setItem("login_status", JSON.stringify(login_data));
-                    sign_data[i].userPw = login_data.userPw;
+                    sign_data[i].userPw = pw.value;
                     localStorage.setItem("sign_data", JSON.stringify(sign_data));
                 }
             }
@@ -47,7 +49,7 @@ function mypage() {
                 if (sign_data[i] === login_data) {
                     login_data.userName = name.value;
                     sessionStorage.setItem("login_status", JSON.stringify(login_data));
-                    sign_data[i].userName = login_data.userName;
+                    sign_data[i].userName = name.value;
                     localStorage.setItem("sign_data", JSON.stringify(sign_data));
                 }
             }
