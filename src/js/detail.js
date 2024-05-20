@@ -2,26 +2,40 @@ class DetailRenderManager {
     constructor() {
         this.boardDataList = [];
         this.sessionData = {};
+        this.replyReplyData = [];
     }
     getsessionStorage(a) {
         if (a === null) {
-            sessionStorage.setItem("login_status", JSON.stringify(this.sessionData));
+            sessionStorage.setItem("login_status", JSON.stringify(detailBoard.sessionData));
         }
     }
     setLocalStorage(a) {
-        this.boardDataList.push(a);
-        localStorage.setItem("reply_data", JSON.stringify(this.boardDataList));
+        detailBoard.boardDataList.push(a);
+        localStorage.setItem("reply_data", JSON.stringify(detailBoard.boardDataList));
     }
     getLocalStorage(a) {
         if (a === null) {
-            localStorage.setItem("reply_data", JSON.stringify(this.boardDataList));
+            localStorage.setItem("reply_data", JSON.stringify(detailBoard.boardDataList));
         }
         else {
-            this.boardDataList = JSON.parse(a);
+            detailBoard.boardDataList = JSON.parse(a);
+        }
+    }
+    setLocalStorageReplyReply(a) {
+        detailBoard.replyReplyData.push(a);
+        localStorage.setItem("replyreply_data", JSON.stringify(detailBoard.replyReplyData));
+    }
+    getLocalStorageReplyReply(a) {
+        if (a === null) {
+            localStorage.setItem("replyreply_data", JSON.stringify(detailBoard.replyReplyData));
+        }
+        else {
+            detailBoard.replyReplyData = JSON.parse(a);
         }
     }
     render() {
         this.getLocalStorage(localStorage.getItem("reply_data"));
+        this.getLocalStorageReplyReply(localStorage.getItem("replyreply_data"));
         this.getsessionStorage(sessionStorage.getItem("login_status"));
         const param = new URLSearchParams(location.search).get("index");
         let boardList = JSON.parse(localStorage.getItem("board_data"));
@@ -64,25 +78,57 @@ class DetailRenderManager {
                 const replyList = document.querySelector("#replylist");
                 const replyWriter = document.createElement("div");
                 const replyDetail = document.createElement("div");
-                const replyReply = document.createElement("div");
                 const replyModify = document.createElement("button");
                 const replyDelete = document.createElement("button");
+                const replyReplyBtn = document.createElement("button");
                 const replyDate = document.createElement("div");
                 const replyContent = document.createElement("div");
+                const replyReplyList = document.createElement("div");
                 replyWriter.innerHTML = detail_replyUserName;
                 replyDetail.innerHTML = detail_reply;
                 replyDate.innerHTML = detail_replydate;
-                replyReply.innerHTML = "답글달기";
                 replyModify.innerHTML = "수정";
                 replyDelete.innerHTML = "삭제";
-                replyContent.append(replyWriter, replyDetail, replyDate, replyReply, replyModify, replyDelete);
-                replyList.append(replyContent);
+                replyReplyBtn.innerHTML = "답글달기";
+                replyContent.append(replyWriter, replyDetail, replyDate, replyModify, replyDelete, replyReplyBtn);
+                replyList.append(replyContent, replyReplyList);
                 if (detail_replyUserName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName && "admin" !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
                     replyModify.outerHTML = "";
                     replyDelete.outerHTML = "";
                 }
-                replyReply.addEventListener("click", () => {
-                    console.log(1);
+                replyReplyBtn.addEventListener("click", () => {
+                    const replyReplyInput = document.createElement("textarea");
+                    const replyReplySubmit = document.createElement("button");
+                    const replyReplyCancel = document.createElement("button");
+                    replyReplyCancel.innerHTML = "취소";
+                    replyReplySubmit.innerHTML = "작성";
+                    replyReplyBtn.innerHTML = "";
+                    replyReplyList.append(replyReplyInput, replyReplyCancel, replyReplySubmit);
+                    replyReplyCancel.onclick = () => {
+                        replyReplyList.innerHTML = "";
+                        replyReplyBtn.innerHTML = "답글달기";
+                    };
+                    replyReplySubmit.onclick = () => {
+                        const date = new Date();
+                        const year = date.getFullYear();
+                        let month = (date.getMonth() + 1).toString();
+                        if (parseInt(month) < 10) {
+                            month = "0" + month;
+                        }
+                        let day = (date.getDate()).toString();
+                        if (parseInt(day) < 10) {
+                            day = "0" + day;
+                        }
+                        const replyReplyData = {
+                            replyUserName: (JSON.parse(sessionStorage.getItem("login_status"))).userName,
+                            reply: replyReplyInput.value,
+                            replydate: `${year}-${month}-${day}`,
+                            replyindex: param,
+                            replyreplyindex: i,
+                        };
+                        this.setLocalStorageReplyReply(replyReplyData);
+                        location.reload();
+                    };
                 });
                 replyModify.onclick = () => {
                     const textArea = document.createElement("textarea");
