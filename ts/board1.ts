@@ -114,8 +114,50 @@ function search(e: SubmitEvent) {
 
 
 }
-
 boardSearch.addEventListener("submit", search)
+
+
+
+
+
+//글 작성 클릭 했을 시 로그인 해주세요. 
+
+
+
+
+const wirteLink = <HTMLButtonElement>document.querySelector("#wirtelink")
+const login_status = JSON.parse(sessionStorage.getItem("login_status"))
+
+wirteLink.onclick = () => {
+  if (login_status === null) {
+    if (confirm("로그인 해주세요")) {
+      const loginPop = document.querySelector(".login-popup") as HTMLElement;
+      loginPop.style.display = "block";
+    } else {
+      return;
+    }
+  } else {
+    location.href = "./write.html";
+  }
+}
+
+
+
+
+
+
+
+// function linkClick(e) {
+//   const login_status = JSON.parse(sessionStorage.getItem("login_status"))
+//   if (login_status === null) {
+//     if (confirm("로그인을 해주세요")) {
+
+//       location.href = "./login.html"
+//     }
+//     // e.preventDefault();
+//   }
+// }
+// wirteLink.addEventListener("click", linkClick)
 
 
 
