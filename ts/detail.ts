@@ -56,7 +56,7 @@ class DetailRenderManager {
                 }
             }
         });
-      
+
         // 보드 데이터
 
         const localdata = JSON.parse(localStorage.getItem("board_data"))[param];

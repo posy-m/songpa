@@ -10,6 +10,30 @@
 </head>
 
 <body>
+  <!-- 헤드영역 -->
+  <div class="header">
+    <div class="header-content">
+      <ul class="menu">
+        <li>About</li>
+        <li>Menu</li>
+        <li class="board"><a href="./board.html?index=1&search=">Board</a></li>
+      </ul>
+      <h1 class="logo">
+        <img src="../src/img/logo.png" alt="로고">
+        <span>Donut Shop</span>
+      </h1>
+      <ul class="user-area">
+        <li>
+          <span class="loginBtn">Log-in</span>
+        </li>
+        <li>
+          <span><a id="myPage" href="./signup.html">Sign up</a></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 콘텐츠 라인 -->
   <section id="sectionBoard">
     <div>게시판</div>
     <div id="samline">
@@ -48,21 +72,46 @@
       <div id="pagination" class="number-button-wraper"></div>
       <!-- <div class="next-button">다음</div> -->
     </div>
-
-
   </section>
 
 
-
-  <!-- <div id="board">
-      <span class="boardStyle">No</span>
-      <span class="boardStyle">제목</span>
-      <span class="boardStyle">NickName</span>
-      <span class="boardStyle">날짜</span>
-      <span class="boardStyle">조회수</span>
+  <!-- footer 영역 -->
+  <div class="footer">
+    <div class="footer-content">
+      <ul class="footer-list">
+        <li class="footer-logo">
+          Donut Shop
+        </li>
+        <li class="customer-center">
+          <span>고객 만족센터</span>
+          <span>02. 1234. 5678</span>
+        </li>
+        <li class="sns">
+          <img src="../src/img/facebook.png" alt="페북">
+          <img src="../src/img/instagram.png" alt="인스타">
+          <img src="../src/img/youtube.png" alt="유튜브">
+        </li>
+      </ul>
+      <ul class="footer-menu1 footer-menu">
+        <li>단체 및 기업구매</li>
+        <li>마케팅 및 제휴문의</li>
+        <li>사이트 맵</li>
+      </ul>
+      <ul class="footer-menu2 footer-menu">
+        <li>회사소개</li>
+        <li>채용안내</li>
+        <li>찾아오시는 길</li>
+      </ul>
+      <ul class="footer-menu3 footer-menu">
+        <li>개인정보보호처리방침</li>
+        <li>이용약관</li>
+        <li>운영관리 방침</li>
+      </ul>
     </div>
-
-    <ul id="boardList"></ul> -->
+    <p class="footer-address">
+      © 2024. Songpa-office. ALL RIGHTS RESERVED.
+    </p>
+  </div>
 
 </body>
 <script src="../src/js/board1.js"></script>
