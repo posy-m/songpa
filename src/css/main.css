@@ -267,27 +267,32 @@ form > button {
   width: 100%;
   height: 700px;
   position: relative;
+  padding:50px 0;
+
 }
 
 .slide-area {
-  width: 1600px;
+  width: 1400px;
+  height: 700px;
   overflow:hidden;
-  position:absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  position:relative;
 }
 
 .slide-area > .slide{
-  width: 6400px;
-  transition: 0.3s
+  position:absolute;
+  display:flex;
+  width: calc(1400 * 5)px;
+  height: 700px;
+  transition:left 0.25s
 }
 
 .slide-area > .slide > li{
-  width:1600px;
+  width:1400px;
   height:700px;
   overflow:hidden;
-  float:left;
 }
 
 .slide > li > img{
@@ -299,12 +304,15 @@ form > button {
   display: block;
   width: 50px;
   height: 50px;
-  background-color: black;
   position: absolute;
   top: 50%;
   transform:translateY(-50%);
+  cursor: pointer;
 }
 
+.content1-wrap .content1-btn img{
+  width: 100%;
+}
 
 .content1-wrap .prevBtn{
   left:0;
@@ -312,6 +320,7 @@ form > button {
 
 .content1-wrap .nextBtn{
   right:0;
+  transform: rotate(180deg);
 }
 
 .content1-wrap > .pageArea{
@@ -329,4 +338,90 @@ form > button {
   width: 30px;
   height: 30px;
   margin:0 10px;
+}
+/* ################# content 2 ###################### */
+.content2-wrap > .content2{
+  background-color: #414581;
+  display:flex;
+  justify-content: center;
+}
+
+.content2-wrap > .content2 > .content-img{
+  width: 500px;
+}
+
+
+
+.content2 > .content-img > img{
+  width : 100%;
+  animation: contentImg 1.5s ease-in-out infinite;
+}
+
+@keyframes contentImg {
+  50%{
+    transform:translateY(-8px);
+  }
+  100%{
+    transform:translateY(0px);
+  }
+}
+
+.content2-wrap > .content2 > .textArea{
+  margin-left: 60px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+.content2 > .textArea > a{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 50px;
+  background-color:#414581;
+  color: #fff;
+  border-radius: 6px;
+  margin-top: 30px;
+  transition: 0.5s;
+  border:1px solid #414581;
+}
+
+.content2 > .textArea > a:hover{
+  background-color:#ccc;
+  color: #414581;
+}
+
+.scroll-js{
+  opacity:0;
+  transition:2s;
+}
+
+.is-active1{
+  opacity: 1;
+}
+
+
+
+/* ################ content3 #################### */
+.content3-wrap h2{
+  text-align: center;
+  padding: 20px 0;
+}
+
+.content3-wrap > .content3{
+  display:flex;
+  width: 1100px;
+  margin: 0 auto;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.content3-wrap > .content3 > li{
+  width: 300px;
+  height: 400px;
+  background-color: #000;
 }

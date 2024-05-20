@@ -3,55 +3,83 @@ const nextBtn = document.querySelector(".nextBtn") as HTMLElement;
 const slide = document.querySelector(".slide") as HTMLElement;
 const img_list = document.querySelector(".slide > li") as HTMLElement;
 
-function index(){
-  // const img_list = document.querySelector(".slide > li") as HTMLElement;
-  // for(let i = 0; i < img_list.dataset.index.length; i++ ){
-  //   console.log(i)
-  // }
-}
+let index = 0;
+let isActive = false;
 
-index();
+// 슬라이드 초기화 설정
+function slideInit(){
+  const {length} = slide.children;
+  const firstLi = slide.children[0].cloneNode(true);
+  const lastLi = slide.children[length-1].cloneNode(true);
 
-prevBtn.onclick = function(){
-  slide.style.transform = "translateX(0)";
+  slide.children[0].before(lastLi);
+  slide.append(firstLi);
+
+  slide.style.left = "-1400px";
 }
+slideInit();
 
 nextBtn.onclick = function(){
-  slide.style.transform = "translateX(-1600px)";
+  if(isActive) return;
+  isActive = true;
+  index++;
+  slide.style.left = `${-1400 + (-1400 * index)}px`;
 }
 
-const pageArea = document.querySelector(".pageArea") as HTMLElement;
-const btn1 = document.querySelector(".pageArea > span:nth-child(1)") as HTMLElement;
-const btn2 = document.querySelector(".pageArea > span:nth-child(2)") as HTMLElement;
-const btn3 = document.querySelector(".pageArea > span:nth-child(3)") as HTMLElement;
-const btn4 = document.querySelector(".pageArea > span:nth-child(4)") as HTMLElement;
+slide.addEventListener("transitionend",()=>{
+  if(index === 4){
+    index = 0;
+    slide.style.transition = "none";
+    slide.style.left = "-1400px";
+    setTimeout(()=>{
+      slide.style.transition = "left 0.5s"
+    },250)
+  }
+  setTimeout(()=>{
+    isActive = false;
+  },250)
+});
 
-// const li_width = img_list.clientWidth;
-// setTimeout(() => {
-//   slide.style.transform = "translateX(0)";
-// }, 3000);
-// setTimeout(() => {
-//   slide.style.transform = "translateX(-1600px)";
-// }, 6000);
-// setTimeout(() => {
-//   slide.style.transform = "translateX(-3200px)";
-// }, 9000);
-// setTimeout(() => {
-//   slide.style.transform = "translateX(-4800px)";
-// }, 12000);
+slide.addEventListener("transitionend",()=>{
+  if(index === -1){
+    index = 3;
+    slide.style.transition = "none";
+    slide.style.left = `${-1400 + (-1400 * index)}px`;
+    setTimeout(()=>{
+      slide.style.transition = "left 0.5s"
+    },250)
+  }
+  setTimeout(() => {
+    isActive = false;
+  }, 250);
+});
 
-// btn1.onclick = function(){
-  
-// }
+prevBtn.onclick = function(){
+  if(isActive) return;
+  isActive = true;
+  index--;
+  slide.style.left = `${-1400 + (-1400 * index)}px`;
+}
 
-// btn2.onclick = function(){
-//   slide.style.transform = "translateX(-1600px)";
-// }
+// 스크롤 기능
 
-// btn3.onclick = function(){
-//   slide.style.transform = "translateX(-3200px)";
-// }
+const posY = [];
+const mainContent = document.querySelectorAll(".scroll-js");
+const mainContent1 = document.querySelector(".content1-wrap");
+for(let i = 0; i < mainContent.length; i++){
+  posY.push(mainContent[i].getBoundingClientRect().top + window.pageYOffset)
+}
 
-// btn4.onclick = function(){
-//   slide.style.transform = "translateX(-4800px)";
-// }
+
+window.onscroll = function(){
+  let _scroll = 921 + window.pageYOffset;
+  for(let i = 0; i < mainContent.length; i++){  
+    if(_scroll > posY[i]){
+      if(!mainContent[0].classList.contains("is-active1"))
+        mainContent[0].classList.add("is-active1")
+    } else{
+      if(mainContent[i].classList.contains("is-active1"))
+        mainContent[i].classList.remove("is-active1")
+    }
+  }
+}
