@@ -172,9 +172,12 @@ body {
   background-color: #FEF9F6;
 }
 
+
+
 a {
   text-decoration: none;
 }
+
 
 #wirtelink {
   display: flex;
@@ -182,7 +185,7 @@ a {
   justify-content: center;
   width: 70px;
   height: 35px;
-  background-color: #414581;
+  background-color: #42457D;
   border-radius: 5px;
   color: white;
   text-decoration: none;
@@ -191,7 +194,7 @@ a {
 }
 
 #sectionBoard {
-  margin-top: 100px;
+  margin-top: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -221,7 +224,7 @@ a {
 #inputBtn {
   width: 60px;
   height: 33px;
-  background-color: #414581;
+  background-color: #42457D;
   color: white;
   font-weight: 600;
   border-radius: 3px;
@@ -239,7 +242,7 @@ a {
   width: 30px;
   height: 30px;
   border-radius: 5px;
-  background-color: #414581;
+  background-color: #42457D;
   color: white;
   /* background-image: url(../img/icons8-bread-94.png); */
 
@@ -259,7 +262,7 @@ a {
 
 th {
   padding: 15px;
-  background-color: #414581;
+  background-color: #42457D;
   color: white;
 }
 
@@ -279,7 +282,7 @@ td {
 
 
 table {
-  border: 1px solid #414581;
+  border: 1px solid #42457D;
   border-collapse: collapse;
 
 
@@ -305,7 +308,7 @@ a {
 /* ############# header ################# */
 .header {
   width: 100%;
-  border-bottom: 1px solid #414581;
+  border-bottom: 1px solid #42457D;
   background-color: #FEF9F6;
 }
 
@@ -381,7 +384,7 @@ a {
 .footer {
   width: 100%;
   /* color: #fff; */
-  color: #414581;
+  color: #42457D;
   padding: 40px 0;
   /* border-top: 1px solid #414581; */
   /* font-weight: bold; */

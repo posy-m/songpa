@@ -2,8 +2,8 @@
 * {
   margin: 0;
   padding: 0;
-  background-color: RGB(255, 192, 152);
-  color: #414581;
+  /* background-color: RGB(255, 192, 152); */
+  color: #42457D;
 }
 
 ul,
@@ -18,7 +18,7 @@ a {
 /* ############# header ################# */
 .header {
   width: 100%;
-  border-bottom: 1px solid #414581;
+  border-bottom: 1px solid #42457D;
   background-color: #FEF9F6;
 }
 
@@ -41,7 +41,7 @@ a {
 .header-content>.menu>li {
   font-size: 16px;
   padding: 0 10px;
-  color: #414581;
+  color: #42457D;
 }
 
 /* ################# header logo ################### */
@@ -92,7 +92,7 @@ a {
 /* #################### footer ###################### */
 .footer {
   width: 100%;
-  color: #414581;
+  color: #42457D;
   padding: 40px 0;
   /* border-top: 1px solid #414581; */
   background-image: linear-gradient(to bottom, #fff9f5, #ffc098);
@@ -248,7 +248,7 @@ form {
 form>button {
   width: 420px;
   height: 50px;
-  background-color: #414581;
+  background-color: #42457D;
   color: #fff;
   border-radius: 4px;
   font-size: 18px;
