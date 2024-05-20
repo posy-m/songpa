@@ -17,6 +17,7 @@ class ModifyManager {
         const param = new URLSearchParams(location.search).get("index");
 
         const localdata = JSON.parse(localStorage.getItem("board_data"))[param]
+        const detail_no = localdata.no;
         const detail_title = localdata.title;
         const detail_userName = localdata.userName;
         const detail_date = localdata.date;
@@ -39,7 +40,7 @@ class ModifyManager {
 
         // 목록으로 버튼
         btnBoard.onclick = () => {
-            location.href = "./board.html?index=0";
+            location.href = "./board.html?index=1&search=";
         }
 
         // 취소하기 버튼
@@ -51,6 +52,7 @@ class ModifyManager {
         btnConfirm.onclick = () => {
             if (confirm("수정하시겠습니까? 작성중인 내용이 저장됩니다.")) {
                 const modifiedData = {
+                    no: detail_no,
                     userName: detail_userName,
                     title: title.value,
                     content: content.value,
@@ -60,7 +62,7 @@ class ModifyManager {
                 const modifyItem = JSON.parse(localStorage.getItem("board_data"))
                 modifyItem.splice(param, 1, modifiedData)
                 localStorage.setItem("board_data", JSON.stringify(modifyItem))
-                location.href = "./board.html?index=0";
+                location.href = "./board.html?index=1&search=";
             } else {
                 return;
             }
