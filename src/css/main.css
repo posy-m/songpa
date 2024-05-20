@@ -2,25 +2,7 @@
 * {
   margin: 0;
   padding: 0;
-<<<<<<< HEAD
 }
-=======
-<<<<<<< HEAD
-  /* background-color: RGB(255, 192, 152); */
-<<<<<<< HEAD
-  color: #42457D;
-=======
-  color:#414581;
->>>>>>> weer
-}
-body{
-  background-color: RGB(255,192,152);
-=======
-  /* color: #42457D; */
->>>>>>> py
-}
-
->>>>>>> ppp
 ul,
 li {
   list-style: none;
@@ -364,15 +346,11 @@ form>button {
 }
 
 /* ################# content 2 ###################### */
-<<<<<<< HEAD
 
 .content2-wrap>.content2 {
   background-color: #414581;
   display: flex;
 }
-=======
-<<<<<<< HEAD
->>>>>>> ppp
 .content2-wrap{
   width:100%;
   background:url(../img/contentbg2.jpg) no-repeat center center;
@@ -387,14 +365,6 @@ form>button {
 }
 .content2-wrap > .content2{
   display:flex;
-<<<<<<< HEAD
-=======
-=======
-.content2-wrap>.content2 {
-  background-color: #414581;
-  display: flex;
->>>>>>> py
->>>>>>> ppp
   justify-content: center;
 }
 
@@ -435,7 +405,6 @@ form>button {
   align-items: center;
   width: 180px;
   height: 50px;
-<<<<<<< HEAD
   background-color: #414581;
   color: #fff;
   border-radius: 6px;
@@ -452,9 +421,6 @@ form>button {
 .scroll-js {
   opacity: 0;
   transition: 2s;
-=======
-<<<<<<< HEAD
->>>>>>> ppp
   color: #414581;
   border-radius: 6px;
   margin-top: 30px;
@@ -473,27 +439,6 @@ form>button {
 .scroll-js{
   opacity:0;
   transition:3s 0.3s;
-<<<<<<< HEAD
-=======
-=======
-  background-color: #414581;
-  color: #fff;
-  border-radius: 6px;
-  margin-top: 30px;
-  transition: 0.5s;
-  border: 1px solid #414581;
-}
-
-.content2>.textArea>a:hover {
-  background-color: #ccc;
-  color: #414581;
-}
-
-.scroll-js {
-  opacity: 0;
-  transition: 2s;
->>>>>>> py
->>>>>>> ppp
 }
 
 .is-active1 {
@@ -503,18 +448,8 @@ form>button {
 
 
 /* ################ content3 #################### */
-<<<<<<< HEAD
 .content3-wrap h2{
   font-size: 40px;
-=======
-<<<<<<< HEAD
-
-.content3-wrap h2{
-  font-size: 40px;
-=======
-.content3-wrap h2 {
->>>>>>> py
->>>>>>> ppp
   text-align: center;
   padding: 50px 0 20px;
 }
@@ -526,16 +461,8 @@ form>button {
   justify-content: space-around;
 }
 
-<<<<<<< HEAD
 
 .content3 > div {
-=======
-<<<<<<< HEAD
-.content3 > div {
-=======
-.content3-wrap>.content3>li {
->>>>>>> py
->>>>>>> ppp
   width: 300px;
   height: 400px;
   transform-style:preserve-3d;
