@@ -41,13 +41,13 @@ function paintPage(page: number) {
   const showBoardData: IBoard[] = resultData.slice(startIndex, endIndex > resultData.length ? resultData.length : endIndex)
 
   const boardListcontainer = document.querySelector("#boardList")
-  //li를 만들거양
+  //게시판 리스트 만드는 함수
   let i = 0;
   showBoardData.forEach((element: IBoard) => {
     const li = document.createElement("tr")
     const no = document.createElement("td")
     i++;
-    no.innerHTML = (i).toString();
+    no.innerHTML = (((parseInt(currentPage) - 1) * 10) + i).toString();
     const userName = document.createElement("td")
     userName.innerHTML = element.userName;
     const title1 = document.createElement("td")
@@ -64,7 +64,7 @@ function paintPage(page: number) {
     boardListcontainer.appendChild(li)
   })
 }
-createPage()
+
 paintPage(parseInt(currentPage))
 
 //페이지네이션 만들자!
@@ -85,6 +85,7 @@ function createPage() {
   function createPageItem(page: number, isActive = false) {
     const pagination = document.querySelector("#pagination")
     const pageLink = document.createElement("a")
+    pageLink.classList.add("pagenation")
     pageLink.innerText = page.toString()
     const inputSearch = document.querySelector("#inputSearch") as HTMLInputElement
     //classList :현재 페이지네이션은 동적으로 클래스를 넣는다.
@@ -92,14 +93,17 @@ function createPage() {
       pageLink.classList.add("active")
     }
     //쿼리스트링
-    pageLink.href = "board.html?index=" + page + "&search=" + inputSearch.value
+    pageLink.href = "board.html?index=" + page + "&search=" + searchInput
     pagination.append(pageLink)
+
   }
 
   for (let i = 0; i < totalPage; i++) {
     createPageItem(i + 1, i + 1 === parseInt(currentPage))
   }
 }
+
+createPage()
 
 
 
@@ -109,9 +113,10 @@ function search(e: SubmitEvent) {
   e.preventDefault()
   const inputSearch = document.querySelector("#inputSearch") as HTMLInputElement
   if (inputSearch) {
-    location.href = "board.html?index=" + 1 + "&search=" + inputSearch.value
-  }
 
+    location.href = "board.html?index=" + 1 + "&search=" + inputSearch.value
+
+  }
 
 }
 boardSearch.addEventListener("submit", search)
@@ -140,25 +145,6 @@ wirteLink.onclick = () => {
     location.href = "./write.html";
   }
 }
-
-
-
-
-
-
-
-// function linkClick(e) {
-//   const login_status = JSON.parse(sessionStorage.getItem("login_status"))
-//   if (login_status === null) {
-//     if (confirm("로그인을 해주세요")) {
-
-//       location.href = "./login.html"
-//     }
-//     // e.preventDefault();
-//   }
-// }
-// wirteLink.addEventListener("click", linkClick)
-
 
 
 
