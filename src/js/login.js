@@ -1,5 +1,5 @@
 const signData = JSON.parse(localStorage.getItem("sign_data"));
-const formbtn = document.querySelector("form");
+const formbtn = document.querySelector("#login_form");
 const userId = document.querySelector("#userId");
 const userPw = document.querySelector("#userPw");
 const loginPopupBtn = document.querySelector(".loginBtn");

@@ -2,7 +2,7 @@
 const signData = JSON.parse(localStorage.getItem("sign_data"));
 
 
-const formbtn = document.querySelector("form") as HTMLElement;
+const formbtn = document.querySelector("#login_form") as HTMLElement;
 // 유저 아이디 비밀번호 
 const userId = document.querySelector("#userId") as HTMLInputElement;
 const userPw = document.querySelector("#userPw") as HTMLInputElement;
