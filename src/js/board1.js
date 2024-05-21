@@ -44,7 +44,6 @@ function paintPage(page) {
         }
     });
 }
-createPage();
 paintPage(parseInt(currentPage));
 function createPage() {
     boardList = JSON.parse(localStorage.getItem("board_data")).reverse();
@@ -58,18 +57,20 @@ function createPage() {
     function createPageItem(page, isActive = false) {
         const pagination = document.querySelector("#pagination");
         const pageLink = document.createElement("a");
+        pageLink.classList.add("pagenation");
         pageLink.innerText = page.toString();
         const inputSearch = document.querySelector("#inputSearch");
         if (isActive === true) {
             pageLink.classList.add("active");
         }
-        pageLink.href = "board.html?index=" + page + "&search=" + inputSearch.value;
+        pageLink.href = "board.html?index=" + page + "&search=" + searchInput;
         pagination.append(pageLink);
     }
     for (let i = 0; i < totalPage; i++) {
         createPageItem(i + 1, i + 1 === parseInt(currentPage));
     }
 }
+createPage();
 const boardSearch = document.querySelector("#boardSearch");
 function search(e) {
     e.preventDefault();
@@ -79,3 +80,19 @@ function search(e) {
     }
 }
 boardSearch.addEventListener("submit", search);
+const wirteLink = document.querySelector("#wirtelink");
+const login_status = JSON.parse(sessionStorage.getItem("login_status"));
+wirteLink.onclick = () => {
+    if (login_status === null) {
+        if (confirm("로그인 해주세요")) {
+            const loginPop = document.querySelector(".login-popup");
+            loginPop.style.display = "block";
+        }
+        else {
+            return;
+        }
+    }
+    else {
+        location.href = "./write.html";
+    }
+};

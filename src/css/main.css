@@ -1,263 +1,554 @@
 /* #####################  초기화  ###############3 */
-*{
+* {
   margin: 0;
   padding: 0;
-  background-color: RGB(255,192,152);
-  color:#414581;
+
 }
 
-ul, li {
+ul,
+li {
   list-style: none;
 }
 
-a{
+a {
   text-decoration: none;
+  color: inherit;
 }
 
 /* ############# header ################# */
-.header{
+.header {
   width: 100%;
-  border-bottom: 1px solid #414581;
+  border-bottom: 1px solid #42457D;
+  background-color: #FEF9F6;
 }
 
-.header > .header-content{
-  width: 1400px;
-  height: 120px;
+.header>.header-content {
+  width: 80%;
+  height: 165px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position:relative;
+  position: relative;
 }
 
 /* ############### header mennu ################ */
-.header-content > .menu{
+.header-content>.menu {
   display: flex;
   justify-content: space-around;
 }
 
-.header-content > .menu > li{
+.header-content>.menu>li {
   font-size: 16px;
-  padding:0 10px;
-  color: #414581;
+  padding: 0 10px;
+  color: #42457D;
 }
 
 /* ################# header logo ################### */
-.header-content > h1 {
+.header-content>h1 {
   width: 200px;
   height: 50px;
   position: absolute;
   transform: translate(-50%, -50%);
-  left:50%;
-  top:50%;
+  left: 50%;
+  top: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.header-content > h1 > img {
+.header-content>h1>img {
   width: 45px;
 }
-.header-content > h1 > span {
+
+.header-content>h1>span {
   font-size: 30px;
 }
 
 /* ################### header user-area ##################### */
-.header-content .user-area{
-  display : flex;
+.header-content .user-area {
+  display: flex;
   justify-content: space-between;
-  background-color:antiquewhite;
+  /* background-color: antiquewhite; */
 }
 
-.header-content .user-area li{
+.header-content .user-area li {
   font-size: 18px;
   padding: 0 10px;
   cursor: pointer;
 }
 
-.header-content .user-area li:nth-child(1){
-  position:relative;
+.header-content .user-area li:nth-child(1) {
+  position: relative;
 }
 
-.header-content .user-area li:nth-child(1) span{
-  display:flex;
+.header-content .user-area li:nth-child(1) span {
+  display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
 }
 
 /* #################### footer ###################### */
-.footer{
+.footer {
   width: 100%;
-  color: #fff;
+  color: #42457D;
   padding: 40px 0;
-  border-top: 1px solid #414581;
-  font-weight: bold;
+  /* border-top: 1px solid #414581; */
+  background-image: linear-gradient(to bottom, #fff9f5, #ffc098);
 }
 
-.footer .footer-content{
-  width: 1400px;
+.footer .footer-content {
+  width: 80%;
   display: flex;
-  margin:0 auto;
+  margin-top: 50px;
+  padding-left: 100px;
+
 }
 
 /* ########## footer-list ########## */
 
 
-.footer-content .footer-list .footer-logo{
-  margin-right: 150px;
+.footer-content .footer-list .footer-logo {
+  padding-right: 150px;
 }
 
 
-.footer-content .footer-list .footer-logo{
-  font-size: 36px;
+.footer-content .footer-list .footer-logo {
+  font-size: 28px;
   font-weight: bold;
 }
 
-.footer-list li{
+.footer-list li {
   margin-bottom: 10px;
 }
 
-.footer-list .customer-center span{
+.footer-list .customer-center span {
   display: block;
 }
 
-.footer-list .customer-center span:nth-child(1){
-  font-size: 26px;
+.footer-list .customer-center span:nth-child(1) {
+  font-size: 20px;
   margin-bottom: 12px;
   font-weight: bold;
 }
 
-.footer-list .customer-center span:nth-child(2){
-  font-size: 23px;
+.footer-list .customer-center span:nth-child(2) {
+  font-size: 20px;
 }
 
-.footer-list .sns{
-  margin-top:15px;
+.footer-list .sns {
+  margin-top: 15px;
 }
 
-.footer-list .sns img{
+.footer-list .sns img {
   width: 40px;
-  float:left;
+  float: left;
   margin-right: 10px;
 }
 
-.footer-content > .footer-menu{
+.footer-content>.footer-menu {
   margin-right: 60px;
 }
 
-.footer-content > .footer-menu > li{
-  font-size: 20px;
+.footer-content>.footer-menu>li {
+  font-size: 15px;
   margin-bottom: 20px;
 }
 
-.footer-address{
+.footer-address {
   margin-top: 40px;
   text-align: center;
 }
 
 /* ################### 로그인 팝업 ##################### */
 
-.login-popup{
-  width:100%;
-  height: 100vh;
-  background-color: rgba(0,0,0,0.4);
-  position:absolute;
-  left:0;
-  top:0;
+.login-popup {
+  width: 100%;
+  height: 120vh;
+  position: absolute;
+  left: 0;
+  top: 0;
   display: none;
-  coLOR:#FFF;
+  background-color: rgba(0, 0, 0, 0.7);
+  /* coLOR: #FFF; */
+
+
 }
 
-.login-popup .login-wrap{
+.login-popup .login-wrap {
   width: 600px;
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%, -80%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -60%);
+  background-color: #F9F8FF;
+  border-radius: 10px;
 }
 
-.login-popup .login-wrap h2{
+.login-popup .login-wrap h2 {
   text-align: center;
-  font-size: 40px;
+  font-size: 30px;
   margin: 20px 0;
+  border-bottom: #42457D;
+  height: 30px;
 }
 
-.login-wrap > .login-content > p{
+.login-wrap>.login-content>p {
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
   margin: 30px 0;
 }
 
-.login-wrap > .login-content{
-  border: 1px solid #000;
-  position:relative;
+.login-wrap>.login-content {
+  /* border: 1px solid #000; */
+  position: relative;
 }
 
 /* ############### 로그인 삭제 ############## */
-.login-wrap > .login-content > .login-delete{
-  display:block;
+.login-wrap .login-delete {
+  display: block;
   width: 30px;
   height: 30px;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -64px;
+  right: 10px;
 }
-.login-content > .login-delete img{
+
+.login-content .login-delete img {
   width: 22px;
-  position:relative;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
+  /* position: relative; */
+  /* left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); */
 }
 
 
 /* ################ 아이디 비밀번호 input ############# */
-.user-info{
+.user-info {
   text-align: center;
   height: 60px;
   padding: 0 10px;
-  margin-bottom : 10px;
+  margin-bottom: 10px;
 }
 
-.user-info input{
-  width:400px;
+.user-info input {
+  width: 400px;
   height: 45px;
   padding: 0 10px;
   border: none;
-  background-color:#fff;
+  background-color: #fff;
   font-size: 18px;
 }
 
-.user-info input::placeholder{
-  font-size:16px;
-  background-color:#fff
+.user-info input::placeholder {
+  font-size: 16px;
+  background-color: #fff
 }
 
 /* ################# 버튼 ############### */
-form{
-  text-align:center
+form {
+  text-align: center
 }
 
-form > button {
+form>button {
   width: 420px;
   height: 50px;
-  background-color:#414581;
+  background-color: #42457D;
   color: #fff;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
+  border: none;
 }
 
 /* ################# join-area ############### */
 
-.login-content .join-area{
-  display:flex;
+.login-content .join-area {
+  display: flex;
   margin: 30px 0;
-  justify-content:center;
+  justify-content: center;
 }
 
 .login-content .join-area li {
   margin: 0 20px;
+}
+
+/* ############################# content 1 ##################################### */
+
+
+.content1-wrap {
+  width: 100%;
+  height: 700px;
+  position: relative;
+  padding: 50px 0;
+  background-color: #FEF9F6;
+
+}
+
+.slide-area {
+  width: 1400px;
+  height: 700px;
+  overflow: hidden;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -60%);
+  position: relative;
+}
+
+.slide-area>.slide {
+  position: absolute;
+  display: flex;
+  width: max-content;
+  height: 700px;
+  transition: left 1s;
+}
+
+.slide-area>.slide>li {
+  width: 1400px;
+  height: 700px;
+  overflow: hidden;
+}
+
+.slide>li>img {
+  width: 100%;
+}
+
+/* ##################### btn ####################### */
+.content1-wrap .content1-btn {
+  display: block;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.content1-wrap .content1-btn img {
+  width: 100%;
+}
+
+.content1-wrap .prevBtn {
+  left: 0;
+}
+
+.content1-wrap .nextBtn {
+  right: 0;
+  transform: rotate(180deg);
+}
+
+/* ################# content 2 ###################### */
+
+.content2-wrap>.content2 {
+  display: flex;
+}
+
+.content2-wrap {
+  overflow: hidden;
+  width: 100%;
+  background: url(../img/contentbg2.jpg) no-repeat center center;
+}
+
+.content2-wrap h2 {
+  font-size: 46px;
+}
+
+.content2-wrap p {
+  font-size: 50px;
+}
+
+.content2-wrap>.content2 {
+  display: flex;
+  justify-content: center;
+}
+
+.content2-wrap>.content2>.content-img {
+  width: 500px;
+}
+
+
+
+.content2>.content-img>img {
+  width: 100%;
+  animation: contentImg 1.5s ease-in-out infinite;
+}
+
+
+@keyframes contentImg {
+  50% {
+    transform: translateY(-8px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.content2-wrap>.content2>.textArea {
+  margin-left: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+.content2>.textArea>a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+  height: 50px;
+  background-color: #fff;
+  color: #414581;
+  border-radius: 6px;
+  margin-top: 30px;
+  transition: 0.5s;
+  border: 1px solid #414581;
+  font-size: 20px;
+}
+
+.content2>.textArea>p {
+  font-weight: 400;
+}
+
+.content2>.textArea>a:hover {
+  color: #fff;
+  background-color: #414581;
+}
+
+.scroll-js {
+  opacity: 0;
+  transition: 2s;
+  color: #414581;
+  border-radius: 6px;
+  transition: 0.5s;
+  font-weight: 700;
+  opacity: 0;
+  transition: 3s 0.3s;
+}
+
+.content2>.textArea>a:hover {
+  background-color: #414581;
+  color: #fff;
+}
+
+.is-active1 {
+  opacity: 1;
+}
+
+
+
+/* ################ content3 #################### */
+.content3-wrap {
+  background-color: #FEF9F6;
+  overflow: hidden;
+}
+
+.content3-wrap h2 {
+  font-size: 40px;
+  text-align: center;
+  padding: 50px 0 20px;
+}
+
+.content3-wrap>.content3 {
+  display: flex;
+  width: 90%;
+  margin: 60px auto;
+  justify-content: space-around;
+}
+
+
+.content3>div {
+  width: 30%;
+  height: 400px;
+  transform-style: preserve-3d;
+  transition: 300ms all linear;
+  cursor: pointer;
+}
+
+.content3>div>p {
+  width: 100%;
+  height: 400px;
+  background-color: rgb(214, 181, 70);
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+}
+
+.content3 p>img {
+  position: relative;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  width: 200px;
+}
+
+.content3>div>.front-img {
+  z-index: 1;
+  backface-visibility: hidden;
+}
+
+.content3>div>.back-text {
+  z-index: 0;
+  transform: rotateY(180deg);
+}
+
+div>.back-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div>.back-text>span {
+  font-size: 30px;
+  color: #fff;
+}
+
+.contentBG {
+  height: 500px;
+  background: url(../img/bg5.jpg) no-repeat center center;
+  background-size: 100%;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.contentBG .dark {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contentBG .dark h2 {
+  position: relative;
+  color: #efefef;
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+.contentBG .dark a {
+  color: #efefef;
+  border: 1px solid #efefef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 60px;
+  color: #efefef;
+  font-size: 24px;
+  font-weight: 700;
+  transition: 0.5s;
+  border-radius: 6px;
+}
+
+.contentBG .dark a:hover {
+  background-color: #efefef;
+  color: #333;
 }

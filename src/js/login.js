@@ -1,15 +1,18 @@
 const signData = JSON.parse(localStorage.getItem("sign_data"));
-const formbtn = document.querySelector("form");
+const formbtn = document.querySelector("#login_form");
 const userId = document.querySelector("#userId");
 const userPw = document.querySelector("#userPw");
 const loginPopupBtn = document.querySelector(".loginBtn");
 const loginPop = document.querySelector(".login-popup");
 const loginDeleteBtn = document.querySelector(".login-delete");
+const body = document.querySelector("body");
 loginPopupBtn.onclick = () => {
     loginPop.style.display = "block";
+    body.style.overflow = "hidden";
 };
 loginDeleteBtn.onclick = () => {
     loginPop.style.display = "none";
+    body.style.overflow = "visible";
 };
 function originState() {
     const login_status = JSON.parse(sessionStorage.getItem("login_status"));

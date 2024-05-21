@@ -41,7 +41,7 @@ function paintPage(page: number) {
   const showBoardData: IBoard[] = resultData.slice(startIndex, endIndex > resultData.length ? resultData.length : endIndex)
 
   const boardListcontainer = document.querySelector("#boardList")
-  //li를 만들거양
+  //게시판 리스트 만드는 함수
   let i = 0;
   showBoardData.forEach((element: IBoard) => {
     if (element.no === -1) {
@@ -68,7 +68,7 @@ function paintPage(page: number) {
     }
   })
 }
-createPage()
+
 paintPage(parseInt(currentPage))
 
 //페이지네이션 만들자!
@@ -89,6 +89,7 @@ function createPage() {
   function createPageItem(page: number, isActive = false) {
     const pagination = document.querySelector("#pagination")
     const pageLink = document.createElement("a")
+    pageLink.classList.add("pagenation")
     pageLink.innerText = page.toString()
     const inputSearch = document.querySelector("#inputSearch") as HTMLInputElement
     //classList :현재 페이지네이션은 동적으로 클래스를 넣는다.
@@ -96,14 +97,17 @@ function createPage() {
       pageLink.classList.add("active")
     }
     //쿼리스트링
-    pageLink.href = "board.html?index=" + page + "&search=" + inputSearch.value
+    pageLink.href = "board.html?index=" + page + "&search=" + searchInput
     pagination.append(pageLink)
+
   }
 
   for (let i = 0; i < totalPage; i++) {
     createPageItem(i + 1, i + 1 === parseInt(currentPage))
   }
 }
+
+createPage()
 
 
 
@@ -113,12 +117,38 @@ function search(e: SubmitEvent) {
   e.preventDefault()
   const inputSearch = document.querySelector("#inputSearch") as HTMLInputElement
   if (inputSearch) {
+
     location.href = "board.html?index=" + 1 + "&search=" + inputSearch.value
+
   }
 
+}
+boardSearch.addEventListener("submit", search)
 
+
+
+
+
+//글 작성 클릭 했을 시 로그인 해주세요. 
+
+
+
+
+const wirteLink = <HTMLButtonElement>document.querySelector("#wirtelink")
+const login_status = JSON.parse(sessionStorage.getItem("login_status"))
+
+wirteLink.onclick = () => {
+  if (login_status === null) {
+    if (confirm("로그인 해주세요")) {
+      const loginPop = document.querySelector(".login-popup") as HTMLElement;
+      loginPop.style.display = "block";
+    } else {
+      return;
+    }
+  } else {
+    location.href = "./write.html";
+  }
 }
 
-boardSearch.addEventListener("submit", search)
 
 

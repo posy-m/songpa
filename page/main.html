@@ -12,13 +12,13 @@
   <div class="header">
     <div class="header-content">
       <ul class="menu">
-        <li>About</li>
+        <li id="game-move">Game</li>
         <li>Menu</li>
         <li class="board"><a href="./board.html?index=1&search=">Board</a></li>
       </ul>
       <h1 class="logo">
         <img src="../src/img/logo.png" alt="로고">
-        <span>Donut Shop</span>
+        <span><a href="./main.html">Donut Shop</a></span>
       </h1>
       <ul class="user-area">
         <li>
@@ -32,8 +32,74 @@
   </div>
   <div class="content">
     <div class="content1-wrap">
-      <div class=""></div>
-      <div class="content1">
+      <span class="prevBtn content1-btn">
+        <img src="../src/img/arrow.png" alt="전">
+      </span>
+      <span class="nextBtn content1-btn">
+        <img src="../src/img/arrow.png" alt="전">
+      </span>
+      <div class="slide-area">
+        <ul class="slide">
+          <li><img src="../src/img/bg0.jpg" alt="배경1"></li>
+          <li><img src="../src/img/bg1.jpg" alt="배경2"></li>
+          <li><img src="../src/img/bg2.jpg" alt="배경3"></li>
+          <li><img src="../src/img/bg3.jpg" alt="배경4"></li>
+        </ul>
+        <!-- <div class=""></div>
+        <div class="content1"> -->
+      </div>
+    </div>
+    <div class="content2-wrap">
+      <div class="content2 scroll-js">
+        <div class="content-img">
+          <img src="../src/img/donut1.png" alt="도넛1">
+        </div>
+        <div class="textArea">
+          <h2>Have it your onw Way</h2>
+          <p>
+            Enjoy your Time with Donut Shop
+          </p>
+          <a href="#">More</a>
+        </div>
+      </div>
+    </div>
+    <div class="contentBG ">
+      <div class="dark">
+        <h2>
+          Let me know your Favorite
+        </h2>
+        <a href="#">
+          More
+        </a>
+      </div>
+    </div>
+    <div class="content3-wrap scroll-js">
+      <h2>PICK YOUR FAVORITE</h2>
+      <div class="content3">
+        <div class="flip-card">
+          <p class="front-img">
+            <img src="../src/img/don1.png" alt="도넛1">
+          </p>
+          <p class="back-text">
+            <span>Glaze Donut</span>
+          </p>
+        </div>
+        <div class="flip-card">
+          <p class="front-img">
+            <img src="../src/img/don2.png" alt="도넛1">
+          </p>
+          <p class="back-text">
+            <span>Choco Donut</span>
+          </p>
+        </div>
+        <div class="flip-card">
+          <p class="front-img">
+            <img src="../src/img/don3.png" alt="도넛1">
+          </p>
+          <p class="back-text">
+            <span>Strawberry Donut</span>
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -81,7 +147,7 @@
           <img src="../src/img/x.png" alt="로그인제거">
         </span>
         <p>Donut shop에 오신 것을 환영합니다.</p>
-        <form action="">
+        <form action="" id="login_form">
           <div class="user-info">
             <input type="text" id="userId" name="userId" placeholder="아이디">
           </div>
@@ -100,5 +166,6 @@
   </div>
 </body>
 <script src="../src/js/login.js"></script>
+<script src="../src/js/main_slide.js"></script>
 
 </html>

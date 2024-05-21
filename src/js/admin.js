@@ -17,10 +17,12 @@ class AdminPageManager {
         view.innerHTML = `<div class="top"><span>아이디</span><span>닉네임</span><span>날짜</span><span>수락여부</span></div>`;
         for (let i = 0; i < request.length; i++) {
             const div = document.createElement("div");
+            div.className = "divContainer";
             const id_span = document.createElement("span");
             const name_span = document.createElement("span");
             const date_span = document.createElement("span");
             const btn_span = document.createElement("span");
+            btn_span.className = "btn_span";
             const img1 = document.createElement("span");
             const img2 = document.createElement("span");
             id_span.innerHTML = request[i].userId;
@@ -62,6 +64,7 @@ class AdminPageManager {
     </div>`;
         for (let i = 1; i < loginData.length; i++) {
             const div = document.createElement("div");
+            div.className = "divcontainer2";
             const span1 = document.createElement("span");
             const span2 = document.createElement("span");
             const span3 = document.createElement("span");

@@ -1,11 +1,6 @@
 node_modules
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-node_modules
-=======
-node_modules
->>>>>>> pvek
->>>>>>> sangcheolCSS
-=======
->>>>>>> sangcheolCSS
+package-lock.json
+package.json
+.package-lock.json
+tsc
+tsserver
