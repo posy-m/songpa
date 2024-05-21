@@ -97,7 +97,7 @@ class DetailRenderManager {
         date.innerHTML = detail_date;
         content.innerHTML = detail_content;
 
-        // 내 이름과 일치하지않고 관리자 이름도 아닐 경우 댓글 수정삭제 버튼 비활성화
+        // 내 이름과 일치하지않고 관리자 이름도 아닐 경우 게시글 수정삭제 버튼 비활성화
         if ((detail_userName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) && "admin" !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
             const btnBox = <HTMLElement>document.querySelector(".btnright")
             btnBox.outerHTML = "";
@@ -138,7 +138,7 @@ class DetailRenderManager {
                 replyContent.append(replyWriter, replyDetail, replyDate, replyModify, replyDelete, replyReplyBtn);
                 replyList.append(replyContent, replyReplyList, replyReplyinput);
 
-                // 내이름과 일치하지않고 관리자 이름도 아닐경우 비활성화
+                // 내이름과 일치하지않고 관리자 이름도 아닐경우 댓글 수정삭제버튼 비활성화
                 if (detail_replyUserName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName && "admin" !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
                     replyModify.outerHTML = "";
                     replyDelete.outerHTML = "";
@@ -170,6 +170,12 @@ class DetailRenderManager {
                         replyReplyDelete.innerHTML = "삭제";
                         replyReplyContent.append(replyReplyWriter, replyReplyDetail, replyReplyDate, replyReplyModify, replyReplyDelete);
                         replyReplyList.append(replyReplyContent);
+
+                        // 내이름과 일치하지않고 관리자 이름도 아닐경우 대댓글 수정삭제버튼 비활성화
+                        if (detail_replyReplyUserName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName && "admin" !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
+                            replyReplyModify.outerHTML = "";
+                            replyReplyDelete.outerHTML = "";
+                        }
 
 
                         // 대댓글 수정버튼
@@ -211,47 +217,50 @@ class DetailRenderManager {
                 }
 
 
-                // 대댓글작성창 띄우기 버튼
+                // 답글달기 버튼
                 replyReplyBtn.onclick = () => {
-                    const replyReplyInput = <HTMLTextAreaElement>document.createElement("textarea");
-                    const replyReplySubmit = <HTMLElement>document.createElement("button");
-                    const replyReplyCancel = <HTMLElement>document.createElement("button");
+                    if (JSON.stringify(sessionStorage.getItem("login_status")) == `"{}"`) {
+                        alert("로그인을 해주세요!");
+                    } else {
+                        const replyReplyInput = <HTMLTextAreaElement>document.createElement("textarea");
+                        const replyReplySubmit = <HTMLElement>document.createElement("button");
+                        const replyReplyCancel = <HTMLElement>document.createElement("button");
 
-                    replyReplyCancel.innerHTML = "취소";
-                    replyReplySubmit.innerHTML = "작성";
-                    replyReplyBtn.innerHTML = "";
-                    replyReplyinput.append(replyReplyInput, replyReplyCancel, replyReplySubmit);
+                        replyReplyCancel.innerHTML = "취소";
+                        replyReplySubmit.innerHTML = "작성";
+                        replyReplyBtn.innerHTML = "";
+                        replyReplyinput.append(replyReplyInput, replyReplyCancel, replyReplySubmit);
 
-                    // 대댓글작성창 취소버튼
-                    replyReplyCancel.onclick = () => {
-                        replyReplyinput.innerHTML = "";
-                        replyReplyBtn.innerHTML = "답글달기";
+                        // 대댓글작성창 취소버튼
+                        replyReplyCancel.onclick = () => {
+                            replyReplyinput.innerHTML = "";
+                            replyReplyBtn.innerHTML = "답글달기";
+                        }
+
+                        // 대댓글작성창 작성 버튼
+                        replyReplySubmit.onclick = () => {
+                            const date = new Date();
+                            const year = date.getFullYear();
+                            let month = (date.getMonth() + 1).toString();
+                            if (parseInt(month) < 10) {
+                                month = "0" + month
+                            }
+                            let day = (date.getDate()).toString();
+                            if (parseInt(day) < 10) {
+                                day = "0" + day
+                            }
+                            const replyReplyData = {
+                                replyUserName: (JSON.parse(sessionStorage.getItem("login_status"))).userName,
+                                reply: replyReplyInput.value,
+                                replydate: `${year}-${month}-${day}`,
+                                replyindex: param,
+                                replyreplyindex: i,
+                            }
+                            // 로컬스토리지로 저장
+                            this.setLocalStorageReplyReply(replyReplyData);
+                            location.reload();
+                        }
                     }
-
-                    // 대댓글작성창 작성 버튼
-                    replyReplySubmit.onclick = () => {
-                        const date = new Date();
-                        const year = date.getFullYear();
-                        let month = (date.getMonth() + 1).toString();
-                        if (parseInt(month) < 10) {
-                            month = "0" + month
-                        }
-                        let day = (date.getDate()).toString();
-                        if (parseInt(day) < 10) {
-                            day = "0" + day
-                        }
-                        const replyReplyData = {
-                            replyUserName: (JSON.parse(sessionStorage.getItem("login_status"))).userName,
-                            reply: replyReplyInput.value,
-                            replydate: `${year}-${month}-${day}`,
-                            replyindex: param,
-                            replyreplyindex: i,
-                        }
-                        // 로컬스토리지로 저장
-                        this.setLocalStorageReplyReply(replyReplyData);
-                        location.reload();
-                    }
-
                 }
 
                 // 댓글 수정 버튼

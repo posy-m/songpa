@@ -119,6 +119,10 @@ class DetailRenderManager {
                         replyReplyDelete.innerHTML = "삭제";
                         replyReplyContent.append(replyReplyWriter, replyReplyDetail, replyReplyDate, replyReplyModify, replyReplyDelete);
                         replyReplyList.append(replyReplyContent);
+                        if (detail_replyReplyUserName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName && "admin" !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
+                            replyReplyModify.outerHTML = "";
+                            replyReplyDelete.outerHTML = "";
+                        }
                         replyReplyModify.onclick = () => {
                             const replyTextArea = document.createElement("textarea");
                             replyReplyDetail.innerHTML = "";
@@ -154,38 +158,43 @@ class DetailRenderManager {
                     }
                 }
                 replyReplyBtn.onclick = () => {
-                    const replyReplyInput = document.createElement("textarea");
-                    const replyReplySubmit = document.createElement("button");
-                    const replyReplyCancel = document.createElement("button");
-                    replyReplyCancel.innerHTML = "취소";
-                    replyReplySubmit.innerHTML = "작성";
-                    replyReplyBtn.innerHTML = "";
-                    replyReplyinput.append(replyReplyInput, replyReplyCancel, replyReplySubmit);
-                    replyReplyCancel.onclick = () => {
-                        replyReplyinput.innerHTML = "";
-                        replyReplyBtn.innerHTML = "답글달기";
-                    };
-                    replyReplySubmit.onclick = () => {
-                        const date = new Date();
-                        const year = date.getFullYear();
-                        let month = (date.getMonth() + 1).toString();
-                        if (parseInt(month) < 10) {
-                            month = "0" + month;
-                        }
-                        let day = (date.getDate()).toString();
-                        if (parseInt(day) < 10) {
-                            day = "0" + day;
-                        }
-                        const replyReplyData = {
-                            replyUserName: (JSON.parse(sessionStorage.getItem("login_status"))).userName,
-                            reply: replyReplyInput.value,
-                            replydate: `${year}-${month}-${day}`,
-                            replyindex: param,
-                            replyreplyindex: i,
+                    if (JSON.stringify(sessionStorage.getItem("login_status")) == `"{}"`) {
+                        alert("로그인을 해주세요!");
+                    }
+                    else {
+                        const replyReplyInput = document.createElement("textarea");
+                        const replyReplySubmit = document.createElement("button");
+                        const replyReplyCancel = document.createElement("button");
+                        replyReplyCancel.innerHTML = "취소";
+                        replyReplySubmit.innerHTML = "작성";
+                        replyReplyBtn.innerHTML = "";
+                        replyReplyinput.append(replyReplyInput, replyReplyCancel, replyReplySubmit);
+                        replyReplyCancel.onclick = () => {
+                            replyReplyinput.innerHTML = "";
+                            replyReplyBtn.innerHTML = "답글달기";
                         };
-                        this.setLocalStorageReplyReply(replyReplyData);
-                        location.reload();
-                    };
+                        replyReplySubmit.onclick = () => {
+                            const date = new Date();
+                            const year = date.getFullYear();
+                            let month = (date.getMonth() + 1).toString();
+                            if (parseInt(month) < 10) {
+                                month = "0" + month;
+                            }
+                            let day = (date.getDate()).toString();
+                            if (parseInt(day) < 10) {
+                                day = "0" + day;
+                            }
+                            const replyReplyData = {
+                                replyUserName: (JSON.parse(sessionStorage.getItem("login_status"))).userName,
+                                reply: replyReplyInput.value,
+                                replydate: `${year}-${month}-${day}`,
+                                replyindex: param,
+                                replyreplyindex: i,
+                            };
+                            this.setLocalStorageReplyReply(replyReplyData);
+                            location.reload();
+                        };
+                    }
                 };
                 replyModify.onclick = () => {
                     const textArea = document.createElement("textarea");
@@ -272,6 +281,7 @@ class DetailRenderManager {
                     }
                 }
                 localStorage.setItem("replyreply_data", JSON.stringify(deleteReplyReply));
+                location.href = "./board.html?index=1&search=";
             }
             else {
                 return;
