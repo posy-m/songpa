@@ -158,6 +158,7 @@ class DetailRenderManager {
                         const replyReplyDate = <HTMLElement>document.createElement("div");
                         const replyReplyContent = <HTMLElement>document.createElement("div");
                         replyReplyContent.classList.add("replyreplycontent");
+
                         const replyReplyModify = <HTMLElement>document.createElement("button");
                         const replyReplyDelete = <HTMLElement>document.createElement("button");
 
@@ -207,9 +208,6 @@ class DetailRenderManager {
                         }
                     }
                 }
-
-
-
 
 
                 // 대댓글작성창 띄우기 버튼
@@ -291,10 +289,16 @@ class DetailRenderManager {
 
 
                         for (let n = originalReplyReply.length - 1; n >= 0; n--) {
-                            if ((originalReplyReply[n].replyreplyindex) == i) {
+                            if ((originalReplyReply[n].replyreplyindex) == i && (originalReplyReply[n].replyindex) == param) {
                                 deleteReplyReply.splice(n, 1)
+
                             }
+                            else if ((deleteReplyReply[n].replyreplyindex) > i && (deleteReplyReply[n].replyindex) == param) {
+                                deleteReplyReply[n].replyreplyindex = deleteReplyReply[n].replyreplyindex - 1
+                            }
+
                         }
+
                         localStorage.setItem("replyreply_data", JSON.stringify(deleteReplyReply));
 
 
@@ -319,6 +323,7 @@ class DetailRenderManager {
 
         // 삭제 버튼
         btnDelete.onclick = () => {
+            // 글 배열
             const deleteItem = JSON.parse(localStorage.getItem("board_data"));
             // 원본 댓글 배열
             const originalReply = JSON.parse(localStorage.getItem("reply_data"));

@@ -216,11 +216,14 @@ class DetailRenderManager {
                         deleteReply.splice(i, 1);
                         localStorage.setItem("reply_data", JSON.stringify(deleteReply));
                         for (let n = originalReplyReply.length - 1; n >= 0; n--) {
-                            if ((originalReplyReply[n].replyreplyindex) == i) {
-                                deleteReplyReply.splice(n, 1);
+                            if ((originalReplyReply[n].replyreplyindex) == i && (originalReplyReply[n].replyindex) == param) {
+                                originalReplyReply.splice(n, 1);
+                            }
+                            else if ((originalReplyReply[n].replyreplyindex) > i && (originalReplyReply[n].replyindex) == param) {
+                                originalReplyReply[n].replyreplyindex = originalReplyReply[n].replyreplyindex - 1;
                             }
                         }
-                        localStorage.setItem("replyreply_data", JSON.stringify(deleteReplyReply));
+                        localStorage.setItem("replyreply_data", JSON.stringify(originalReplyReply));
                         location.reload();
                     }
                     else {
