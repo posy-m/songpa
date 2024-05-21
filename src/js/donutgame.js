@@ -52,8 +52,7 @@ class DonutGameManager {
     read() {
         const userData = JSON.parse(sessionStorage.getItem("login_status"));
         const rankData = JSON.parse(localStorage.getItem("donut_score"));
-        if (rankData !== null)
-            rankData.sort();
+        rankData.sort();
         const rankContent = document.querySelector(".rank-content");
         const myRank = document.querySelector(".my-rank");
         let hi = "hi";
@@ -103,8 +102,11 @@ class DonutGameManager {
         }
     }
 }
-const donutGameManager = new DonutGameManager();
-donutGameManager.read();
+const rankData = JSON.parse(localStorage.getItem("donut_score"));
+if (rankData !== null) {
+    const donutGameManager = new DonutGameManager();
+    donutGameManager.read();
+}
 const game_wrap = document.querySelector(".game-wrap");
 const start_btn = document.getElementById("start");
 start_btn.onclick = () => {
