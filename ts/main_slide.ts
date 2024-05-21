@@ -32,12 +32,12 @@ slide.addEventListener("transitionend",()=>{
     slide.style.transition = "none";
     slide.style.left = "-1400px";
     setTimeout(()=>{
-      slide.style.transition = "left 0.5s"
-    },250)
+      slide.style.transition = "left 1s"
+    },500)
   }
   setTimeout(()=>{
     isActive = false;
-  },250)
+  },500)
 });
 
 slide.addEventListener("transitionend",()=>{
@@ -46,12 +46,12 @@ slide.addEventListener("transitionend",()=>{
     slide.style.transition = "none";
     slide.style.left = `${-1400 + (-1400 * index)}px`;
     setTimeout(()=>{
-      slide.style.transition = "left 0.5s"
-    },250)
+      slide.style.transition = "left 1s"
+    },500)
   }
   setTimeout(() => {
     isActive = false;
-  }, 250);
+  }, 500);
 });
 
 prevBtn.onclick = function(){
@@ -60,6 +60,36 @@ prevBtn.onclick = function(){
   index--;
   slide.style.left = `${-1400 + (-1400 * index)}px`;
 }
+
+
+// 슬라이드 배너 호버시 멈춤 기능
+  let slideAuto = setInterval(slideStop, 3000);
+  function slideStop(){
+    if(isActive) return;
+    isActive = true;
+    index++;
+    slide.style.left = `${-1400 + (-1400 * index)}px`;
+  }
+  
+  slide.addEventListener("mouseover",function(){
+    clearInterval(slideAuto);
+  });
+  slide.addEventListener("mouseleave",function(){
+    slideAuto = setInterval(slideStop, 3000);
+  });  
+  nextBtn.addEventListener("mouseover",function(){
+    clearInterval(slideAuto);
+  });
+  nextBtn.addEventListener("mouseleave",function(){
+    slideAuto = setInterval(slideStop, 3000);
+  });
+  prevBtn.addEventListener("mouseover",function(){
+    clearInterval(slideAuto);
+  });
+  prevBtn.addEventListener("mouseleave",function(){
+    slideAuto = setInterval(slideStop, 3000);
+  });
+  
 
 // 스크롤 기능
 

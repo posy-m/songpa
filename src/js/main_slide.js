@@ -26,12 +26,12 @@ slide.addEventListener("transitionend", () => {
         slide.style.transition = "none";
         slide.style.left = "-1400px";
         setTimeout(() => {
-            slide.style.transition = "left 0.5s";
-        }, 250);
+            slide.style.transition = "left 1s";
+        }, 500);
     }
     setTimeout(() => {
         isActive = false;
-    }, 250);
+    }, 500);
 });
 slide.addEventListener("transitionend", () => {
     if (index === -1) {
@@ -39,12 +39,12 @@ slide.addEventListener("transitionend", () => {
         slide.style.transition = "none";
         slide.style.left = `${-1400 + (-1400 * index)}px`;
         setTimeout(() => {
-            slide.style.transition = "left 0.5s";
-        }, 250);
+            slide.style.transition = "left 1s";
+        }, 500);
     }
     setTimeout(() => {
         isActive = false;
-    }, 250);
+    }, 500);
 });
 prevBtn.onclick = function () {
     if (isActive)
@@ -53,6 +53,32 @@ prevBtn.onclick = function () {
     index--;
     slide.style.left = `${-1400 + (-1400 * index)}px`;
 };
+let slideAuto = setInterval(slideStop, 3000);
+function slideStop() {
+    if (isActive)
+        return;
+    isActive = true;
+    index++;
+    slide.style.left = `${-1400 + (-1400 * index)}px`;
+}
+slide.addEventListener("mouseover", function () {
+    clearInterval(slideAuto);
+});
+slide.addEventListener("mouseleave", function () {
+    slideAuto = setInterval(slideStop, 3000);
+});
+nextBtn.addEventListener("mouseover", function () {
+    clearInterval(slideAuto);
+});
+nextBtn.addEventListener("mouseleave", function () {
+    slideAuto = setInterval(slideStop, 3000);
+});
+prevBtn.addEventListener("mouseover", function () {
+    clearInterval(slideAuto);
+});
+prevBtn.addEventListener("mouseleave", function () {
+    slideAuto = setInterval(slideStop, 3000);
+});
 const posY = [];
 const mainContent = document.querySelectorAll(".scroll-js");
 for (let i = 0; i < mainContent.length; i++) {
