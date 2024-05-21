@@ -13,10 +13,8 @@ function mypage() {
     id_btn.onclick = () => {
         if (confirm("정말 변경하시겠습니까?")) {
             for (let i = 0; i < sign_data.length; i++) {
-                console.log(1);
-                console.log(sign_data);
-                console.log(login_data);
-                if (sign_data[i] === login_data) {
+                if (sign_data[i].userId === login_data.userId) {
+                    console.log(1);
                     login_data.userId = id.value;
                     sessionStorage.setItem("login_status", JSON.stringify(login_data));
                     sign_data[i].userId = id.value;
@@ -31,7 +29,7 @@ function mypage() {
     pw_btn.addEventListener("click", () => {
         if (confirm("정말 변경하시겠습니까?")) {
             for (let i = 0; i < sign_data.length; i++) {
-                if (sign_data[i] === login_data) {
+                if (sign_data[i].userPw === login_data.userPw) {
                     login_data.userPw = pw.value;
                     sessionStorage.setItem("login_status", JSON.stringify(login_data));
                     sign_data[i].userPw = pw.value;
@@ -46,7 +44,7 @@ function mypage() {
     name_btn.addEventListener("click", () => {
         if (confirm("정말 변경하시겠습니까?")) {
             for (let i = 0; i < sign_data.length; i++) {
-                if (sign_data[i] === login_data) {
+                if (sign_data[i].userName === login_data.userName) {
                     login_data.userName = name.value;
                     sessionStorage.setItem("login_status", JSON.stringify(login_data));
                     sign_data[i].userName = name.value;
