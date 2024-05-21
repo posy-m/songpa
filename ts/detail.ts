@@ -126,7 +126,7 @@ class DetailRenderManager {
                 // 대댓글 렌더박스
                 const replyReplyList = <HTMLElement>document.createElement("div");
                 replyReplyList.classList.add("replyreplylist")
-                // 대댓글 쓰기박스
+                // 대댓글작성창 쓰기박스
                 const replyReplyinput = <HTMLElement>document.createElement("div");
 
                 replyWriter.innerHTML = detail_replyUserName;
@@ -168,8 +168,48 @@ class DetailRenderManager {
                         replyReplyDelete.innerHTML = "삭제";
                         replyReplyContent.append(replyReplyWriter, replyReplyDetail, replyReplyDate, replyReplyModify, replyReplyDelete);
                         replyReplyList.append(replyReplyContent);
+
+
+                        // 대댓글 수정버튼
+                        replyReplyModify.onclick = () => {
+                            const replyTextArea = <HTMLTextAreaElement>document.createElement("textarea");
+                            replyReplyDetail.innerHTML = "";
+                            replyReplyDetail.append(replyTextArea);
+                            replyTextArea.innerHTML = detail_replyreply;
+                            replyReplyModify.innerHTML = "수정완료";
+
+                            replyReplyModify.onclick = () => {
+                                replyReplyModify.innerHTML = "수정";
+                                const modifiedReplyReply = {
+                                    replyUserName: detail_replyReplyUserName,
+                                    reply: replyTextArea.value,
+                                    replydate: detail_replyreplydate,
+                                    replyindex: param,
+                                    replyreplyindex: i,
+                                }
+                                const modifyItemReply = JSON.parse(localStorage.getItem("replyreply_data"));
+                                modifyItemReply.splice(x, 1, modifiedReplyReply);
+                                localStorage.setItem("replyreply_data", JSON.stringify(modifyItemReply))
+                                location.reload();
+                            }
+                        }
+
+                        // 대댓글 삭제버튼
+                        replyReplyDelete.onclick = () => {
+                            if (confirm("대댓글을 삭제하시겠습니까?")) {
+                                const modifyItemReply = JSON.parse(localStorage.getItem("replyreply_data"));
+                                modifyItemReply.splice(x, 1);
+                                localStorage.setItem("replyreply_data", JSON.stringify(modifyItemReply));
+                                location.reload();
+                            } else {
+                                return;
+                            }
+                        }
                     }
                 }
+
+
+
 
 
                 // 대댓글작성창 띄우기 버튼
@@ -183,13 +223,13 @@ class DetailRenderManager {
                     replyReplyBtn.innerHTML = "";
                     replyReplyinput.append(replyReplyInput, replyReplyCancel, replyReplySubmit);
 
-                    // 대댓글 취소버튼
+                    // 대댓글작성창 취소버튼
                     replyReplyCancel.onclick = () => {
                         replyReplyinput.innerHTML = "";
                         replyReplyBtn.innerHTML = "답글달기";
                     }
 
-                    // 대댓글 작성 버튼
+                    // 대댓글작성창 작성 버튼
                     replyReplySubmit.onclick = () => {
                         const date = new Date();
                         const year = date.getFullYear();
@@ -223,7 +263,6 @@ class DetailRenderManager {
                     replyDetail.append(textArea);
                     textArea.innerHTML = detail_reply;
                     replyModify.innerHTML = "수정완료";
-                    replyDelete.innerHTML = "삭제";
 
                     replyModify.onclick = () => {
                         replyModify.innerHTML = "수정";
@@ -242,10 +281,24 @@ class DetailRenderManager {
 
                 // 댓글 삭제 버튼
                 replyDelete.onclick = () => {
+                    const deleteReply = JSON.parse(localStorage.getItem("reply_data"));
+                    const originalReplyReply = JSON.parse(localStorage.getItem("replyreply_data"));
+                    const deleteReplyReply = JSON.parse(localStorage.getItem("replyreply_data"));
                     if (confirm("댓글을 삭제하시겠습니까?")) {
-                        const modifyItem = JSON.parse(localStorage.getItem("reply_data"));
-                        modifyItem.splice(i, 1);
-                        localStorage.setItem("reply_data", JSON.stringify(modifyItem));
+                        deleteReply.splice(i, 1);
+                        localStorage.setItem("reply_data", JSON.stringify(deleteReply));
+
+
+
+                        for (let n = originalReplyReply.length - 1; n >= 0; n--) {
+                            if ((originalReplyReply[n].replyreplyindex) == i) {
+                                deleteReplyReply.splice(n, 1)
+                            }
+                        }
+                        localStorage.setItem("replyreply_data", JSON.stringify(deleteReplyReply));
+
+
+
                         location.reload();
                     } else {
                         return;
@@ -267,7 +320,9 @@ class DetailRenderManager {
         // 삭제 버튼
         btnDelete.onclick = () => {
             const deleteItem = JSON.parse(localStorage.getItem("board_data"));
+            // 원본 댓글 배열
             const originalReply = JSON.parse(localStorage.getItem("reply_data"));
+            // 가공할 댓글 배열
             const deleteReply = JSON.parse(localStorage.getItem("reply_data"));
             if (confirm("삭제하시겠습니까?")) {
                 deleteItem.splice(param, 1)

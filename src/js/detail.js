@@ -119,6 +119,38 @@ class DetailRenderManager {
                         replyReplyDelete.innerHTML = "삭제";
                         replyReplyContent.append(replyReplyWriter, replyReplyDetail, replyReplyDate, replyReplyModify, replyReplyDelete);
                         replyReplyList.append(replyReplyContent);
+                        replyReplyModify.onclick = () => {
+                            const replyTextArea = document.createElement("textarea");
+                            replyReplyDetail.innerHTML = "";
+                            replyReplyDetail.append(replyTextArea);
+                            replyTextArea.innerHTML = detail_replyreply;
+                            replyReplyModify.innerHTML = "수정완료";
+                            replyReplyModify.onclick = () => {
+                                replyReplyModify.innerHTML = "수정";
+                                const modifiedReplyReply = {
+                                    replyUserName: detail_replyReplyUserName,
+                                    reply: replyTextArea.value,
+                                    replydate: detail_replyreplydate,
+                                    replyindex: param,
+                                    replyreplyindex: i,
+                                };
+                                const modifyItemReply = JSON.parse(localStorage.getItem("replyreply_data"));
+                                modifyItemReply.splice(x, 1, modifiedReplyReply);
+                                localStorage.setItem("replyreply_data", JSON.stringify(modifyItemReply));
+                                location.reload();
+                            };
+                        };
+                        replyReplyDelete.onclick = () => {
+                            if (confirm("대댓글을 삭제하시겠습니까?")) {
+                                const modifyItemReply = JSON.parse(localStorage.getItem("replyreply_data"));
+                                modifyItemReply.splice(x, 1);
+                                localStorage.setItem("replyreply_data", JSON.stringify(modifyItemReply));
+                                location.reload();
+                            }
+                            else {
+                                return;
+                            }
+                        };
                     }
                 }
                 replyReplyBtn.addEventListener("click", () => {
@@ -162,7 +194,6 @@ class DetailRenderManager {
                     replyDetail.append(textArea);
                     textArea.innerHTML = detail_reply;
                     replyModify.innerHTML = "수정완료";
-                    replyDelete.innerHTML = "삭제";
                     replyModify.onclick = () => {
                         replyModify.innerHTML = "수정";
                         const modifiedReply = {
@@ -178,10 +209,18 @@ class DetailRenderManager {
                     };
                 };
                 replyDelete.onclick = () => {
+                    const deleteReply = JSON.parse(localStorage.getItem("reply_data"));
+                    const originalReplyReply = JSON.parse(localStorage.getItem("replyreply_data"));
+                    const deleteReplyReply = JSON.parse(localStorage.getItem("replyreply_data"));
                     if (confirm("댓글을 삭제하시겠습니까?")) {
-                        const modifyItem = JSON.parse(localStorage.getItem("reply_data"));
-                        modifyItem.splice(i, 1);
-                        localStorage.setItem("reply_data", JSON.stringify(modifyItem));
+                        deleteReply.splice(i, 1);
+                        localStorage.setItem("reply_data", JSON.stringify(deleteReply));
+                        for (let n = originalReplyReply.length - 1; n >= 0; n--) {
+                            if ((originalReplyReply[n].replyreplyindex) == i) {
+                                deleteReplyReply.splice(n, 1);
+                            }
+                        }
+                        localStorage.setItem("replyreply_data", JSON.stringify(deleteReplyReply));
                         location.reload();
                     }
                     else {
