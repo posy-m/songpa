@@ -163,7 +163,7 @@ a {
 
 .login-popup {
   width: 100%;
-  height: 100vh;
+  height: 120vh;
   position: absolute;
   left: 0;
   top: 0;
@@ -179,7 +179,7 @@ a {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -80%);
+  transform: translate(-50%, -60%);
   background-color: #F9F8FF;
   border-radius: 10px;
 }
@@ -288,7 +288,7 @@ form>button {
   overflow: hidden;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -60%);
   position: relative;
 }
 
