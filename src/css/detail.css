@@ -149,7 +149,9 @@ body {
 
 .replyreplycontent {
     display: flex;
+    justify-content: space-between;
 }
+
 
 .textarea {
     width: 100%;

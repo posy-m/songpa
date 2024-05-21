@@ -21,23 +21,27 @@ function paintPage(page) {
     const boardListcontainer = document.querySelector("#boardList");
     let i = 0;
     showBoardData.forEach((element) => {
-        const li = document.createElement("tr");
-        const no = document.createElement("td");
-        i++;
-        no.innerHTML = (((parseInt(currentPage) - 1) * 10) + i).toString();
-        const userName = document.createElement("td");
-        userName.innerHTML = element.userName;
-        const title1 = document.createElement("td");
-        const title = document.createElement("a");
-        title.innerHTML = element.title;
-        title1.appendChild(title);
-        title.href = "detail.html?index=" + element.no;
-        const date = document.createElement("td");
-        date.innerHTML = element.date;
-        const count = document.createElement("td");
-        count.innerHTML = element.count.toString();
-        li.append(no, title1, userName, date, count);
-        boardListcontainer.appendChild(li);
+        if (element.no === -1) {
+        }
+        else {
+            const li = document.createElement("tr");
+            const no = document.createElement("td");
+            i++;
+            no.innerHTML = (i).toString();
+            const userName = document.createElement("td");
+            userName.innerHTML = element.userName;
+            const title1 = document.createElement("td");
+            const title = document.createElement("a");
+            title.innerHTML = element.title;
+            title1.appendChild(title);
+            title.href = "detail.html?index=" + element.no;
+            const date = document.createElement("td");
+            date.innerHTML = element.date;
+            const count = document.createElement("td");
+            count.innerHTML = `${element.count}`;
+            li.append(no, title1, userName, date, count);
+            boardListcontainer.appendChild(li);
+        }
     });
 }
 paintPage(parseInt(currentPage));
