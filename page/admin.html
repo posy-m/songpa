@@ -9,21 +9,92 @@
 </head>
 
 <body>
-    <div id="content">
-        <div class="top">
-            <span>아이디</span>
-            <span>닉네임</span>
-            <span>생성날짜</span>
-            <span>수락여부</span>
+
+    <!-- 헤드영역 -->
+    <div class="header">
+        <div class="header-content">
+            <ul class="menu">
+                <li>About</li>
+                <li>Menu</li>
+                <li class="board"><a class="gogo " href="./board.html?index=1&search=">Board</a></li>
+            </ul>
+            <h1 class="logo">
+                <img src="../src/img/logo.png" alt="로고">
+                <span>Donut Shop</span>
+            </h1>
+            <ul class="user-area">
+                <li>
+                    <span class="loginBtn">Log-in</span>
+                </li>
+                <li>
+                    <span><a id="myPage" href="./signup.html">Sign up</a></span>
+                </li>
+            </ul>
         </div>
     </div>
-    <div id="box">
-        <div class="sign-title-box">
-            <span>아이디</span>
-            <span>비밀번호</span>
-            <span>닉네임</span>
-            <span>생성날짜</span>
+
+    <!-- 중간 -->
+    <div id="adminList">
+        <span class="list">Request List</span>
+        <span class="list">Completion List</span>
+    </div>
+    <div id="section-admin">
+        <div id="content">
+            <div class="top">
+                <span>아이디</span>
+                <span>닉네임</span>
+                <span>생성날짜</span>
+                <span>수락여부</span>
+
+            </div>
         </div>
+        <div id="box">
+            <div class="sign-title-box">
+                <span>아이디</span>
+                <span>비밀번호</span>
+                <span>닉네임</span>
+                <span>생성날짜</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- footer 영역 -->
+    <div class="footer">
+        <div class="footer-content">
+            <ul class="footer-list">
+                <li class="footer-logo">
+                    Donut Shop
+                </li>
+                <li class="customer-center">
+                    <span>고객 만족센터</span>
+                    <span>02. 1234. 5678</span>
+                </li>
+                <li class="sns">
+                    <img src="../src/img/facebook.png" alt="페북">
+                    <img src="../src/img/instagram.png" alt="인스타">
+                    <img src="../src/img/youtube.png" alt="유튜브">
+                </li>
+            </ul>
+            <ul class="footer-menu1 footer-menu">
+                <li>단체 및 기업구매</li>
+                <li>마케팅 및 제휴문의</li>
+                <li>사이트 맵</li>
+            </ul>
+            <ul class="footer-menu2 footer-menu">
+                <li>회사소개</li>
+                <li>채용안내</li>
+                <li>찾아오시는 길</li>
+            </ul>
+            <ul class="footer-menu3 footer-menu">
+                <li>개인정보보호처리방침</li>
+                <li>이용약관</li>
+                <li>운영관리 방침</li>
+            </ul>
+        </div>
+        <p class="footer-address">
+            © 2024. Songpa-office. ALL RIGHTS RESERVED.
+        </p>
     </div>
 </body>
 <script src="../src/js/admin.js"></script>

@@ -4,18 +4,18 @@ class WriteSaveManager {
     }
     getLocalStorage(a) {
         if (a === null) {
-            localStorage.setItem("board_data", JSON.stringify(this.boardDataList));
+            localStorage.setItem("board_data", JSON.stringify(writeBoard.boardDataList));
         }
         else {
-            this.boardDataList = JSON.parse(a);
+            writeBoard.boardDataList = JSON.parse(a);
         }
     }
     setLocalStorage(a) {
-        this.boardDataList.push(a);
-        localStorage.setItem("board_data", JSON.stringify(this.boardDataList));
+        writeBoard.boardDataList.push(a);
+        localStorage.setItem("board_data", JSON.stringify(writeBoard.boardDataList));
     }
     save() {
-        this.getLocalStorage(localStorage.getItem("board_data"));
+        writeBoard.getLocalStorage(localStorage.getItem("board_data"));
         const title = document.querySelector("#title");
         const content = document.querySelector("#content");
         const btnBoard = document.querySelector("#btn_board");

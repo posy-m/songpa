@@ -2,7 +2,7 @@
 const signData = JSON.parse(localStorage.getItem("sign_data"));
 
 
-const formbtn = document.querySelector("form") as HTMLElement;
+const formbtn = document.querySelector("#login_form") as HTMLElement;
 // 유저 아이디 비밀번호 
 const userId = document.querySelector("#userId") as HTMLInputElement;
 const userPw = document.querySelector("#userPw") as HTMLInputElement;
@@ -11,13 +11,15 @@ const userPw = document.querySelector("#userPw") as HTMLInputElement;
 const loginPopupBtn = document.querySelector(".loginBtn") as HTMLElement;
 const loginPop = document.querySelector(".login-popup") as HTMLElement;
 const loginDeleteBtn = document.querySelector(".login-delete") as HTMLElement;
-
+const body = document.querySelector("body") as HTMLElement;
 loginPopupBtn.onclick = () => {
   loginPop.style.display = "block";
+  body.style.overflow ="hidden";
 }
 
 loginDeleteBtn.onclick = () => {
   loginPop.style.display = "none";
+  body.style.overflow ="visible";
 }
 
 // 로그인시 logout으로 변경

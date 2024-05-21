@@ -10,10 +10,37 @@
 </head>
 
 <body>
+  <!-- 커서 -->
+  <!-- <div class="sample_cousor"></div> -->
+  <!-- 헤드영역 -->
+  <div class="header">
+    <div class="header-content">
+      <ul class="menu">
+        <li>About</li>
+        <li>Menu</li>
+        <li class="board"><a class="gogo " href="./board.html?index=1&search=">Board</a></li>
+      </ul>
+      <h1 class="logo">
+        <img src="../src/img/logo.png" alt="로고">
+        <span><a href="./main.html">Donut Shop</a></span>
+      </h1>
+      <ul class="user-area">
+        <li>
+          <span class="loginBtn">Log-in</span>
+        </li>
+        <li>
+          <span><a id="myPage" href="./signup.html">Sign up</a></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 콘텐츠 라인 -->
   <section id="sectionBoard">
     <div>게시판</div>
     <div id="samline">
-      <a id="wirtelink" href="./write.html">글 작성</a>
+      <button id="wirtelink">글 작성</button>
+      <!-- <button id="wirtelink" href="./write.html">글 작성</button> -->
       <form id="boardSearch">
         <input id="inputSearch" type="text" placeholder="제목을 입력해주세요.">
         <input id="inputBtn" type="submit" value="검색">
@@ -48,23 +75,78 @@
       <div id="pagination" class="number-button-wraper"></div>
       <!-- <div class="next-button">다음</div> -->
     </div>
-
-
   </section>
 
 
-
-  <!-- <div id="board">
-      <span class="boardStyle">No</span>
-      <span class="boardStyle">제목</span>
-      <span class="boardStyle">NickName</span>
-      <span class="boardStyle">날짜</span>
-      <span class="boardStyle">조회수</span>
+  <!-- footer 영역 -->
+  <div class="footer">
+    <div class="footer-content">
+      <ul class="footer-list">
+        <li class="footer-logo">
+          Donut Shop
+        </li>
+        <li class="customer-center">
+          <span>고객 만족센터</span>
+          <span>02. 1234. 5678</span>
+        </li>
+        <li class="sns">
+          <img src="../src/img/facebook.png" alt="페북">
+          <img src="../src/img/instagram.png" alt="인스타">
+          <img src="../src/img/youtube.png" alt="유튜브">
+        </li>
+      </ul>
+      <ul class="footer-menu1 footer-menu">
+        <li>단체 및 기업구매</li>
+        <li>마케팅 및 제휴문의</li>
+        <li>사이트 맵</li>
+      </ul>
+      <ul class="footer-menu2 footer-menu">
+        <li>회사소개</li>
+        <li>채용안내</li>
+        <li>찾아오시는 길</li>
+      </ul>
+      <ul class="footer-menu3 footer-menu">
+        <li>개인정보보호처리방침</li>
+        <li>이용약관</li>
+        <li>운영관리 방침</li>
+      </ul>
     </div>
+    <p class="footer-address">
+      © 2024. Songpa-office. ALL RIGHTS RESERVED.
+    </p>
+  </div>
 
-    <ul id="boardList"></ul> -->
+  <!-- 로그인 팝업 -->
+
+  <div class="login-popup">
+    <div class="login-wrap">
+      <h2>Login</h2>
+      <div class="login-content">
+        <span class="login-delete">
+          <img src="../src/img/x.png" alt="로그인제거">
+        </span>
+        <p>♥️ Welcome to Donut shop ♥️</p>
+        <form action="" id="login_form">
+          <div class="user-info">
+            <input type="text" id="userId" name="userId" placeholder="아이디">
+          </div>
+          <div class="user-info">
+            <input type="password" id="userPw" name="userPw" placeholder="비밀번호">
+          </div>
+          <button class="loginBtn">로그인</button>
+        </form>
+        <ul class="join-area">
+          <li>아이디 찾기</li>
+          <li>비밀번호 찾기</li>
+          <li><a href="signup.html">회원가입</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
 </body>
 <script src="../src/js/board1.js"></script>
+<script src="../src/js/login.js"></script>
+
 
 </html>

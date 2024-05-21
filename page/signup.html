@@ -1,37 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../src/css/signup.css">
+
 </head>
+
 <body>
+    <!-- 헤드영역 -->
+    <div class="header">
+        <div class="header-content">
+            <ul class="menu">
+                <li>About</li>
+                <li>Menu</li>
+                <li class="board"><a class="gogo " href="./board.html?index=1&search=">Board</a></li>
+            </ul>
+            <h1 class="logo">
+                <img src="../src/img/logo.png" alt="로고">
+                <span>Donut Shop</span>
+            </h1>
+            <ul class="user-area">
+                <li>
+                    <span class="loginBtn">Log-in</span>
+                </li>
+                <li>
+                    <span><a id="myPage" href="./signup.html">Sign up</a></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 중간 영역 -->
+
     <div id="content">
-            <span></span>
-        <div>
-            <span>아이디</span>
+        <div id="signupSection">
+            <span class="signup-title">아이디</span>
             <div class="id-box">
-                <input type="text" name="" id="id_text" placeholder="4~12글자, 영어나 숫자를 입력해주세요">
+                <div>
+                    <input type="text" name="" id="id_text" class="signup-input" placeholder="4~12글자, 영어나 숫자를 입력해주세요">
+                </div>
+                <button id="id_check" class="signup-btn">중복확인</button>
                 <span id="id_repeat"></span>
             </div>
-            <button id="id_check">중복확인</button>
-            <span>비밀번호</span>
-            <div>
-                <input type="text" name="" id="pw_text" placeholder="8글자 이상, 영문, 숫자, 특수문자를 모두 사용해 입력해주세요">
-            </div>
-            <span>비밀번호 확인</span>
-            <div>
-                <input type="text" name="" id="pw_check" placeholder="비밀번호와 일치하게 적어주세요">
-            </div>
-            <span>닉네임</span>
+            <span class="signup-title">닉네임</span>
             <div class="name-box">
-                <input type="text" name="" id="name_text" placeholder="닉네임을 적어주세요">
+                <div class="name-wrap">
+                    <input type="text" name="" id="name_text" class="signup-input" placeholder="닉네임을 적어주세요">
+                </div>
+                <button id="name_check" class="signup-btn">중복확인</button>
                 <span id="name_repeat"></span>
             </div>
-            <span><button id="name_check">중복확인</button></span>
+            <span class="signup-title">비밀번호</span>
+            <div>
+                <input type="text" name="" id="pw_text" class="signup-input"
+                    placeholder="8글자 이상, 영문, 숫자, 특수문자를 모두 사용해 입력해주세요">
+            </div>
+            <span class="signup-title">비밀번호 확인</span>
+            <div>
+                <input type="text" name="" id="pw_check" class="signup-input" placeholder="비밀번호와 일치하게 적어주세요">
+            </div>
+            <div id="clear_btn" class="signup-title">회원가입 완료</div>
         </div>
-        <div id="clear_btn">회원가입 완료</div>
     </div>
+
+    <!-- footer 영역 -->
+    <div class="footer">
+        <div class="footer-content">
+            <ul class="footer-list">
+                <li class="footer-logo">
+                    Donut Shop
+                </li>
+                <li class="customer-center">
+                    <span>고객 만족센터</span>
+                    <span>02. 1234. 5678</span>
+                </li>
+                <li class="sns">
+                    <img src="../src/img/facebook.png" alt="페북">
+                    <img src="../src/img/instagram.png" alt="인스타">
+                    <img src="../src/img/youtube.png" alt="유튜브">
+                </li>
+            </ul>
+            <ul class="footer-menu1 footer-menu">
+                <li>단체 및 기업구매</li>
+                <li>마케팅 및 제휴문의</li>
+                <li>사이트 맵</li>
+            </ul>
+            <ul class="footer-menu2 footer-menu">
+                <li>회사소개</li>
+                <li>채용안내</li>
+                <li>찾아오시는 길</li>
+            </ul>
+            <ul class="footer-menu3 footer-menu">
+                <li>개인정보보호처리방침</li>
+                <li>이용약관</li>
+                <li>운영관리 방침</li>
+            </ul>
+        </div>
+        <p class="footer-address">
+            © 2024. Songpa-office. ALL RIGHTS RESERVED.
+        </p>
+    </div>
+
 </body>
 <script src="../src/js/signup.js"></script>
+
 </html>

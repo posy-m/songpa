@@ -16,21 +16,21 @@ class WriteSaveManager {
     // 로컬스토리지 값이 없을때 빈배열, 있으면 가져옴
     getLocalStorage(a) {
         if (a === null) {
-            localStorage.setItem("board_data", JSON.stringify(this.boardDataList));
+            localStorage.setItem("board_data", JSON.stringify(writeBoard.boardDataList));
         } else {
-            this.boardDataList = JSON.parse(a);
+            writeBoard.boardDataList = JSON.parse(a);
         }
     }
 
     // 작성완료시 배열에 푸시후 배열을 로컬스토리지에 저장
     setLocalStorage(a) {
-        this.boardDataList.push(a);
-        localStorage.setItem("board_data", JSON.stringify(this.boardDataList))
+        writeBoard.boardDataList.push(a);
+        localStorage.setItem("board_data", JSON.stringify(writeBoard.boardDataList))
     }
 
 
     save() {
-        this.getLocalStorage(localStorage.getItem("board_data"))
+        writeBoard.getLocalStorage(localStorage.getItem("board_data"))
 
         const title = <HTMLInputElement>document.querySelector("#title")
         const content = <HTMLInputElement>document.querySelector("#content")
