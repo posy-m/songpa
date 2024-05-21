@@ -47,7 +47,7 @@ function paintPage(page: number) {
     const li = document.createElement("tr")
     const no = document.createElement("td")
     i++;
-    no.innerHTML = (i).toString();
+    no.innerHTML = (((parseInt(currentPage) - 1) * 10) + i).toString();
     const userName = document.createElement("td")
     userName.innerHTML = element.userName;
     const title1 = document.createElement("td")
