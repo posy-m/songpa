@@ -153,7 +153,7 @@ class DetailRenderManager {
                         };
                     }
                 }
-                replyReplyBtn.addEventListener("click", () => {
+                replyReplyBtn.onclick = () => {
                     const replyReplyInput = document.createElement("textarea");
                     const replyReplySubmit = document.createElement("button");
                     const replyReplyCancel = document.createElement("button");
@@ -186,7 +186,7 @@ class DetailRenderManager {
                         this.setLocalStorageReplyReply(replyReplyData);
                         location.reload();
                     };
-                });
+                };
                 replyModify.onclick = () => {
                     const textArea = document.createElement("textarea");
                     textArea.classList.add("textarea");
@@ -217,13 +217,13 @@ class DetailRenderManager {
                         localStorage.setItem("reply_data", JSON.stringify(deleteReply));
                         for (let n = originalReplyReply.length - 1; n >= 0; n--) {
                             if ((originalReplyReply[n].replyreplyindex) == i && (originalReplyReply[n].replyindex) == param) {
-                                originalReplyReply.splice(n, 1);
+                                deleteReplyReply.splice(n, 1);
                             }
-                            else if ((originalReplyReply[n].replyreplyindex) > i && (originalReplyReply[n].replyindex) == param) {
-                                originalReplyReply[n].replyreplyindex = originalReplyReply[n].replyreplyindex - 1;
+                            else if ((deleteReplyReply[n].replyreplyindex) > i) {
+                                deleteReplyReply[n].replyreplyindex = deleteReplyReply[n].replyreplyindex - 1;
                             }
                         }
-                        localStorage.setItem("replyreply_data", JSON.stringify(originalReplyReply));
+                        localStorage.setItem("replyreply_data", JSON.stringify(deleteReplyReply));
                         location.reload();
                     }
                     else {
