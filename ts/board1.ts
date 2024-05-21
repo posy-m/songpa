@@ -13,6 +13,23 @@ const urlparams = url.searchParams;
 const currentPage = urlparams.get('index');
 const searchInput = urlparams.get('search');
 
+//글 작성 클릭 했을 시 로그인 해주세요. 
+
+const wirteLink = <HTMLButtonElement>document.querySelector("#wirtelink")
+const login_status = JSON.parse(sessionStorage.getItem("login_status"))
+
+wirteLink.onclick = () => {
+  if (login_status === null) {
+    if (confirm("로그인 해주세요")) {
+      const loginPop = document.querySelector(".login-popup") as HTMLElement;
+      loginPop.style.display = "block";
+    } else {
+      return;
+    }
+  } else {
+    location.href = "./write.html";
+  }
+}
 //로컬스토리지에서 들고온 값 
 let boardList: IBoard[] = JSON.parse(localStorage.getItem("board_data")).reverse()
 
@@ -125,26 +142,7 @@ boardSearch.addEventListener("submit", search)
 
 
 
-//글 작성 클릭 했을 시 로그인 해주세요. 
 
-
-
-
-const wirteLink = <HTMLButtonElement>document.querySelector("#wirtelink")
-const login_status = JSON.parse(sessionStorage.getItem("login_status"))
-
-wirteLink.onclick = () => {
-  if (login_status === null) {
-    if (confirm("로그인 해주세요")) {
-      const loginPop = document.querySelector(".login-popup") as HTMLElement;
-      loginPop.style.display = "block";
-    } else {
-      return;
-    }
-  } else {
-    location.href = "./write.html";
-  }
-}
 
 
 
