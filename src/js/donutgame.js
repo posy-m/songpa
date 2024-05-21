@@ -52,7 +52,8 @@ class DonutGameManager {
     read() {
         const userData = JSON.parse(sessionStorage.getItem("login_status"));
         const rankData = JSON.parse(localStorage.getItem("donut_score"));
-        rankData.sort();
+        if (rankData !== null)
+            rankData.sort();
         const rankContent = document.querySelector(".rank-content");
         const myRank = document.querySelector(".my-rank");
         let hi = "hi";
