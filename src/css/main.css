@@ -292,7 +292,7 @@ form>button {
   height: 700px;
   overflow: hidden;
   left: 50%;
-  top: 50%;
+  top: 60%;
   transform: translate(-50%, -60%);
   position: relative;
 }
