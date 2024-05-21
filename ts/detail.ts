@@ -288,13 +288,16 @@ class DetailRenderManager {
                     const deleteReplyReply = JSON.parse(localStorage.getItem("replyreply_data"));
 
                     if (confirm("댓글을 삭제하시겠습니까?")) {
+                        // 댓글 데이터 삭제
                         deleteReply.splice(i, 1);
                         localStorage.setItem("reply_data", JSON.stringify(deleteReply));
+
+                        // 대댓글 데이터 삭제/수정
                         for (let n = originalReplyReply.length - 1; n >= 0; n--) {
                             if ((originalReplyReply[n].replyreplyindex) == i && (originalReplyReply[n].replyindex) == param) {
                                 deleteReplyReply.splice(n, 1)
                             } else if ((deleteReplyReply[n].replyreplyindex) > i) {
-                                deleteReplyReply[n].replyreplyindex = deleteReplyReply[n].replyreplyindex - 1
+                                deleteReplyReply[n].replyreplyindex = deleteReplyReply[n].replyreplyindex - 1;
                             }
                         }
                         localStorage.setItem("replyreply_data", JSON.stringify(deleteReplyReply));
@@ -317,7 +320,7 @@ class DetailRenderManager {
             location.href = "./modify.html?index=" + param;
         }
 
-        // 삭제 버튼
+        // 글 삭제 버튼
         btnDelete.onclick = () => {
             // 글 배열
             const deleteItem = JSON.parse(localStorage.getItem("board_data"));
@@ -325,9 +328,24 @@ class DetailRenderManager {
             const originalReply = JSON.parse(localStorage.getItem("reply_data"));
             // 수정 댓글 배열
             const deleteReply = JSON.parse(localStorage.getItem("reply_data"));
+
+            // 원본 대댓글 배열
+            const originalReplyReply = JSON.parse(localStorage.getItem("replyreply_data"));
+            // 수정 대댓글 배열
+            const deleteReplyReply = JSON.parse(localStorage.getItem("replyreply_data"));
+
             if (confirm("삭제하시겠습니까?")) {
-                deleteItem.splice(param, 1)
+                // 글 삭제
+                deleteItem.splice(param, 1, {
+                    no: -1,
+                    userName: "",
+                    title: "",
+                    content: "",
+                    date: "",
+                    count: -1
+                })
                 localStorage.setItem("board_data", JSON.stringify(deleteItem))
+                // 댓글 데이터 삭제
                 for (let i = originalReply.length - 1; i >= 0; i--) {
                     if ((originalReply[i].replyindex) == param) {
                         deleteReply.splice(i, 1)
@@ -335,7 +353,19 @@ class DetailRenderManager {
                 }
                 localStorage.setItem("reply_data", JSON.stringify(deleteReply))
 
-
+                // 대댓글 데이터 삭제/수정
+                for (let i = originalReplyReply.length - 1; i >= 0; i--) {
+                    if ((originalReplyReply[i].replyindex) == param) {
+                        let a = originalReplyReply[i].replyreplyindex;
+                        deleteReplyReply.splice(i, 1);
+                        for (let n = deleteReplyReply.length - 1; n >= 0; n--) {
+                            if ((deleteReplyReply[n].replyreplyindex) > a) {
+                                deleteReplyReply[n].replyreplyindex = deleteReplyReply[n].replyreplyindex - 1;
+                            }
+                        }
+                    }
+                }
+                localStorage.setItem("replyreply_data", JSON.stringify(deleteReplyReply))
 
                 location.href = "./board.html?index=1&search=";
             } else {

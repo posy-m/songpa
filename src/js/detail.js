@@ -242,8 +242,17 @@ class DetailRenderManager {
             const deleteItem = JSON.parse(localStorage.getItem("board_data"));
             const originalReply = JSON.parse(localStorage.getItem("reply_data"));
             const deleteReply = JSON.parse(localStorage.getItem("reply_data"));
+            const originalReplyReply = JSON.parse(localStorage.getItem("replyreply_data"));
+            const deleteReplyReply = JSON.parse(localStorage.getItem("replyreply_data"));
             if (confirm("삭제하시겠습니까?")) {
-                deleteItem.splice(param, 1);
+                deleteItem.splice(param, 1, {
+                    no: -1,
+                    userName: "",
+                    title: "",
+                    content: "",
+                    date: "",
+                    count: -1
+                });
                 localStorage.setItem("board_data", JSON.stringify(deleteItem));
                 for (let i = originalReply.length - 1; i >= 0; i--) {
                     if ((originalReply[i].replyindex) == param) {
@@ -251,7 +260,18 @@ class DetailRenderManager {
                     }
                 }
                 localStorage.setItem("reply_data", JSON.stringify(deleteReply));
-                location.href = "./board.html?index=1&search=";
+                for (let i = originalReplyReply.length - 1; i >= 0; i--) {
+                    if ((originalReplyReply[i].replyindex) == param) {
+                        let a = originalReplyReply[i].replyreplyindex;
+                        deleteReplyReply.splice(i, 1);
+                        for (let n = deleteReplyReply.length - 1; n >= 0; n--) {
+                            if ((deleteReplyReply[n].replyreplyindex) > a) {
+                                deleteReplyReply[n].replyreplyindex = deleteReplyReply[n].replyreplyindex - 1;
+                            }
+                        }
+                    }
+                }
+                localStorage.setItem("replyreply_data", JSON.stringify(deleteReplyReply));
             }
             else {
                 return;
