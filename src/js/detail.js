@@ -2,26 +2,40 @@ class DetailRenderManager {
     constructor() {
         this.boardDataList = [];
         this.sessionData = {};
+        this.replyReplyData = [];
     }
     getsessionStorage(a) {
         if (a === null) {
-            sessionStorage.setItem("login_status", JSON.stringify(this.sessionData));
+            sessionStorage.setItem("login_status", JSON.stringify(detailBoard.sessionData));
         }
     }
     setLocalStorage(a) {
-        this.boardDataList.push(a);
-        localStorage.setItem("reply_data", JSON.stringify(this.boardDataList));
+        detailBoard.boardDataList.push(a);
+        localStorage.setItem("reply_data", JSON.stringify(detailBoard.boardDataList));
     }
     getLocalStorage(a) {
         if (a === null) {
-            localStorage.setItem("reply_data", JSON.stringify(this.boardDataList));
+            localStorage.setItem("reply_data", JSON.stringify(detailBoard.boardDataList));
         }
         else {
-            this.boardDataList = JSON.parse(a);
+            detailBoard.boardDataList = JSON.parse(a);
+        }
+    }
+    setLocalStorageReplyReply(a) {
+        detailBoard.replyReplyData.push(a);
+        localStorage.setItem("replyreply_data", JSON.stringify(detailBoard.replyReplyData));
+    }
+    getLocalStorageReplyReply(a) {
+        if (a === null) {
+            localStorage.setItem("replyreply_data", JSON.stringify(detailBoard.replyReplyData));
+        }
+        else {
+            detailBoard.replyReplyData = JSON.parse(a);
         }
     }
     render() {
         this.getLocalStorage(localStorage.getItem("reply_data"));
+        this.getLocalStorageReplyReply(localStorage.getItem("replyreply_data"));
         this.getsessionStorage(sessionStorage.getItem("login_status"));
         const param = new URLSearchParams(location.search).get("index");
         let boardList = JSON.parse(localStorage.getItem("board_data"));
@@ -64,25 +78,114 @@ class DetailRenderManager {
                 const replyList = document.querySelector("#replylist");
                 const replyWriter = document.createElement("div");
                 const replyDetail = document.createElement("div");
-                const replyReply = document.createElement("div");
                 const replyModify = document.createElement("button");
                 const replyDelete = document.createElement("button");
+                const replyReplyBtn = document.createElement("button");
                 const replyDate = document.createElement("div");
                 const replyContent = document.createElement("div");
+                replyContent.classList.add("replycontentbox");
+                const replyReplyList = document.createElement("div");
+                replyReplyList.classList.add("replyreplylist");
+                const replyReplyinput = document.createElement("div");
                 replyWriter.innerHTML = detail_replyUserName;
                 replyDetail.innerHTML = detail_reply;
                 replyDate.innerHTML = detail_replydate;
-                replyReply.innerHTML = "답글달기";
                 replyModify.innerHTML = "수정";
                 replyDelete.innerHTML = "삭제";
-                replyContent.append(replyWriter, replyDetail, replyDate, replyReply, replyModify, replyDelete);
-                replyList.append(replyContent);
+                replyReplyBtn.innerHTML = "답글달기";
+                replyContent.append(replyWriter, replyDetail, replyDate, replyModify, replyDelete, replyReplyBtn);
+                replyList.append(replyContent, replyReplyList, replyReplyinput);
                 if (detail_replyUserName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName && "admin" !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
                     replyModify.outerHTML = "";
                     replyDelete.outerHTML = "";
                 }
-                replyReply.addEventListener("click", () => {
-                    console.log(1);
+                for (let x = 0; x < (JSON.parse(localStorage.getItem("replyreply_data"))).length; x++) {
+                    if ((JSON.parse(localStorage.getItem("replyreply_data")))[x].replyreplyindex == i) {
+                        const localReplyReplyData = JSON.parse(localStorage.getItem("replyreply_data"))[x];
+                        const detail_replyReplyUserName = localReplyReplyData.replyUserName;
+                        const detail_replyreply = localReplyReplyData.reply;
+                        const detail_replyreplydate = localReplyReplyData.replydate;
+                        const replyReplyWriter = document.createElement("div");
+                        const replyReplyDetail = document.createElement("div");
+                        const replyReplyDate = document.createElement("div");
+                        const replyReplyContent = document.createElement("div");
+                        replyReplyContent.classList.add("replyreplycontent");
+                        const replyReplyModify = document.createElement("button");
+                        const replyReplyDelete = document.createElement("button");
+                        replyReplyWriter.innerHTML = detail_replyReplyUserName;
+                        replyReplyDetail.innerHTML = detail_replyreply;
+                        replyReplyDate.innerHTML = detail_replyreplydate;
+                        replyReplyModify.innerHTML = "수정";
+                        replyReplyDelete.innerHTML = "삭제";
+                        replyReplyContent.append(replyReplyWriter, replyReplyDetail, replyReplyDate, replyReplyModify, replyReplyDelete);
+                        replyReplyList.append(replyReplyContent);
+                        replyReplyModify.onclick = () => {
+                            const replyTextArea = document.createElement("textarea");
+                            replyReplyDetail.innerHTML = "";
+                            replyReplyDetail.append(replyTextArea);
+                            replyTextArea.innerHTML = detail_replyreply;
+                            replyReplyModify.innerHTML = "수정완료";
+                            replyReplyModify.onclick = () => {
+                                replyReplyModify.innerHTML = "수정";
+                                const modifiedReplyReply = {
+                                    replyUserName: detail_replyReplyUserName,
+                                    reply: replyTextArea.value,
+                                    replydate: detail_replyreplydate,
+                                    replyindex: param,
+                                    replyreplyindex: i,
+                                };
+                                const modifyItemReply = JSON.parse(localStorage.getItem("replyreply_data"));
+                                modifyItemReply.splice(x, 1, modifiedReplyReply);
+                                localStorage.setItem("replyreply_data", JSON.stringify(modifyItemReply));
+                                location.reload();
+                            };
+                        };
+                        replyReplyDelete.onclick = () => {
+                            if (confirm("대댓글을 삭제하시겠습니까?")) {
+                                const modifyItemReply = JSON.parse(localStorage.getItem("replyreply_data"));
+                                modifyItemReply.splice(x, 1);
+                                localStorage.setItem("replyreply_data", JSON.stringify(modifyItemReply));
+                                location.reload();
+                            }
+                            else {
+                                return;
+                            }
+                        };
+                    }
+                }
+                replyReplyBtn.addEventListener("click", () => {
+                    const replyReplyInput = document.createElement("textarea");
+                    const replyReplySubmit = document.createElement("button");
+                    const replyReplyCancel = document.createElement("button");
+                    replyReplyCancel.innerHTML = "취소";
+                    replyReplySubmit.innerHTML = "작성";
+                    replyReplyBtn.innerHTML = "";
+                    replyReplyinput.append(replyReplyInput, replyReplyCancel, replyReplySubmit);
+                    replyReplyCancel.onclick = () => {
+                        replyReplyinput.innerHTML = "";
+                        replyReplyBtn.innerHTML = "답글달기";
+                    };
+                    replyReplySubmit.onclick = () => {
+                        const date = new Date();
+                        const year = date.getFullYear();
+                        let month = (date.getMonth() + 1).toString();
+                        if (parseInt(month) < 10) {
+                            month = "0" + month;
+                        }
+                        let day = (date.getDate()).toString();
+                        if (parseInt(day) < 10) {
+                            day = "0" + day;
+                        }
+                        const replyReplyData = {
+                            replyUserName: (JSON.parse(sessionStorage.getItem("login_status"))).userName,
+                            reply: replyReplyInput.value,
+                            replydate: `${year}-${month}-${day}`,
+                            replyindex: param,
+                            replyreplyindex: i,
+                        };
+                        this.setLocalStorageReplyReply(replyReplyData);
+                        location.reload();
+                    };
                 });
                 replyModify.onclick = () => {
                     const textArea = document.createElement("textarea");
@@ -91,7 +194,6 @@ class DetailRenderManager {
                     replyDetail.append(textArea);
                     textArea.innerHTML = detail_reply;
                     replyModify.innerHTML = "수정완료";
-                    replyDelete.innerHTML = "삭제";
                     replyModify.onclick = () => {
                         replyModify.innerHTML = "수정";
                         const modifiedReply = {
@@ -107,10 +209,18 @@ class DetailRenderManager {
                     };
                 };
                 replyDelete.onclick = () => {
+                    const deleteReply = JSON.parse(localStorage.getItem("reply_data"));
+                    const originalReplyReply = JSON.parse(localStorage.getItem("replyreply_data"));
+                    const deleteReplyReply = JSON.parse(localStorage.getItem("replyreply_data"));
                     if (confirm("댓글을 삭제하시겠습니까?")) {
-                        const modifyItem = JSON.parse(localStorage.getItem("reply_data"));
-                        modifyItem.splice(i, 1);
-                        localStorage.setItem("reply_data", JSON.stringify(modifyItem));
+                        deleteReply.splice(i, 1);
+                        localStorage.setItem("reply_data", JSON.stringify(deleteReply));
+                        for (let n = originalReplyReply.length - 1; n >= 0; n--) {
+                            if ((originalReplyReply[n].replyreplyindex) == i) {
+                                deleteReplyReply.splice(n, 1);
+                            }
+                        }
+                        localStorage.setItem("replyreply_data", JSON.stringify(deleteReplyReply));
                         location.reload();
                     }
                     else {

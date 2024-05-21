@@ -1,9 +1,11 @@
 class DetailRenderManager {
     boardDataList: WriteData[]
     sessionData: any
+    replyReplyData: any
     constructor() {
         this.boardDataList = []
         this.sessionData = {}
+        this.replyReplyData = []
     }
 
     // // 로컬스토리지 값이 없을때 빈배열, 있으면 가져옴
@@ -18,21 +20,35 @@ class DetailRenderManager {
     // 세션스토리지 값이 없을때 빈객체
     getsessionStorage(a) {
         if (a === null) {
-            sessionStorage.setItem("login_status", JSON.stringify(this.sessionData));
+            sessionStorage.setItem("login_status", JSON.stringify(detailBoard.sessionData));
         }
     }
 
     // 댓글 배열 푸시후 댓글배열 로컬에 생성 
     setLocalStorage(a) {
-        this.boardDataList.push(a);
-        localStorage.setItem("reply_data", JSON.stringify(this.boardDataList))
+        detailBoard.boardDataList.push(a);
+        localStorage.setItem("reply_data", JSON.stringify(detailBoard.boardDataList))
     }
 
     getLocalStorage(a) {
         if (a === null) {
-            localStorage.setItem("reply_data", JSON.stringify(this.boardDataList));
+            localStorage.setItem("reply_data", JSON.stringify(detailBoard.boardDataList));
         } else {
-            this.boardDataList = JSON.parse(a);
+            detailBoard.boardDataList = JSON.parse(a);
+        }
+    }
+
+    // 대댓글 배열 푸시후 대댓글 배열 로컬에 생성
+    setLocalStorageReplyReply(a) {
+        detailBoard.replyReplyData.push(a);
+        localStorage.setItem("replyreply_data", JSON.stringify(detailBoard.replyReplyData))
+    }
+
+    getLocalStorageReplyReply(a) {
+        if (a === null) {
+            localStorage.setItem("replyreply_data", JSON.stringify(detailBoard.replyReplyData));
+        } else {
+            detailBoard.replyReplyData = JSON.parse(a);
         }
     }
 
@@ -40,11 +56,10 @@ class DetailRenderManager {
         // this.getLocalStorage(localStorage.getItem("board_data"))
 
         this.getLocalStorage(localStorage.getItem("reply_data"));
-
+        this.getLocalStorageReplyReply(localStorage.getItem("replyreply_data"));
         this.getsessionStorage(sessionStorage.getItem("login_status"));
 
         const param = new URLSearchParams(location.search).get("index");
-
 
         //조회수 만드는 페이지 
         let boardList: IBoard[] = JSON.parse(localStorage.getItem("board_data"))
@@ -101,20 +116,27 @@ class DetailRenderManager {
 
                 const replyWriter = <HTMLElement>document.createElement("div");
                 const replyDetail = <HTMLElement>document.createElement("div");
-                const replyReply = <HTMLElement>document.createElement("div");
                 const replyModify = <HTMLElement>document.createElement("button");
                 const replyDelete = <HTMLElement>document.createElement("button");
+                const replyReplyBtn = <HTMLElement>document.createElement("button");
                 const replyDate = <HTMLElement>document.createElement("div");
+                // 댓글 박스
                 const replyContent = <HTMLElement>document.createElement("div");
+                replyContent.classList.add("replycontentbox")
+                // 대댓글 렌더박스
+                const replyReplyList = <HTMLElement>document.createElement("div");
+                replyReplyList.classList.add("replyreplylist")
+                // 대댓글작성창 쓰기박스
+                const replyReplyinput = <HTMLElement>document.createElement("div");
 
                 replyWriter.innerHTML = detail_replyUserName;
                 replyDetail.innerHTML = detail_reply;
                 replyDate.innerHTML = detail_replydate;
-                replyReply.innerHTML = "답글달기";
                 replyModify.innerHTML = "수정";
                 replyDelete.innerHTML = "삭제";
-                replyContent.append(replyWriter, replyDetail, replyDate, replyReply, replyModify, replyDelete);
-                replyList.append(replyContent);
+                replyReplyBtn.innerHTML = "답글달기";
+                replyContent.append(replyWriter, replyDetail, replyDate, replyModify, replyDelete, replyReplyBtn);
+                replyList.append(replyContent, replyReplyList, replyReplyinput);
 
                 // 내이름과 일치하지않고 관리자 이름도 아닐경우 비활성화
                 if (detail_replyUserName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName && "admin" !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
@@ -122,9 +144,115 @@ class DetailRenderManager {
                     replyDelete.outerHTML = "";
                 }
 
-                // 대댓글 버튼
-                replyReply.addEventListener("click", () => {
-                    console.log(1);
+                // 대댓글 렌더
+                for (let x = 0; x < (JSON.parse(localStorage.getItem("replyreply_data"))).length; x++) {
+                    if ((JSON.parse(localStorage.getItem("replyreply_data")))[x].replyreplyindex == i) {
+                        const localReplyReplyData = JSON.parse(localStorage.getItem("replyreply_data"))[x];
+
+                        const detail_replyReplyUserName = localReplyReplyData.replyUserName;
+                        const detail_replyreply = localReplyReplyData.reply;
+                        const detail_replyreplydate = localReplyReplyData.replydate;
+
+                        const replyReplyWriter = <HTMLElement>document.createElement("div");
+                        const replyReplyDetail = <HTMLElement>document.createElement("div");
+                        const replyReplyDate = <HTMLElement>document.createElement("div");
+                        const replyReplyContent = <HTMLElement>document.createElement("div");
+                        replyReplyContent.classList.add("replyreplycontent");
+                        const replyReplyModify = <HTMLElement>document.createElement("button");
+                        const replyReplyDelete = <HTMLElement>document.createElement("button");
+
+                        replyReplyWriter.innerHTML = detail_replyReplyUserName;
+                        replyReplyDetail.innerHTML = detail_replyreply;
+                        replyReplyDate.innerHTML = detail_replyreplydate;
+                        replyReplyModify.innerHTML = "수정";
+                        replyReplyDelete.innerHTML = "삭제";
+                        replyReplyContent.append(replyReplyWriter, replyReplyDetail, replyReplyDate, replyReplyModify, replyReplyDelete);
+                        replyReplyList.append(replyReplyContent);
+
+
+                        // 대댓글 수정버튼
+                        replyReplyModify.onclick = () => {
+                            const replyTextArea = <HTMLTextAreaElement>document.createElement("textarea");
+                            replyReplyDetail.innerHTML = "";
+                            replyReplyDetail.append(replyTextArea);
+                            replyTextArea.innerHTML = detail_replyreply;
+                            replyReplyModify.innerHTML = "수정완료";
+
+                            replyReplyModify.onclick = () => {
+                                replyReplyModify.innerHTML = "수정";
+                                const modifiedReplyReply = {
+                                    replyUserName: detail_replyReplyUserName,
+                                    reply: replyTextArea.value,
+                                    replydate: detail_replyreplydate,
+                                    replyindex: param,
+                                    replyreplyindex: i,
+                                }
+                                const modifyItemReply = JSON.parse(localStorage.getItem("replyreply_data"));
+                                modifyItemReply.splice(x, 1, modifiedReplyReply);
+                                localStorage.setItem("replyreply_data", JSON.stringify(modifyItemReply))
+                                location.reload();
+                            }
+                        }
+
+                        // 대댓글 삭제버튼
+                        replyReplyDelete.onclick = () => {
+                            if (confirm("대댓글을 삭제하시겠습니까?")) {
+                                const modifyItemReply = JSON.parse(localStorage.getItem("replyreply_data"));
+                                modifyItemReply.splice(x, 1);
+                                localStorage.setItem("replyreply_data", JSON.stringify(modifyItemReply));
+                                location.reload();
+                            } else {
+                                return;
+                            }
+                        }
+                    }
+                }
+
+
+
+
+
+                // 대댓글작성창 띄우기 버튼
+                replyReplyBtn.addEventListener("click", () => {
+                    const replyReplyInput = <HTMLTextAreaElement>document.createElement("textarea");
+                    const replyReplySubmit = <HTMLElement>document.createElement("button");
+                    const replyReplyCancel = <HTMLElement>document.createElement("button");
+
+                    replyReplyCancel.innerHTML = "취소";
+                    replyReplySubmit.innerHTML = "작성";
+                    replyReplyBtn.innerHTML = "";
+                    replyReplyinput.append(replyReplyInput, replyReplyCancel, replyReplySubmit);
+
+                    // 대댓글작성창 취소버튼
+                    replyReplyCancel.onclick = () => {
+                        replyReplyinput.innerHTML = "";
+                        replyReplyBtn.innerHTML = "답글달기";
+                    }
+
+                    // 대댓글작성창 작성 버튼
+                    replyReplySubmit.onclick = () => {
+                        const date = new Date();
+                        const year = date.getFullYear();
+                        let month = (date.getMonth() + 1).toString();
+                        if (parseInt(month) < 10) {
+                            month = "0" + month
+                        }
+                        let day = (date.getDate()).toString();
+                        if (parseInt(day) < 10) {
+                            day = "0" + day
+                        }
+                        const replyReplyData = {
+                            replyUserName: (JSON.parse(sessionStorage.getItem("login_status"))).userName,
+                            reply: replyReplyInput.value,
+                            replydate: `${year}-${month}-${day}`,
+                            replyindex: param,
+                            replyreplyindex: i,
+                        }
+                        // 로컬스토리지로 저장
+                        this.setLocalStorageReplyReply(replyReplyData);
+                        location.reload();
+                    }
+
                 })
 
                 // 댓글 수정 버튼
@@ -135,7 +263,6 @@ class DetailRenderManager {
                     replyDetail.append(textArea);
                     textArea.innerHTML = detail_reply;
                     replyModify.innerHTML = "수정완료";
-                    replyDelete.innerHTML = "삭제";
 
                     replyModify.onclick = () => {
                         replyModify.innerHTML = "수정";
@@ -154,10 +281,24 @@ class DetailRenderManager {
 
                 // 댓글 삭제 버튼
                 replyDelete.onclick = () => {
+                    const deleteReply = JSON.parse(localStorage.getItem("reply_data"));
+                    const originalReplyReply = JSON.parse(localStorage.getItem("replyreply_data"));
+                    const deleteReplyReply = JSON.parse(localStorage.getItem("replyreply_data"));
                     if (confirm("댓글을 삭제하시겠습니까?")) {
-                        const modifyItem = JSON.parse(localStorage.getItem("reply_data"));
-                        modifyItem.splice(i, 1);
-                        localStorage.setItem("reply_data", JSON.stringify(modifyItem));
+                        deleteReply.splice(i, 1);
+                        localStorage.setItem("reply_data", JSON.stringify(deleteReply));
+
+
+
+                        for (let n = originalReplyReply.length - 1; n >= 0; n--) {
+                            if ((originalReplyReply[n].replyreplyindex) == i) {
+                                deleteReplyReply.splice(n, 1)
+                            }
+                        }
+                        localStorage.setItem("replyreply_data", JSON.stringify(deleteReplyReply));
+
+
+
                         location.reload();
                     } else {
                         return;
@@ -179,7 +320,9 @@ class DetailRenderManager {
         // 삭제 버튼
         btnDelete.onclick = () => {
             const deleteItem = JSON.parse(localStorage.getItem("board_data"));
+            // 원본 댓글 배열
             const originalReply = JSON.parse(localStorage.getItem("reply_data"));
+            // 가공할 댓글 배열
             const deleteReply = JSON.parse(localStorage.getItem("reply_data"));
             if (confirm("삭제하시겠습니까?")) {
                 deleteItem.splice(param, 1)
