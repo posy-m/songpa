@@ -93,7 +93,7 @@ class DetailRenderManager {
                 replyModify.innerHTML = "수정";
                 replyDelete.innerHTML = "삭제";
                 replyReplyBtn.innerHTML = "답글달기";
-                replyContent.append(replyWriter, replyDetail, replyDate, replyModify, replyDelete, replyReplyBtn);
+                replyContent.append(replyWriter, replyDetail, replyDate, replyReplyBtn, replyModify, replyDelete);
                 replyList.append(replyContent, replyReplyList, replyReplyinput);
                 if (detail_replyUserName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName && "admin" !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
                     replyModify.outerHTML = "";

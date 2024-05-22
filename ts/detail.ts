@@ -132,10 +132,10 @@ class DetailRenderManager {
                 replyWriter.innerHTML = detail_replyUserName;
                 replyDetail.innerHTML = detail_reply;
                 replyDate.innerHTML = detail_replydate;
+                replyReplyBtn.innerHTML = "답글달기";
                 replyModify.innerHTML = "수정";
                 replyDelete.innerHTML = "삭제";
-                replyReplyBtn.innerHTML = "답글달기";
-                replyContent.append(replyWriter, replyDetail, replyDate, replyModify, replyDelete, replyReplyBtn);
+                replyContent.append(replyWriter, replyDetail, replyDate, replyReplyBtn, replyModify, replyDelete);
                 replyList.append(replyContent, replyReplyList, replyReplyinput);
 
                 // 내이름과 일치하지않고 관리자 이름도 아닐경우 댓글 수정삭제버튼 비활성화
