@@ -138,6 +138,7 @@ body {
     padding-left: 10px;
     display: flex;
     align-items: center;
+    word-break: break-all;
 }
 
 /* 댓글날짜 */
@@ -226,6 +227,7 @@ body {
     padding-left: 10px;
     display: flex;
     align-items: center;
+    word-break: break-all;
 }
 
 
