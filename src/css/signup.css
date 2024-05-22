@@ -3,11 +3,19 @@
   padding: 0;
 }
 
+body {
+  background-color: #FEF9F6;
+}
+
 #content {
   margin: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#game-move {
+  cursor: pointer;
 }
 
 #signupSection {
@@ -114,8 +122,7 @@ a {
 }
 
 .header>.header-content {
-  width: 1400px;
-  /* height: 120px; */
+  width: 80%;
   height: 165px;
   margin: 0 auto;
   display: flex;
@@ -133,7 +140,7 @@ a {
 .header-content>.menu>li {
   font-size: 16px;
   padding: 0 10px;
-  color: #414581;
+  color: #42457D;
 }
 
 /* ################# header logo ################### */
@@ -184,19 +191,14 @@ a {
 /* #################### footer ###################### */
 .footer {
   width: 100%;
-  /* color: #fff; */
   color: #42457D;
   padding: 40px 0;
-  /* border-top: 1px solid #414581; */
-  /* font-weight: bold; */
-  /* background-color: antiquewhite; */
   background-image: linear-gradient(to bottom, #fff9f5, #ffc098);
 }
 
 .footer .footer-content {
-  width: 1400px;
+  width: 80%;
   display: flex;
-  /* margin: 0 auto; */
   margin-top: 50px;
   margin-left: 100px;
 }

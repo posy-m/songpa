@@ -96,3 +96,13 @@ function search(e) {
     }
 }
 boardSearch.addEventListener("submit", search);
+const loginStatus1 = sessionStorage.getItem("login_status");
+const gameMove1 = document.getElementById("game-move");
+gameMove1.onclick = () => {
+    if (loginStatus1) {
+        location.href = "./donutgame.html";
+    }
+    else {
+        alert("로그인이 필요합니다.");
+    }
+};

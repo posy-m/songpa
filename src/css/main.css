@@ -5,6 +5,10 @@
 
 }
 
+#game-move {
+  cursor: pointer;
+}
+
 ul,
 li {
   list-style: none;

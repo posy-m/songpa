@@ -166,9 +166,6 @@ ul>li>span:nth-child(5) {
 }
 
 body {
-  /* background-image: url(https://gontrancherrier.kr/images/sub/sub1_bg.jpg);
-  background-repeat: no-repeat;
-  background-size: cover; */
   background-color: #FEF9F6;
 }
 
@@ -234,6 +231,10 @@ a {
 #board {
   margin-top: 30px;
   width: 90%;
+}
+
+#game-move {
+  cursor: pointer;
 }
 
 .active {
@@ -386,7 +387,6 @@ a {
   width: 100%;
   color: #42457D;
   padding: 40px 0;
-  /* border-top: 1px solid #414581; */
   background-image: linear-gradient(to bottom, #fff9f5, #ffc098);
 }
 
