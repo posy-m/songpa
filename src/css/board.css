@@ -187,7 +187,7 @@ a {
   border-radius: 5px;
   color: white;
   text-decoration: none;
-  cursor: pointer;
+
   font-weight: 600;
 }
 
@@ -233,9 +233,6 @@ a {
   width: 90%;
 }
 
-#game-move {
-  cursor: pointer;
-}
 
 .active {
   display: flex;
@@ -369,7 +366,7 @@ a {
 .header-content .user-area li {
   font-size: 18px;
   padding: 0 10px;
-  cursor: pointer;
+
 }
 
 .header-content .user-area li:nth-child(1) {
@@ -551,7 +548,6 @@ form>button {
   border-radius: 6px;
   font-size: 18px;
   font-weight: bold;
-  cursor: pointer;
   border: none;
 }
 
