@@ -1,7 +1,6 @@
 const sign_data = JSON.parse(localStorage.getItem("sign_data"));
-const loginStatus = JSON.parse(sessionStorage.getItem("login_status"));
+const login_data = JSON.parse(sessionStorage.getItem("login_status"));
 function mypage(){
-    const login_data = JSON.parse(sessionStorage.getItem("login_status"));
     const id = <HTMLElement>document.getElementById("id-text");
     // const id_btn = <HTMLButtonElement>document.getElementById("id-rpl");
     const pw = <HTMLInputElement>document.getElementById("pw-text1");
@@ -16,37 +15,40 @@ function mypage(){
             alert("영문 특수문자 포함 8자리 이상 입력해주세요");
             return;
         }
+        if(pw.value !== pw_re.value){
+            alert("비밀번호가 일치하지 않습니다.");
+            return;
+        }
         if(confirm("정말 변경하시겠습니까?")){
-            for(let i = sign_data.length - 1; i >=0 ; i--){
-                if((pw.value === pw_re.value)&&(sign_data[i].userId === loginStatus.userId)){
+            for(let i = 0; i < sign_data.length ; i++){
+                if(login_data.userId === sign_data[i].userId){
                     sign_data[i].userPw = pw.value;
                     localStorage.setItem("sign_data", JSON.stringify(sign_data));
-                    loginStatus.userPw = pw.value;
-                    sessionStorage.setItem("login_status", JSON.stringify(loginStatus));
+                    login_data.userPw = pw.value;
+                    sessionStorage.setItem("login_status", JSON.stringify(login_data));
                     pw.value = "";
                     pw_re.value = "";
                     alert("비밀번호가 변경됐습니다.");
                     return;
-                } else{
-                    alert("비밀번호가 일치하지 않습니다.");
-                    return;
-                }
+                } 
             }
-        }else{
-            return;
         }
     })
     name_btn.addEventListener("click", () => {
         if(confirm("정말 변경하시겠습니까?")){
             for(let i = 0; i < sign_data.length; i++){
-                if(sign_data[i].userName === login_data.userName){
+                if(sign_data[i].userName === name.value){
+                    alert("이미 있는 닉네임 입니다.");
+                    return;
+                }
+            }
+            for(let i = 0; i < sign_data.length; i++) {
+                if (login_data.userName === sign_data[i].userName) {
                     login_data.userName = name.value;
                     sessionStorage.setItem("login_status", JSON.stringify(login_data));
                     sign_data[i].userName = name.value;
                     localStorage.setItem("sign_data", JSON.stringify(sign_data));
-                } else if(sign_data[i].userName === name.value){
-                    alert("이미 있는 닉네임 입니다.");
-                    return
+                    alert("닉네임이 변경됐습니다.")
                 }
             }
             location.reload();
@@ -74,7 +76,7 @@ const basicImg = document.getElementById("basicImg") as HTMLInputElement;
 // 이미지 값 세이브
 function changeProfile(){
     for(let i = 0; i < sign_data.length; i++){
-        if(loginStatus.userId === sign_data[i].userId){
+        if(login_data.userId === sign_data[i].userId){
             imgProfile.src = sign_data[i].profileImg 
         }
     }
@@ -87,7 +89,7 @@ profileDOM.addEventListener("change", function(e){
     profileSave.onclick = function(){
         if(confirm("프로필 사진을 변경하시겠습니까?")){
             for(let i = 0; i < sign_data.length; i++){
-                if(loginStatus.userId === sign_data[i].userId){
+                if(login_data.userId === sign_data[i].userId){
                     sign_data[i].profileImg = imgProfile.src;
                     localStorage.setItem("sign_data", JSON.stringify(sign_data));
                 }
@@ -101,7 +103,7 @@ profileDOM.addEventListener("change", function(e){
 basicImg.onclick = function(){
    if(confirm("기본이미지 변경하시겠습니까?")){
         for(let i = 0; i < sign_data.length; i++){
-            if(loginStatus.userId === sign_data[i].userId){
+            if(login_data.userId === sign_data[i].userId){
                 imgProfile.src = "http://127.0.0.1:5500/src/img/mypageIcon.png";
                 sign_data[i].profileImg = imgProfile.src
                 localStorage.setItem("sign_data", JSON.stringify(sign_data));
