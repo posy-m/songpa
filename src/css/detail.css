@@ -95,17 +95,6 @@ body {
     box-sizing: border-box;
 }
 
-.textarea {
-    width: 800px;
-    height: 40px;
-    resize: none;
-    /* border: none; */
-    box-sizing: border-box;
-    font-size: 14px;
-    padding: 10px;
-}
-
-
 /******************* 댓글 *******************/
 
 
@@ -132,17 +121,16 @@ body {
     background-color: rgb(50, 51, 110);
     color: white;
     border: none;
-    /* border-radius: 40px; */
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    border-radius: 10px;
 }
 
 #replylist {
     display: flex;
     flex-direction: column;
-    /* margin-top: 10px; */
 }
 
 /* 댓글생성되는박스 */
@@ -151,13 +139,11 @@ body {
     display: flex;
     padding-top: 10px;
     padding-bottom: 10px;
-    height: 20px;
     border-bottom: 1px solid rgb(50, 51, 110);
-    /* align-items: center; */
 }
 
 /* 댓글작성자 */
-.replycontentbox>div:nth-of-type(1) {
+.replycontentbox>div:nth-child(1) {
     width: 120px;
     display: flex;
     justify-content: center;
@@ -165,15 +151,15 @@ body {
 }
 
 /* 댓글내용 */
-.replycontentbox>div:nth-of-type(2) {
-    width: 430px;
+.replycontentbox>div:nth-child(2) {
+    width: 500px;
     padding-left: 10px;
     display: flex;
     align-items: center;
 }
 
 /* 댓글날짜 */
-.replycontentbox>div:nth-of-type(3) {
+.replycontentbox>div:nth-child(3) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -183,31 +169,161 @@ body {
 /* 버튼 123 */
 .replycontentbox>button:nth-of-type(1) {
     border: none;
-    width: 80px;
-    background-color: transparent
+    /* width: 20px; */
+    background-color: transparent;
 }
+
 
 .replycontentbox>button:nth-of-type(2) {
     border: none;
-    width: 40px;
-    background-color: transparent
+    /* width: 20px; */
+    background-color: transparent;
+    position: relative;
+    left: 30px;
 }
 
 .replycontentbox>button:nth-of-type(3) {
     border: none;
-    width: 40px;
-    background-color: transparent
+    /* width: 20px; */
+    background-color: transparent;
+    position: relative;
+    left: 30px;
+}
+
+.replycontentbox>button>img {
+    width: 20px;
+    height: 20px;
+}
+
+/* 댓글 수정박스 */
+.textarea {
+    width: 400px;
+    height: 20px;
+    resize: none;
+    border: none;
+    outline: none;
+    border-left: 1px solid rgb(50, 51, 110);
+    border-right: 1px solid rgb(50, 51, 110);
+    /* background-color: rgb(253, 239, 231); */
+    /* box-sizing: border-box; */
+    font-size: 14px;
+    padding: 10px;
 }
 
 /******************* 대댓글 라인 *******************/
 
-.replyreplycontent {
-    width: 700px;
+.replyreplycontentbox {
+    width: 800px;
     display: flex;
     padding-top: 10px;
     padding-bottom: 10px;
-    height: 20px;
     border-bottom: 1px solid rgb(50, 51, 110);
+    position: relative;
+    left: 20px;
+    scale: 0.95;
+}
+
+.replyreplycontentbox>img {
+    width: 15px;
+    height: 10px;
+    position: relative;
+    top: 3px;
+}
+
+/* 대댓글 작성자 */
+.replyreplycontentbox>div:nth-child(2) {
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 대댓글내용 */
+.replyreplycontentbox>div:nth-child(3) {
+    width: 500px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+
+/* 대댓글날짜 */
+.replyreplycontentbox>div:nth-child(4) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+}
+
+/* 버튼 12 */
+.replyreplycontentbox>button:nth-of-type(1) {
+    border: none;
+    /* width: 40px; */
+    background-color: transparent;
+    position: relative;
+    left: 35px;
+}
+
+.replyreplycontentbox>button:nth-of-type(2) {
+    border: none;
+    /* width: 40px; */
+    background-color: transparent;
+    position: relative;
+    left: 35px;
+}
+
+.replyreplycontentbox>button>img {
+    width: 20px;
+    height: 20px;
+}
+
+
+/******************* 대댓글 작성라인 *******************/
+
+.replyreplyinputbox {
+    width: 800px;
+    display: flex;
+    /* height: 20px; */
+    /* border-bottom: 1px solid rgb(50, 51, 110); */
+    position: relative;
+    left: 40px;
+}
+
+.replyreplyinputbox>textarea {
+    width: 705px;
+    height: 40px;
+    font-size: 14px;
+    border: none;
+    resize: none;
+    border-bottom: 1px solid rgb(50, 51, 110);
+    padding: 11px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+/* 버튼 12 */
+.replyreplyinputbox>button:nth-of-type(1) {
+    border: none;
+    /* width: 40px; */
+    background-color: transparent;
+}
+
+.replyreplyinputbox>button:nth-of-type(2) {
+    border: none;
+    /* width: 40px; */
+    background-color: transparent;
+}
+
+.replyreplyinputbox>img {
+    width: 15px;
+    height: 10px;
+    position: relative;
+    top: 14px;
+}
+
+.replyreplyinputbox>button>img {
+    width: 20px;
+    height: 20px;
 }
 
 

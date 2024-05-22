@@ -118,25 +118,26 @@ class DetailRenderManager {
                 const replyDetail = <HTMLElement>document.createElement("div");
                 const replyModify = <HTMLElement>document.createElement("button");
                 const replyDelete = <HTMLElement>document.createElement("button");
-                const replyReplyBtn = <HTMLElement>document.createElement("button");
+                const replyReplyBtn = <HTMLButtonElement>document.createElement("button");
                 const replyDate = <HTMLElement>document.createElement("div");
                 // 댓글 박스
                 const replyContent = <HTMLElement>document.createElement("div");
-                replyContent.classList.add("replycontentbox")
+                replyContent.classList.add("replycontentbox");
                 // 대댓글 렌더박스
                 const replyReplyList = <HTMLElement>document.createElement("div");
-                replyReplyList.classList.add("replyreplylist")
+                replyReplyList.classList.add("replyreplylist");
                 // 대댓글작성창 쓰기박스
-                const replyReplyinput = <HTMLElement>document.createElement("div");
+                const replyReplyinputbox = <HTMLElement>document.createElement("div");
+                replyReplyinputbox.classList.add("replyreplyinputbox");
 
                 replyWriter.innerHTML = detail_replyUserName;
                 replyDetail.innerHTML = detail_reply;
                 replyDate.innerHTML = detail_replydate;
-                replyReplyBtn.innerHTML = "답글달기";
-                replyModify.innerHTML = "수정";
-                replyDelete.innerHTML = "삭제";
+                replyReplyBtn.innerHTML = `<img src= "../src/img/reply.png">`;
+                replyModify.innerHTML = `<img src= "../src/img/modify.png">`;
+                replyDelete.innerHTML = `<img src= "../src/img/delete.png">`;
                 replyContent.append(replyWriter, replyDetail, replyDate, replyReplyBtn, replyModify, replyDelete);
-                replyList.append(replyContent, replyReplyList, replyReplyinput);
+                replyList.append(replyContent, replyReplyList, replyReplyinputbox);
 
                 // 내이름과 일치하지않고 관리자 이름도 아닐경우 댓글 수정삭제버튼 비활성화
                 if (detail_replyUserName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName && "admin" !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
@@ -153,12 +154,15 @@ class DetailRenderManager {
                         const detail_replyreply = localReplyReplyData.reply;
                         const detail_replyreplydate = localReplyReplyData.replydate;
 
+                        const replyReplyimg = <HTMLImageElement>document.createElement("img")
+                        replyReplyimg.src = "../src/img/replyarrow.png"
+
                         const replyReplyWriter = <HTMLElement>document.createElement("div");
                         const replyReplyDetail = <HTMLElement>document.createElement("div");
                         const replyReplyDate = <HTMLElement>document.createElement("div");
                         const replyReplyContent = <HTMLElement>document.createElement("div");
 
-                        replyReplyContent.classList.add("replyreplycontent");
+                        replyReplyContent.classList.add("replyreplycontentbox");
 
                         const replyReplyModify = <HTMLElement>document.createElement("button");
                         const replyReplyDelete = <HTMLElement>document.createElement("button");
@@ -166,9 +170,9 @@ class DetailRenderManager {
                         replyReplyWriter.innerHTML = detail_replyReplyUserName;
                         replyReplyDetail.innerHTML = detail_replyreply;
                         replyReplyDate.innerHTML = detail_replyreplydate;
-                        replyReplyModify.innerHTML = "수정";
-                        replyReplyDelete.innerHTML = "삭제";
-                        replyReplyContent.append(replyReplyWriter, replyReplyDetail, replyReplyDate, replyReplyModify, replyReplyDelete);
+                        replyReplyModify.innerHTML = `<img src= "../src/img/modify.png">`;
+                        replyReplyDelete.innerHTML = `<img src= "../src/img/delete.png">`;
+                        replyReplyContent.append(replyReplyimg, replyReplyWriter, replyReplyDetail, replyReplyDate, replyReplyModify, replyReplyDelete);
                         replyReplyList.append(replyReplyContent);
 
                         // 내이름과 일치하지않고 관리자 이름도 아닐경우 대댓글 수정삭제버튼 비활성화
@@ -181,13 +185,13 @@ class DetailRenderManager {
                         // 대댓글 수정버튼
                         replyReplyModify.onclick = () => {
                             const replyTextArea = <HTMLTextAreaElement>document.createElement("textarea");
+                            replyTextArea.classList.add("textarea");
                             replyReplyDetail.innerHTML = "";
                             replyReplyDetail.append(replyTextArea);
                             replyTextArea.innerHTML = detail_replyreply;
-                            replyReplyModify.innerHTML = "수정완료";
+                            replyReplyModify.innerHTML = `<img src= "../src/img/modifycheck.png">`;
 
                             replyReplyModify.onclick = () => {
-                                replyReplyModify.innerHTML = "수정";
                                 const modifiedReplyReply = {
                                     replyUserName: detail_replyReplyUserName,
                                     reply: replyTextArea.value,
@@ -226,15 +230,20 @@ class DetailRenderManager {
                         const replyReplySubmit = <HTMLElement>document.createElement("button");
                         const replyReplyCancel = <HTMLElement>document.createElement("button");
 
-                        replyReplyCancel.innerHTML = "취소";
-                        replyReplySubmit.innerHTML = "작성";
-                        replyReplyBtn.innerHTML = "";
-                        replyReplyinput.append(replyReplyInput, replyReplyCancel, replyReplySubmit);
+                        const replyReplyimg = <HTMLImageElement>document.createElement("img")
+                        replyReplyimg.src = "../src/img/replyarrownow.png"
+
+                        replyReplyCancel.innerHTML = `<img src= "../src/img/replyreplycancel.png">`;
+                        replyReplySubmit.innerHTML = `<img src= "../src/img/replyreplyconfirm.png">`;
+                        // replyReplyBtn.innerHTML = "";
+                        replyReplyBtn.disabled = true;
+                        replyReplyinputbox.append(replyReplyimg, replyReplyInput, replyReplySubmit, replyReplyCancel);
 
                         // 대댓글작성창 취소버튼
                         replyReplyCancel.onclick = () => {
-                            replyReplyinput.innerHTML = "";
-                            replyReplyBtn.innerHTML = "답글달기";
+                            replyReplyinputbox.innerHTML = "";
+                            replyReplyBtn.disabled = false;
+                            replyReplyBtn.innerHTML = `<img src= "../src/img/reply.png">`;
                         }
 
                         // 대댓글작성창 작성 버튼
@@ -270,10 +279,9 @@ class DetailRenderManager {
                     replyDetail.innerHTML = "";
                     replyDetail.append(textArea);
                     textArea.innerHTML = detail_reply;
-                    replyModify.innerHTML = "수정완료";
+                    replyModify.innerHTML = `<img src= "../src/img/modifycheck.png">`;
 
                     replyModify.onclick = () => {
-                        replyModify.innerHTML = "수정";
                         const modifiedReply = {
                             replyUserName: detail_replyUserName,
                             reply: textArea.value,
