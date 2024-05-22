@@ -94,12 +94,12 @@ formbtn.onsubmit = function(e){
       sessionStorage.setItem("login_status", JSON.stringify(loginObj));
       _bool = true;
       loginPop.style.display = "none";
+      location.reload();
     }
   }
   text = _bool ? "로그인이 성공했습니다." : "아이디와 비밀번호를 확인해주세요.";
   // originState();  
   alert(text);
-  location.reload();
 }
 
 // 함수 실행
