@@ -148,7 +148,7 @@ flipCard3.onclick = () => {
     flipCard3.style.transform = "rotateY(0)"
     flip_bool3 = false;
   }
-}
+} 
 
 // 도넛 게임 이동
 const loginStatus = sessionStorage.getItem("login_status");
@@ -157,4 +157,4 @@ gameMove.onclick = () => {
   if(loginStatus){
     location.href = "./donutgame.html";
   }
-}
+} 
