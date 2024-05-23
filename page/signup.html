@@ -38,30 +38,32 @@
 
     <div id="content">
         <div id="signupSection">
-            <span class="signup-title">아이디</span>
             <div class="id-box">
+                <span class="signup-title">아이디</span>
                 <div>
-                    <input type="text" name="" id="id_text" class="signup-input" placeholder="4~12글자, 영어나 숫자를 입력해주세요">
+                    <input type="text" name="" id="id_text" style="outline:none;" class="signup-input"
+                        placeholder="4~12글자, 영어나 숫자를 입력해주세요">
                 </div>
                 <button id="id_check" class="signup-btn click-cursor">중복확인</button>
                 <span id="id_repeat"></span>
             </div>
-            <span class="signup-title">닉네임</span>
             <div class="name-box">
+                <span class="signup-title">닉네임</span>
                 <div class="name-wrap">
                     <input type="text" name="" id="name_text" class="signup-input" placeholder="닉네임을 적어주세요">
                 </div>
                 <button id="name_check" class="signup-btn click-cursor">중복확인</button>
                 <span id="name_repeat"></span>
             </div>
-            <span class="signup-title">비밀번호</span>
-            <div>
+            <div class="password-box">
+                <span class="signup-title">비밀번호</span>
                 <input type="text" name="" id="pw_text" class="signup-input"
-                    placeholder="8글자 이상, 영문, 숫자, 특수문자를 모두 사용해 입력해주세요">
+                    placeholder="8글자 이상, 영문, 숫자, 특수문자를 모두 사용해 입력해주세요" style="outline:none">
             </div>
-            <span class="signup-title">비밀번호 확인</span>
-            <div>
-                <input type="text" name="" id="pw_check" class="signup-input" placeholder="비밀번호와 일치하게 적어주세요">
+            <div class="password-box">
+                <span class="signup-title">비밀번호 확인</span>
+                <input type="text" name="" id="pw_check" class="signup-input" placeholder="비밀번호와 일치하게 적어주세요"
+                    style="outline:none">
             </div>
             <div id="clear_btn" class="signup-title click-cursor">회원가입 완료</div>
         </div>
