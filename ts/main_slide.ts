@@ -149,3 +149,12 @@ flipCard3.onclick = () => {
     flip_bool3 = false;
   }
 }
+
+// 도넛 게임 이동
+const loginStatus = sessionStorage.getItem("login_status");
+const gameMove = document.getElementById("game-move");
+gameMove.onclick = () => {
+  if(loginStatus){
+    location.href = "./donutgame.html";
+  }
+}

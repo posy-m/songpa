@@ -13,6 +13,23 @@ const urlparams = url.searchParams;
 const currentPage = urlparams.get('index');
 const searchInput = urlparams.get('search');
 
+//글 작성 클릭 했을 시 로그인 해주세요. 
+
+const wirteLink = <HTMLButtonElement>document.querySelector("#wirtelink")
+const login_status = JSON.parse(sessionStorage.getItem("login_status"))
+
+wirteLink.onclick = () => {
+  if (login_status === null) {
+    if (confirm("로그인 해주세요")) {
+      const loginPop = document.querySelector(".login-popup") as HTMLElement;
+      loginPop.style.display = "block";
+    } else {
+      return;
+    }
+  } else {
+    location.href = "./write.html";
+  }
+}
 //로컬스토리지에서 들고온 값 
 let boardList: IBoard[] = JSON.parse(localStorage.getItem("board_data")).reverse()
 
@@ -44,24 +61,28 @@ function paintPage(page: number) {
   //게시판 리스트 만드는 함수
   let i = 0;
   showBoardData.forEach((element: IBoard) => {
-    const li = document.createElement("tr")
-    const no = document.createElement("td")
-    i++;
-    no.innerHTML = (((parseInt(currentPage) - 1) * 10) + i).toString();
-    const userName = document.createElement("td")
-    userName.innerHTML = element.userName;
-    const title1 = document.createElement("td")
-    const title = document.createElement("a")
-    title.innerHTML = element.title;
-    title1.appendChild(title)
-    title.href = "detail.html?index=" + element.no
-    const date = document.createElement("td")
-    date.innerHTML = element.date;
-    const count = document.createElement("td")
-    count.innerHTML = element.count.toString();
+    if (element.no === -1) {
 
-    li.append(no, title1, userName, date, count)
-    boardListcontainer.appendChild(li)
+    } else {
+      const li = document.createElement("tr")
+      const no = document.createElement("td")
+      i++;
+      no.innerHTML = (i).toString();
+      const userName = document.createElement("td")
+      userName.innerHTML = element.userName;
+      const title1 = document.createElement("td")
+      const title = document.createElement("a")
+      title.innerHTML = element.title;
+      title1.appendChild(title)
+      title.href = "detail.html?index=" + element.no
+      const date = document.createElement("td")
+      date.innerHTML = element.date;
+      const count = document.createElement("td")
+      count.innerHTML = `${element.count}`;
+
+      li.append(no, title1, userName, date, count)
+      boardListcontainer.appendChild(li)
+    }
   })
 }
 
@@ -125,26 +146,7 @@ boardSearch.addEventListener("submit", search)
 
 
 
-//글 작성 클릭 했을 시 로그인 해주세요. 
 
-
-
-
-const wirteLink = <HTMLButtonElement>document.querySelector("#wirtelink")
-const login_status = JSON.parse(sessionStorage.getItem("login_status"))
-
-wirteLink.onclick = () => {
-  if (login_status === null) {
-    if (confirm("로그인 해주세요")) {
-      const loginPop = document.querySelector(".login-popup") as HTMLElement;
-      loginPop.style.display = "block";
-    } else {
-      return;
-    }
-  } else {
-    location.href = "./write.html";
-  }
-}
 
 
 
