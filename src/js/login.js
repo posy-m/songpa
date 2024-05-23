@@ -20,7 +20,7 @@ function originState() {
     const logoutList = document.createElement("li");
     const _span01 = document.querySelector(".user-area > li:nth-child(1) > span");
     const _span02 = document.querySelector(".user-area > li:nth-child(2)");
-    if (login_status !== null || JSON.stringify(login_status) == '"{}"') {
+    if (login_status === null || JSON.stringify(login_status) !== "{}") {
         _span01.innerHTML = `
       <img src="../src/img/mypageIcon.png" alt="로고">
       ${login_status.userName} 님
@@ -50,17 +50,19 @@ function originState() {
     }
 }
 function myPage() {
-    const _span01 = document.querySelector(".user-area > li:nth-child(1) > span");
-    const login_status = JSON.parse(sessionStorage.getItem("login_status"));
-    if (login_status.userId === signData[0].userId && login_status.userPw === signData[0].userPw) {
-        _span01.onclick = function () {
-            location.href = "admin.html";
-        };
-    }
-    else {
-        _span01.onclick = function () {
-            location.href = "mypage.html";
-        };
+    if (login_status === null || JSON.stringify(login_status) !== "{}") {
+        const _span01 = document.querySelector(".user-area > li:nth-child(1) > span");
+        const login_status = JSON.parse(sessionStorage.getItem("login_status"));
+        if (login_status.userId === signData[0].userId && login_status.userPw === signData[0].userPw) {
+            _span01.onclick = function () {
+                location.href = "admin.html";
+            };
+        }
+        else {
+            _span01.onclick = function () {
+                location.href = "mypage.html";
+            };
+        }
     }
 }
 formbtn.onsubmit = function (e) {
