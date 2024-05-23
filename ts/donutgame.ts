@@ -124,16 +124,7 @@ const game_wrap = document.querySelector(".game-wrap");
 const start_btn = document.getElementById("start");
 
 start_btn.onclick = () => {
-    game_wrap.innerHTML = `<div class="rank-box">
-    <div class="rank-info">
-        <span>순위</span>
-        <span>닉네임</span>
-        <span>점수</span>
-        <span>갱신날짜</span>
-    </div>
-    <div class="rank-content"></div>
-    <div class="my-rank"></div>
-</div>
+    game_wrap.innerHTML = `
 <div class="game-box">
 <div class="game-header">
     <span id="score">0</span>
@@ -152,6 +143,16 @@ start_btn.onclick = () => {
 <div class = "move-box">
     <img id="person" src="../src/img/png-transparent-computer-icons-person-others-miscellaneous-text-hand-thumbnail-removebg-preview.png" alt="">
 </div>
+</div>
+<div class="rank-box">
+    <div class="rank-info">
+        <span>순위</span>
+        <span>닉네임</span>
+        <span>점수</span>
+        <span>갱신날짜</span>
+    </div>
+    <div class="rank-content"></div>
+    <div class="my-rank"></div>
 </div>`
 move();
     const heart = document.querySelector("#heart");
@@ -174,7 +175,6 @@ move();
         }
     }
 }
-
     function game() {
         createDonut();
         createDonut2();
@@ -191,27 +191,51 @@ move();
         gotcha(donutImg2);
         gotcha(donutImg3);
     }
-    // function game2() {
-    //     const person = document.getElementById("person");
-    //     // person.style.width = "40px";
-    //     // person.style.height = "40px";
-    //     createDonut("donutImg_stage2");
-    //     createDonut2("donutImg2_stage2");
-    //     restore("restore_stage2");
-    //     bomb("bomb_stage2");
-    //     const donutImg = document.querySelector(".donutImg_stage2");
-    //     const donutImg2 = document.querySelector(".donutImg2_stage2");
-    //     life(donutImg);
-    //     life(donutImg2);
-    //     gotcha(donutImg);
-    //     gotcha(donutImg2);
-    //     console.log(1)
-        
-    // }
+
     // 랜덤하게 이미지들을 랜덤하게 배치하기 위한 배열
-    let arr = [];
+    let arr: number[] = [];
     for(let i = 1; i < 9; i++){
         arr.push(i);
+    }
+
+    // 배열 채워주기
+    function charge(){
+        if(arr.length < 4) {
+            for (let i = 4; i < 9; i++) {
+                const some1 = (element) => element === 1;
+                const some2 = (element) => element === 2;
+                const some3 = (element) => element === 3;
+                const some4 = (element) => element === 4;
+                const some5 = (element) => element === 5;
+                const some6 = (element) => element === 6;
+                const some7 = (element) => element === 7;
+                const some8 = (element) => element === 8;
+                if(!arr.some(some1)){
+                    arr.push(1);
+                }
+                if(!arr.some(some2)){
+                    arr.push(2);
+                }
+                if(!arr.some(some3)){
+                    arr.push(3);
+                }
+                if(!arr.some(some4)){
+                    arr.push(4);
+                }
+                if(!arr.some(some5)){
+                    arr.push(5);
+                }
+                if(!arr.some(some6)){
+                    arr.push(6);
+                }
+                if(!arr.some(some7)){
+                    arr.push(7);
+                }
+                if(!arr.some(some8)){
+                    arr.push(8);
+                }
+            }
+        }
     }
 
     // 점수 선언
@@ -234,6 +258,7 @@ move();
         if(random === 0) random = 1;
         const randomLine = document.getElementById(`${arr[random - 1]}`);
         arr.splice(random - 1, 1);
+        console.log(arr)
         const donut = document.createElement("img");
         donut.className = "donutImg";
         if(point < 2000){
@@ -261,11 +286,7 @@ move();
         donut.src = "../src/img/logo.png";
         
         randomLine.append(donut);
-        if(arr.length < 7){
-            for(let i = 7; i < 9; i++){
-                arr.push(i);
-            }
-        }
+        charge();
     }
 
     // 도넛 2 만들기
@@ -276,6 +297,7 @@ move();
         if(random === 0) random = 1;
         const randomLine = document.getElementById(`${arr[random - 1]}`);
         arr.splice(random - 1, 1);
+        console.log(arr)
         const donut = document.createElement("img");
         donut.className = "donutImg2";
         if(point < 2000){
@@ -302,17 +324,13 @@ move();
         }
         donut.src = "../src/img/logo.png";
         randomLine.append(donut);
-        if(arr.length < 7){
-            for(let i = 7; i < 9; i++){
-                arr.push(i);
-            }
-        }
+        charge();
     }
 
     function createDonut3(){
         const person = document.getElementById("person")
         const score = document.querySelector("#score");
-        let random = Math.floor(Math.random() * 7);
+        let random = Math.floor(Math.random() * 6);
         if(random === 0) random = 1;
         const randomLine = document.getElementById(`${arr[random - 1]}`);
         arr.splice(random - 1, 1);
@@ -342,11 +360,7 @@ move();
         }
         donut.src = "../src/img/logo.png";
         randomLine.append(donut);
-        if(arr.length < 7){
-            for(let i = 7; i < 9; i++){
-                arr.push(i);
-            }
-        }
+        charge();
     }
 
     // 바닥에 닿으면 체력 깎기
@@ -410,10 +424,12 @@ move();
                     fill: "forwards"
                 });
             }
-            let random = Math.floor(Math.random() * 8);
+            let random = Math.floor(Math.random() * 5);
             if(random === 0) random = 1;
-            const randomLine = document.getElementById(`${random}`);
+            const randomLine = document.getElementById(`${arr[random - 1]}`);
+            arr.splice(random - 1, 1);
             randomLine.append(mashi);
+            charge();
             setInterval(() => {
                 if((mashi.getBoundingClientRect().bottom > person.getBoundingClientRect().top) && (mashi.getBoundingClientRect().left < person.getBoundingClientRect().right) && (mashi.getBoundingClientRect().right > person.getBoundingClientRect().left)){
                     mashi.remove();
@@ -468,10 +484,11 @@ move();
                     fill: "forwards"
                 });
             }
-            let random = Math.floor(Math.random() * 8);
+            let random = Math.floor(Math.random() * 4);
             if(random === 0) random = 1;
-            const randomLine = document.getElementById(`${random}`);
+            const randomLine = document.getElementById(`${arr[random - 1]}`);
             randomLine.append(createBomb);
+            charge();
             setInterval(() => {
                 const person = document.getElementById("person");
                 const score = document.getElementById("score");
@@ -514,7 +531,7 @@ function move(){
     const gameBox = document.querySelector(".game-box");
         if(person !== null){
             gameBox.addEventListener("mousemove", (e: any) => {
-                person.style.left = `${e.clientX - 300}px`;
+                person.style.left = `${e.clientX - 86}px`;
             })
         }
 }

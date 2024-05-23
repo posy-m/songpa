@@ -20,7 +20,7 @@ function originState() {
     const logoutList = document.createElement("li");
     const _span01 = document.querySelector(".user-area > li:nth-child(1) > span");
     const _span02 = document.querySelector(".user-area > li:nth-child(2)");
-    if (login_status !== null) {
+    if (login_status === null || JSON.stringify(login_status) !== "{}") {
         _span01.innerHTML = `
       <img src="../src/img/mypageIcon.png" alt="로고">
       ${login_status.userName} 님
@@ -33,7 +33,7 @@ function originState() {
         logoutList.onclick = function () {
             const logoutQ = confirm("로그아웃을 하시겠습니까?");
             if (logoutQ) {
-                sessionStorage.removeItem("login_status");
+                sessionStorage.setItem("login_status", JSON.stringify({}));
                 _span01.innerHTML = "Log-in";
                 logoutList.innerHTML = "Log-out";
                 logoutList.style.display = "none";
@@ -50,17 +50,19 @@ function originState() {
     }
 }
 function myPage() {
-    const _span01 = document.querySelector(".user-area > li:nth-child(1) > span");
-    const login_status = JSON.parse(sessionStorage.getItem("login_status"));
-    if (login_status.userId === signData[0].userId && login_status.userPw === signData[0].userPw) {
-        _span01.onclick = function () {
-            location.href = "admin.html";
-        };
-    }
-    else {
-        _span01.onclick = function () {
-            location.href = "mypage.html";
-        };
+    if (login_status === null || JSON.stringify(login_status) !== "{}") {
+        const _span01 = document.querySelector(".user-area > li:nth-child(1) > span");
+        const login_status = JSON.parse(sessionStorage.getItem("login_status"));
+        if (login_status.userId === signData[0].userId && login_status.userPw === signData[0].userPw) {
+            _span01.onclick = function () {
+                location.href = "admin.html";
+            };
+        }
+        else {
+            _span01.onclick = function () {
+                location.href = "mypage.html";
+            };
+        }
     }
 }
 formbtn.onsubmit = function (e) {
@@ -77,11 +79,11 @@ formbtn.onsubmit = function (e) {
             sessionStorage.setItem("login_status", JSON.stringify(loginObj));
             _bool = true;
             loginPop.style.display = "none";
+            location.reload();
         }
     }
     text = _bool ? "로그인이 성공했습니다." : "아이디와 비밀번호를 확인해주세요.";
     alert(text);
-    location.reload();
 };
 originState();
 myPage();

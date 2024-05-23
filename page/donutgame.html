@@ -15,12 +15,13 @@
             justify-content: center;
         }
         #content > .game-wrap{
-            width: 60%;
+            width: 90%;
             height: 400px;
             padding: 3px 6px;
+            display: flex;
         }
         .game-wrap > .game-header{
-            width: 100%;
+            width: 80%;
             height: 50px;
             display: flex;
             justify-content: flex-end;
@@ -29,11 +30,16 @@
             margin-right: 300px;
         }
         .game-wrap > .game-box{
-            width: 80%;
+            width: 880px;
             border: 1px solid;
         }
         .game-box > .game-slide{
             display: flex;
+        }
+        .game-wrap > .rank-box{
+            width: 20%;
+            height: 300px;
+            border: 1px solid;
         }
         img{
             width: 30px;
@@ -71,7 +77,7 @@
             animation-delay: 0.2s; */
             opacity: 0;
         }
-        @keyframes fall{
+        /* @keyframes fall{
             0%{
                 transform: translateY(0);
                 opacity: 0;
@@ -93,7 +99,7 @@
                 transform: translateY(500px);
                 opacity: 1;
             }
-        }
+        } */
         table{
             width: 100px;
             height: 400px;

@@ -85,3 +85,14 @@ class AdminPageManager {
 const adminPageManager = new AdminPageManager();
 adminPageManager.register();
 adminPageManager.render();
+
+// 도넛 게임 이동
+const loginStatus3 = sessionStorage.getItem("login_status");
+const gameMove3 = document.getElementById("game-move");
+gameMove3.onclick = () => {
+    if (loginStatus3) {
+        location.href = "./donutgame.html";
+    } else {
+        alert("로그인이 필요합니다.")
+    }
+}

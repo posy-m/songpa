@@ -482,6 +482,7 @@ form>button {
   left: 50%;
   top: 50%;
   width: 200px;
+  filter:drop-shadow(8px 13px 13px #444);
 }
 
 .content3>div>.front-img {
@@ -502,9 +503,11 @@ div>.back-text {
 
 div>.back-text>span {
   font-size: 30px;
-  color: #fff;
+  color: rgb(50,51,110);
 }
 
+
+/* ##################### contentBG ########################## */
 .contentBG {
   height: 500px;
   background: url(../img/bg5.jpg) no-repeat center center;

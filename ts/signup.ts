@@ -3,11 +3,13 @@ class UserData {
     userPw: string;
     userName: string;
     date: string;
-    constructor(_userId: string, _userPw: string, _userName: string, _date: string) {
+    profileImg : string;
+    constructor(_userId: string, _userPw: string, _userName: string, _date: string, _profileImg : string) {
         this.userId = _userId;
         this.userPw = _userPw;
         this.userName = _userName;
         this.date = _date;
+        this.profileImg = _profileImg;
     }
 }
 
@@ -27,7 +29,7 @@ class UserDataManager {
 
     save() {
         if (localStorage.getItem("sign_data") === null) {
-            const admin = new UserData("a", "1", "admin", "0");
+            const admin = new UserData("a", "1", "admin", "0", "");
             localStorage.setItem("sign_data", JSON.stringify([admin]));
         } else
             this.init(localStorage.getItem("sign_request"));
@@ -61,6 +63,39 @@ class UserDataManager {
                 alert("아이디를 규칙에 맞게 다시 입력해주세요");
             }
         }
+
+        id_finder.onkeyup = (e: Event) => {
+            const target = e.target as HTMLInputElement;
+            console.log(target)
+            // target.style.borderColor = "red";
+            if (!onlyNumberAndEnglish(target.value) || !idLength(target.value)) {
+                target.style.borderColor = "red"
+            } else {
+                target.style.borderColor = "black"
+            }
+        }
+        pw_finder.onkeyup = (e: Event) => {
+            const target = e.target as HTMLInputElement;
+            console.log(target)
+            // target.style.borderColor = "red";
+            if (!strongPassword(target.value)) {
+                target.style.borderColor = "red"
+            } else if (strongPassword(target.value)) {
+                target.style.borderColor = "black"
+            }
+        }
+
+        pw_finder2.onkeyup = (e: Event) => {
+            const target = e.target as HTMLInputElement;
+            if (target.value === pw_finder.value) {
+                target.style.borderColor = "black"
+            } else {
+                target.style.borderColor = "red"
+            }
+        }
+
+
+
         name_dbl.onclick = () => {
             const userdata = JSON.parse(localStorage.getItem("sign_data"));
             let text = "안녕";
@@ -75,6 +110,7 @@ class UserDataManager {
                     classList = "name_possible";
                 }
             }
+
             const success = <HTMLSpanElement>document.getElementById("name_repeat");
             success.innerText = text;
             success.classList.add(classList);
@@ -99,7 +135,7 @@ class UserDataManager {
                     const year = date.getFullYear();
                     const month = date.getMonth();
                     const day = date.getDate();
-                    const newData = new UserData(id_finder.value, pw_finder.value, name_finder.value, `${year}` + `-` + `${month + 1}` + `-` + `${day}`);
+                    const newData = new UserData(id_finder.value, pw_finder.value, name_finder.value, `${year}` + `-` + `${month + 1}` + `-` + `${day}`,"http://127.0.0.1:5500/src/img/mypageIcon.png");
                     this.userList.push(newData);
                     localStorage.setItem("sign_request", JSON.stringify(this.userList));
                     alert("회원가입 성공");
@@ -110,7 +146,7 @@ class UserDataManager {
     }
 }
 
-function idLength(value) {
+function idLength(value: string) {
     return value.length >= 4 && value.length <= 12
 }
 
@@ -118,9 +154,12 @@ function onlyNumberAndEnglish(str) {
     return /^[A-Za-z0-9][A-Za-z0-9]*$/.test(str);
 }
 
+
 function strongPassword(str) {
     return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(str);
 }
+
+
 
 const userDataManager = new UserDataManager();
 userDataManager.save();
