@@ -3,6 +3,22 @@ const url = new URL(urlStr);
 const urlparams = url.searchParams;
 const currentPage = urlparams.get('index');
 const searchInput = urlparams.get('search');
+const wirteLink = document.querySelector("#wirtelink");
+const login_status = JSON.parse(sessionStorage.getItem("login_status"));
+wirteLink.onclick = () => {
+    if (login_status === null) {
+        if (confirm("로그인 해주세요")) {
+            const loginPop = document.querySelector(".login-popup");
+            loginPop.style.display = "block";
+        }
+        else {
+            return;
+        }
+    }
+    else {
+        location.href = "./write.html";
+    }
+};
 let boardList = JSON.parse(localStorage.getItem("board_data")).reverse();
 if (!boardList) {
     boardList = [];
@@ -80,19 +96,3 @@ function search(e) {
     }
 }
 boardSearch.addEventListener("submit", search);
-const wirteLink = document.querySelector("#wirtelink");
-const login_status = JSON.parse(sessionStorage.getItem("login_status"));
-wirteLink.onclick = () => {
-    if (login_status === null) {
-        if (confirm("로그인 해주세요")) {
-            const loginPop = document.querySelector(".login-popup");
-            loginPop.style.display = "block";
-        }
-        else {
-            return;
-        }
-    }
-    else {
-        location.href = "./write.html";
-    }
-};

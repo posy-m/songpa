@@ -86,15 +86,16 @@ class DetailRenderManager {
                 replyContent.classList.add("replycontentbox");
                 const replyReplyList = document.createElement("div");
                 replyReplyList.classList.add("replyreplylist");
-                const replyReplyinput = document.createElement("div");
+                const replyReplyinputbox = document.createElement("div");
+                replyReplyinputbox.classList.add("replyreplyinputbox");
                 replyWriter.innerHTML = detail_replyUserName;
                 replyDetail.innerHTML = detail_reply;
                 replyDate.innerHTML = detail_replydate;
-                replyModify.innerHTML = "수정";
-                replyDelete.innerHTML = "삭제";
-                replyReplyBtn.innerHTML = "답글달기";
-                replyContent.append(replyWriter, replyDetail, replyDate, replyModify, replyDelete, replyReplyBtn);
-                replyList.append(replyContent, replyReplyList, replyReplyinput);
+                replyReplyBtn.innerHTML = `<img src= "../src/img/reply.png">`;
+                replyModify.innerHTML = `<img src= "../src/img/modify.png">`;
+                replyDelete.innerHTML = `<img src= "../src/img/delete.png">`;
+                replyContent.append(replyWriter, replyDetail, replyDate, replyReplyBtn, replyModify, replyDelete);
+                replyList.append(replyContent, replyReplyList, replyReplyinputbox);
                 if (detail_replyUserName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName && "admin" !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
                     replyModify.outerHTML = "";
                     replyDelete.outerHTML = "";
@@ -105,19 +106,21 @@ class DetailRenderManager {
                         const detail_replyReplyUserName = localReplyReplyData.replyUserName;
                         const detail_replyreply = localReplyReplyData.reply;
                         const detail_replyreplydate = localReplyReplyData.replydate;
+                        const replyReplyimg = document.createElement("img");
+                        replyReplyimg.src = "../src/img/replyarrow.png";
                         const replyReplyWriter = document.createElement("div");
                         const replyReplyDetail = document.createElement("div");
                         const replyReplyDate = document.createElement("div");
                         const replyReplyContent = document.createElement("div");
-                        replyReplyContent.classList.add("replyreplycontent");
+                        replyReplyContent.classList.add("replyreplycontentbox");
                         const replyReplyModify = document.createElement("button");
                         const replyReplyDelete = document.createElement("button");
                         replyReplyWriter.innerHTML = detail_replyReplyUserName;
                         replyReplyDetail.innerHTML = detail_replyreply;
                         replyReplyDate.innerHTML = detail_replyreplydate;
-                        replyReplyModify.innerHTML = "수정";
-                        replyReplyDelete.innerHTML = "삭제";
-                        replyReplyContent.append(replyReplyWriter, replyReplyDetail, replyReplyDate, replyReplyModify, replyReplyDelete);
+                        replyReplyModify.innerHTML = `<img src= "../src/img/modify.png">`;
+                        replyReplyDelete.innerHTML = `<img src= "../src/img/delete.png">`;
+                        replyReplyContent.append(replyReplyimg, replyReplyWriter, replyReplyDetail, replyReplyDate, replyReplyModify, replyReplyDelete);
                         replyReplyList.append(replyReplyContent);
                         if (detail_replyReplyUserName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName && "admin" !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
                             replyReplyModify.outerHTML = "";
@@ -125,12 +128,12 @@ class DetailRenderManager {
                         }
                         replyReplyModify.onclick = () => {
                             const replyTextArea = document.createElement("textarea");
+                            replyTextArea.classList.add("textarea");
                             replyReplyDetail.innerHTML = "";
                             replyReplyDetail.append(replyTextArea);
                             replyTextArea.innerHTML = detail_replyreply;
-                            replyReplyModify.innerHTML = "수정완료";
+                            replyReplyModify.innerHTML = `<img src= "../src/img/modifycheck.png">`;
                             replyReplyModify.onclick = () => {
-                                replyReplyModify.innerHTML = "수정";
                                 const modifiedReplyReply = {
                                     replyUserName: detail_replyReplyUserName,
                                     reply: replyTextArea.value,
@@ -165,13 +168,16 @@ class DetailRenderManager {
                         const replyReplyInput = document.createElement("textarea");
                         const replyReplySubmit = document.createElement("button");
                         const replyReplyCancel = document.createElement("button");
-                        replyReplyCancel.innerHTML = "취소";
-                        replyReplySubmit.innerHTML = "작성";
-                        replyReplyBtn.innerHTML = "";
-                        replyReplyinput.append(replyReplyInput, replyReplyCancel, replyReplySubmit);
+                        const replyReplyimg = document.createElement("img");
+                        replyReplyimg.src = "../src/img/replyarrownow.png";
+                        replyReplyCancel.innerHTML = `<img src= "../src/img/replyreplycancel.png">`;
+                        replyReplySubmit.innerHTML = `<img src= "../src/img/replyreplyconfirm.png">`;
+                        replyReplyBtn.disabled = true;
+                        replyReplyinputbox.append(replyReplyimg, replyReplyInput, replyReplySubmit, replyReplyCancel);
                         replyReplyCancel.onclick = () => {
-                            replyReplyinput.innerHTML = "";
-                            replyReplyBtn.innerHTML = "답글달기";
+                            replyReplyinputbox.innerHTML = "";
+                            replyReplyBtn.disabled = false;
+                            replyReplyBtn.innerHTML = `<img src= "../src/img/reply.png">`;
                         };
                         replyReplySubmit.onclick = () => {
                             const date = new Date();
@@ -202,9 +208,8 @@ class DetailRenderManager {
                     replyDetail.innerHTML = "";
                     replyDetail.append(textArea);
                     textArea.innerHTML = detail_reply;
-                    replyModify.innerHTML = "수정완료";
+                    replyModify.innerHTML = `<img src= "../src/img/modifycheck.png">`;
                     replyModify.onclick = () => {
-                        replyModify.innerHTML = "수정";
                         const modifiedReply = {
                             replyUserName: detail_replyUserName,
                             reply: textArea.value,

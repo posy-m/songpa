@@ -45,11 +45,15 @@ class DonutGameManager {
                 rankData[i].score = point;
                 rankData[i].renewDate = `${year}-${month}-${day}`;
                 check = "확인";
+            }else if((userData.userName === rankData[i].userName) && (rankData[i].score >= point)){
+                check = "아쉽";
             }
         }
         if(check === "확인"){
             localStorage.setItem("donut_score", JSON.stringify(rankData));
-        } else if(check === "아직"){
+        } else if(check === "아쉽"){
+            return;
+        }else{
             const userScore = new DonutGame(userData.userName, point, `${year}-${month}-${day}`);
             this.scoreList.push(userScore);
             localStorage.setItem("donut_score", JSON.stringify(this.scoreList));
@@ -141,6 +145,7 @@ start_btn.onclick = () => {
         if(heart.innerHTML !== ""){
             setTimeout(() => {
                 game();
+                console.log(0)
             }, t);
             t += 7010;
         }
@@ -171,6 +176,7 @@ start_btn.onclick = () => {
 
     // 도넛 1 만들기
     function createDonut(){
+        console.log(1);
         const score = document.querySelector("#score");
         let random = Math.floor(Math.random() * 8);
         if(random === 0) random = 1;
@@ -195,6 +201,7 @@ start_btn.onclick = () => {
 
     // 도넛 2 만들기
     function createDonut2(){
+        console.log(2)
         const score = document.querySelector("#score");
         let random = Math.floor(Math.random() * 7);
         if(random === 0) random = 1;
@@ -227,6 +234,7 @@ start_btn.onclick = () => {
             if(heart.innerHTML === "♥️♥️♥️"){
                 a.remove();
                 heart.innerHTML = "♥️♥️"
+                return;
             }else if(heart.innerHTML === "♥️♥️"){
                 a.remove();
                 heart.innerHTML = "♥️"
@@ -240,7 +248,7 @@ start_btn.onclick = () => {
                 const donutGameManager = new DonutGameManager();
                 donutGameManager.gameOver();
             }
-        }, false)
+        },{once: true})
     }
 
     // 마시멜로 회복 or 점수
