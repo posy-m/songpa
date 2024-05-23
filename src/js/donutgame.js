@@ -64,6 +64,7 @@ class DonutGameManager {
         let hi = "hi";
         for (let i = 0; i < rankData.length; i++) {
             const box = document.createElement("div");
+            box.className = "rankBox";
             const ranking = document.createElement("span");
             const user = document.createElement("span");
             const score = document.createElement("span");
@@ -77,6 +78,7 @@ class DonutGameManager {
             if (rankData[i].userName === userData.userName) {
                 hi = "정보 있음";
                 const myBox = document.createElement("div");
+                myBox.className = "myRankBox";
                 const ranking = document.createElement("span");
                 const me = document.createElement("span");
                 const myScore = document.createElement("span");
@@ -94,6 +96,7 @@ class DonutGameManager {
         }
         else {
             const myBox = document.createElement("div");
+            myBox.className = "myRankBox";
             const ranking = document.createElement("span");
             const me = document.createElement("span");
             const myScore = document.createElement("span");
@@ -118,24 +121,24 @@ start_btn.onclick = () => {
     game_wrap.innerHTML = `
 <div class="game-box">
 <div class="game-header">
-    <span id="score">0</span>
+    <span id="score">점수 : 0</span>
     <span id="heart">♥️♥️♥️</span>
 </div>
 <div class="game-slide">
-    <table id="1">1</table>
-    <table id="2">2</table>
-    <table id="3">3</table>
-    <table id="4">4</table>
-    <table id="5">5</table>
-    <table id="6">6</table>
-    <table id="7">7</table>
-    <table id="8">8</table>
-</div>
-<div class = "move-box">
-    <img id="person" src="../src/img/png-transparent-computer-icons-person-others-miscellaneous-text-hand-thumbnail-removebg-preview.png" alt="">
-</div>
-</div>
-<div class="rank-box">
+    <table id="1"></table>
+    <table id="2"></table>
+    <table id="3"></table>
+    <table id="4"></table>
+    <table id="5"></table>
+    <table id="6"></table>
+    <table id="7"></table>
+    <table id="8"></table>
+    </div>
+    </div>
+    <div class="rank-box">
+    <div class = "move-box">
+        <img id="person" src="../src/img/food-basket-with-pixel-art-style_475147-662-removebg-preview.png" alt="">
+    </div>
     <div class="rank-info">
         <span>순위</span>
         <span>닉네임</span>
@@ -145,6 +148,8 @@ start_btn.onclick = () => {
     <div class="rank-content"></div>
     <div class="my-rank"></div>
 </div>`;
+    const donutGameManager = new DonutGameManager();
+    donutGameManager.read();
     move();
     const heart = document.querySelector("#heart");
     let t = 0;
@@ -187,7 +192,7 @@ for (let i = 1; i < 9; i++) {
     arr.push(i);
 }
 function charge() {
-    if (arr.length <= 5) {
+    if (arr.length <= 4) {
         for (let i = 4; i < 9; i++) {
             const some1 = (element) => element === 1;
             const some2 = (element) => element === 2;
@@ -267,10 +272,9 @@ function createDonut() {
             fill: "forwards"
         });
     }
-    donut.src = "../src/img/logo.png";
+    donut.src = "../src/img/choco.png";
     randomLine.append(donut);
     charge();
-    console.log(arr)
 }
 function createDonut2() {
     const person = document.getElementById("person");
@@ -307,7 +311,7 @@ function createDonut2() {
             fill: "forwards"
         });
     }
-    donut.src = "../src/img/logo.png";
+    donut.src = "../src/img/pink.png";
     randomLine.append(donut);
     charge();
 }
@@ -345,7 +349,7 @@ function createDonut3() {
             fill: "forwards"
         });
     }
-    donut.src = "../src/img/logo.png";
+    donut.src = "../src/img/mint.png";
     randomLine.append(donut);
     charge();
 }
@@ -368,9 +372,10 @@ function life(a) {
             }
             else if (heart.innerHTML === "♥️") {
                 heart.innerHTML = "";
-                gameBox.innerHTML = `<div>
-                <p>GAME OVER</p>
-                <p>score : ${point}</p>
+                gameBox.className = "game-over-box";
+                gameBox.innerHTML = `<div class="lastgamebox">
+                <p class= "gameover1">GAME OVER</p>
+                <p class = "score1">score : ${point}</p>
                 </div>`;
                 const donutGameManager = new DonutGameManager();
                 donutGameManager.gameOver();
@@ -385,7 +390,7 @@ function restore() {
     const person = document.getElementById("person");
     if (random === 3) {
         const mashi = document.createElement("img");
-        mashi.src = "data:image/jpeg;base64,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";
+        mashi.src = "../src/img/heart.png";
         mashi.className = "restore";
         if (point < 2000) {
             mashi.animate(keyframes, {
@@ -434,8 +439,8 @@ function restore() {
                     score.innerHTML = `${point}`;
                     console.log(point);
                 }
-                person.style.width = `${30 + (point / 100)}px`;
-                person.style.height = `${30 + (point / 100)}px`;
+                person.style.width = `${60 + (point / 100)}px`;
+                person.style.height = `${60 + (point / 100)}px`;
             }
             fall(mashi);
         }, 200);
@@ -448,7 +453,7 @@ function bomb() {
     const score = document.getElementById("score");
     if (random === 3) {
         const createBomb = document.createElement("img");
-        createBomb.src = "https://www.logoyogo.com/web/wp-content/uploads/edd/2021/02/logoyogo-1-199.jpg";
+        createBomb.src = "../src/img/bomb.png";
         createBomb.className = "bomb";
         if (point < 2000) {
             createBomb.animate(keyframes, {
@@ -494,10 +499,11 @@ function bomb() {
                 }
                 else if (heart.innerHTML === "♥️") {
                     heart.innerHTML = "";
-                    gameBox.innerHTML = `<div>
-                        <p>GAME OVER</p>
-                        <p>score : ${point}</p>
-                        </div>`;
+                    gameBox.className = "game-over-box";
+                    gameBox.innerHTML = `<div class="lastgamebox">
+                <p class= "gameover1">GAME OVER</p>
+                <p class = "score1">score : ${point}</p>
+                </div>`;
                     const donutGameManager = new DonutGameManager();
                     donutGameManager.gameOver();
                 }
@@ -519,7 +525,7 @@ function move() {
     const gameBox = document.querySelector(".game-box");
     if (person !== null) {
         gameBox.addEventListener("mousemove", (e) => {
-            person.style.left = `${e.clientX - 86}px`;
+            person.style.left = `${e.clientX - 426}px`;
         });
     }
 }
@@ -532,9 +538,9 @@ function gotcha(donut) {
             point += 100;
             score.innerHTML = `${point}`;
             console.log(point);
-            person.style.width = `${30 + (point / 100)}px`;
-            person.style.height = `${30 + (point / 100)}px`;
+            person.style.width = `${60 + (point / 100)}px`;
+            person.style.height = `${60 + (point / 100)}px`;
         }
     }, 200);
 }
-export {};
+// export {};
