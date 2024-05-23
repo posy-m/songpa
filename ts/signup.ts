@@ -63,6 +63,39 @@ class UserDataManager {
                 alert("아이디를 규칙에 맞게 다시 입력해주세요");
             }
         }
+
+        id_finder.onkeyup = (e: Event) => {
+            const target = e.target as HTMLInputElement;
+            console.log(target)
+            // target.style.borderColor = "red";
+            if (!onlyNumberAndEnglish(target.value) || !idLength(target.value)) {
+                target.style.borderColor = "red"
+            } else {
+                target.style.borderColor = "black"
+            }
+        }
+        pw_finder.onkeyup = (e: Event) => {
+            const target = e.target as HTMLInputElement;
+            console.log(target)
+            // target.style.borderColor = "red";
+            if (!strongPassword(target.value)) {
+                target.style.borderColor = "red"
+            } else if (strongPassword(target.value)) {
+                target.style.borderColor = "black"
+            }
+        }
+
+        pw_finder2.onkeyup = (e: Event) => {
+            const target = e.target as HTMLInputElement;
+            if (target.value === pw_finder.value) {
+                target.style.borderColor = "black"
+            } else {
+                target.style.borderColor = "red"
+            }
+        }
+
+
+
         name_dbl.onclick = () => {
             const userdata = JSON.parse(localStorage.getItem("sign_data"));
             let text = "안녕";
@@ -77,6 +110,7 @@ class UserDataManager {
                     classList = "name_possible";
                 }
             }
+
             const success = <HTMLSpanElement>document.getElementById("name_repeat");
             success.innerText = text;
             success.classList.add(classList);
@@ -112,7 +146,7 @@ class UserDataManager {
     }
 }
 
-function idLength(value) {
+function idLength(value: string) {
     return value.length >= 4 && value.length <= 12
 }
 
@@ -120,9 +154,12 @@ function onlyNumberAndEnglish(str) {
     return /^[A-Za-z0-9][A-Za-z0-9]*$/.test(str);
 }
 
+
 function strongPassword(str) {
     return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(str);
 }
+
+
 
 const userDataManager = new UserDataManager();
 userDataManager.save();

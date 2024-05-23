@@ -1,13 +1,13 @@
 body {
-  cursor: url(../img/2cursor.cur) 10 10, pointer;
+  cursor: url(../img/2cursor.cur) 5 5, pointer;
 }
 
 
 a {
-  cursor: url(../img/2pointer.cur) 10 10, pointer;
+  cursor: url(../img/2pointer.cur) 5 5, pointer;
 }
 
 .click-cursor {
-  cursor: url(../img/2pointer.cur) 10 10, pointer;
+  cursor: url(../img/2pointer.cur) 5 5, pointer;
 
 }
