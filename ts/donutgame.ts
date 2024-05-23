@@ -69,19 +69,25 @@ class DonutGameManager {
         const rankContent = document.querySelector(".rank-content");
         const myRank = document.querySelector(".my-rank");
         let hi = "hi";
+        for(let i = 0; i < 4; i++){
+            try{
+                const box = document.createElement("div");
+                box.className = "rankBox"
+                const ranking = document.createElement("span");
+                const user = document.createElement("span");
+                const score = document.createElement("span");
+                const date = document.createElement("span");
+                ranking.innerHTML = `${i + 1}`;
+                user.innerHTML = `${rankData[i].userName}`;
+                score.innerHTML = `${rankData[i].score}`;
+                date.innerHTML = `${rankData[i].renewDate}`;
+                box.append(ranking, user, score, date);
+                rankContent.append(box);
+            }catch(e){
+                console.log(e)
+            }
+        }
         for (let i = 0; i < rankData.length; i++) {
-            const box = document.createElement("div");
-            box.className = "rankBox"
-            const ranking = document.createElement("span");
-            const user = document.createElement("span");
-            const score = document.createElement("span");
-            const date = document.createElement("span");
-            ranking.innerHTML = `${i + 1}`;
-            user.innerHTML = `${rankData[i].userName}`;
-            score.innerHTML = `${rankData[i].score}`;
-            date.innerHTML = `${rankData[i].renewDate}`;
-            box.append(ranking, user, score, date);
-            rankContent.append(box);
             if (rankData[i].userName === userData.userName) {
                 hi = "정보 있음";
                 const myBox = document.createElement("div");
