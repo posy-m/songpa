@@ -38,6 +38,12 @@ if (!boardList) {
   boardList = [];
 }
 
+// // 세션스토리지에 값이없으면 빈배열
+// if (sessionStorage.getItem("login_status") === null) {
+//   sessionStorage.setItem("login_status", JSON.stringify({}));
+// }
+
+
 //게시판 총 수
 let totalBoardLength = boardList.length
 
