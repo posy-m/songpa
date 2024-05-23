@@ -119,6 +119,10 @@ class DetailRenderManager {
                         replyReplyDelete.innerHTML = "삭제";
                         replyReplyContent.append(replyReplyWriter, replyReplyDetail, replyReplyDate, replyReplyModify, replyReplyDelete);
                         replyReplyList.append(replyReplyContent);
+                        if (detail_replyReplyUserName !== (JSON.parse(sessionStorage.getItem("login_status"))).userName && "admin" !== (JSON.parse(sessionStorage.getItem("login_status"))).userName) {
+                            replyReplyModify.outerHTML = "";
+                            replyReplyDelete.outerHTML = "";
+                        }
                         replyReplyModify.onclick = () => {
                             const replyTextArea = document.createElement("textarea");
                             replyReplyDetail.innerHTML = "";
@@ -153,40 +157,45 @@ class DetailRenderManager {
                         };
                     }
                 }
-                replyReplyBtn.addEventListener("click", () => {
-                    const replyReplyInput = document.createElement("textarea");
-                    const replyReplySubmit = document.createElement("button");
-                    const replyReplyCancel = document.createElement("button");
-                    replyReplyCancel.innerHTML = "취소";
-                    replyReplySubmit.innerHTML = "작성";
-                    replyReplyBtn.innerHTML = "";
-                    replyReplyinput.append(replyReplyInput, replyReplyCancel, replyReplySubmit);
-                    replyReplyCancel.onclick = () => {
-                        replyReplyinput.innerHTML = "";
-                        replyReplyBtn.innerHTML = "답글달기";
-                    };
-                    replyReplySubmit.onclick = () => {
-                        const date = new Date();
-                        const year = date.getFullYear();
-                        let month = (date.getMonth() + 1).toString();
-                        if (parseInt(month) < 10) {
-                            month = "0" + month;
-                        }
-                        let day = (date.getDate()).toString();
-                        if (parseInt(day) < 10) {
-                            day = "0" + day;
-                        }
-                        const replyReplyData = {
-                            replyUserName: (JSON.parse(sessionStorage.getItem("login_status"))).userName,
-                            reply: replyReplyInput.value,
-                            replydate: `${year}-${month}-${day}`,
-                            replyindex: param,
-                            replyreplyindex: i,
+                replyReplyBtn.onclick = () => {
+                    if (JSON.stringify(sessionStorage.getItem("login_status")) == `"{}"`) {
+                        alert("로그인을 해주세요!");
+                    }
+                    else {
+                        const replyReplyInput = document.createElement("textarea");
+                        const replyReplySubmit = document.createElement("button");
+                        const replyReplyCancel = document.createElement("button");
+                        replyReplyCancel.innerHTML = "취소";
+                        replyReplySubmit.innerHTML = "작성";
+                        replyReplyBtn.innerHTML = "";
+                        replyReplyinput.append(replyReplyInput, replyReplyCancel, replyReplySubmit);
+                        replyReplyCancel.onclick = () => {
+                            replyReplyinput.innerHTML = "";
+                            replyReplyBtn.innerHTML = "답글달기";
                         };
-                        this.setLocalStorageReplyReply(replyReplyData);
-                        location.reload();
-                    };
-                });
+                        replyReplySubmit.onclick = () => {
+                            const date = new Date();
+                            const year = date.getFullYear();
+                            let month = (date.getMonth() + 1).toString();
+                            if (parseInt(month) < 10) {
+                                month = "0" + month;
+                            }
+                            let day = (date.getDate()).toString();
+                            if (parseInt(day) < 10) {
+                                day = "0" + day;
+                            }
+                            const replyReplyData = {
+                                replyUserName: (JSON.parse(sessionStorage.getItem("login_status"))).userName,
+                                reply: replyReplyInput.value,
+                                replydate: `${year}-${month}-${day}`,
+                                replyindex: param,
+                                replyreplyindex: i,
+                            };
+                            this.setLocalStorageReplyReply(replyReplyData);
+                            location.reload();
+                        };
+                    }
+                };
                 replyModify.onclick = () => {
                     const textArea = document.createElement("textarea");
                     textArea.classList.add("textarea");
@@ -216,8 +225,11 @@ class DetailRenderManager {
                         deleteReply.splice(i, 1);
                         localStorage.setItem("reply_data", JSON.stringify(deleteReply));
                         for (let n = originalReplyReply.length - 1; n >= 0; n--) {
-                            if ((originalReplyReply[n].replyreplyindex) == i) {
+                            if ((originalReplyReply[n].replyreplyindex) == i && (originalReplyReply[n].replyindex) == param) {
                                 deleteReplyReply.splice(n, 1);
+                            }
+                            else if ((deleteReplyReply[n].replyreplyindex) > i) {
+                                deleteReplyReply[n].replyreplyindex = deleteReplyReply[n].replyreplyindex - 1;
                             }
                         }
                         localStorage.setItem("replyreply_data", JSON.stringify(deleteReplyReply));
@@ -239,8 +251,17 @@ class DetailRenderManager {
             const deleteItem = JSON.parse(localStorage.getItem("board_data"));
             const originalReply = JSON.parse(localStorage.getItem("reply_data"));
             const deleteReply = JSON.parse(localStorage.getItem("reply_data"));
+            const originalReplyReply = JSON.parse(localStorage.getItem("replyreply_data"));
+            const deleteReplyReply = JSON.parse(localStorage.getItem("replyreply_data"));
             if (confirm("삭제하시겠습니까?")) {
-                deleteItem.splice(param, 1);
+                deleteItem.splice(param, 1, {
+                    no: -1,
+                    userName: "",
+                    title: "",
+                    content: "",
+                    date: "",
+                    count: -1
+                });
                 localStorage.setItem("board_data", JSON.stringify(deleteItem));
                 for (let i = originalReply.length - 1; i >= 0; i--) {
                     if ((originalReply[i].replyindex) == param) {
@@ -248,6 +269,18 @@ class DetailRenderManager {
                     }
                 }
                 localStorage.setItem("reply_data", JSON.stringify(deleteReply));
+                for (let i = originalReplyReply.length - 1; i >= 0; i--) {
+                    if ((originalReplyReply[i].replyindex) == param) {
+                        let a = originalReplyReply[i].replyreplyindex;
+                        deleteReplyReply.splice(i, 1);
+                        for (let n = deleteReplyReply.length - 1; n >= 0; n--) {
+                            if ((deleteReplyReply[n].replyreplyindex) > a) {
+                                deleteReplyReply[n].replyreplyindex = deleteReplyReply[n].replyreplyindex - 1;
+                            }
+                        }
+                    }
+                }
+                localStorage.setItem("replyreply_data", JSON.stringify(deleteReplyReply));
                 location.href = "./board.html?index=1&search=";
             }
             else {
