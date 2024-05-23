@@ -5,6 +5,7 @@
 
 }
 
+
 ul,
 li {
   list-style: none;
@@ -76,7 +77,6 @@ a {
 .header-content .user-area li {
   font-size: 18px;
   padding: 0 10px;
-  cursor: pointer;
 }
 
 .header-content .user-area li:nth-child(1) {
@@ -259,7 +259,6 @@ form>button {
   border-radius: 6px;
   font-size: 18px;
   font-weight: bold;
-  cursor: pointer;
   border: none;
 }
 
@@ -323,7 +322,6 @@ form>button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  cursor: pointer;
 }
 
 .content1-wrap .content1-btn img {
@@ -467,13 +465,12 @@ form>button {
   height: 400px;
   transform-style: preserve-3d;
   transition: 300ms all linear;
-  cursor: pointer;
 }
 
 .content3>div>p {
   width: 100%;
   height: 400px;
-  background-color: rgb(214, 181, 70);
+  background-color: rgb(255, 218, 197);
   border-radius: 10px;
   position: absolute;
   top: 0;

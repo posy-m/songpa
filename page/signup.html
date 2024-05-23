@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../src/css/signup.css">
+    <link rel="stylesheet" href="../src/css/cursor.css">
 
 </head>
 
@@ -14,17 +15,17 @@
     <div class="header">
         <div class="header-content">
             <ul class="menu">
-                <li>About</li>
+                <li id="game-move" class="click-cursor">Game</li>
                 <li>Menu</li>
                 <li class="board"><a class="gogo " href="./board.html?index=1&search=">Board</a></li>
             </ul>
             <h1 class="logo">
                 <img src="../src/img/logo.png" alt="로고">
-                <span>Donut Shop</span>
+                <span><a href="./main.html">Donut Shop</a></span>
             </h1>
             <ul class="user-area">
                 <li>
-                    <span class="loginBtn">Log-in</span>
+                    <span class="loginBtn click-cursor">Log-in</span>
                 </li>
                 <li>
                     <span><a id="myPage" href="./signup.html">Sign up</a></span>
@@ -42,7 +43,7 @@
                 <div>
                     <input type="text" name="" id="id_text" class="signup-input" placeholder="4~12글자, 영어나 숫자를 입력해주세요">
                 </div>
-                <button id="id_check" class="signup-btn">중복확인</button>
+                <button id="id_check" class="signup-btn click-cursor">중복확인</button>
                 <span id="id_repeat"></span>
             </div>
             <span class="signup-title">닉네임</span>
@@ -50,7 +51,7 @@
                 <div class="name-wrap">
                     <input type="text" name="" id="name_text" class="signup-input" placeholder="닉네임을 적어주세요">
                 </div>
-                <button id="name_check" class="signup-btn">중복확인</button>
+                <button id="name_check" class="signup-btn click-cursor">중복확인</button>
                 <span id="name_repeat"></span>
             </div>
             <span class="signup-title">비밀번호</span>
@@ -62,7 +63,7 @@
             <div>
                 <input type="text" name="" id="pw_check" class="signup-input" placeholder="비밀번호와 일치하게 적어주세요">
             </div>
-            <div id="clear_btn" class="signup-title">회원가입 완료</div>
+            <div id="clear_btn" class="signup-title click-cursor">회원가입 완료</div>
         </div>
     </div>
 

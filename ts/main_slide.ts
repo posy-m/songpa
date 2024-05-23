@@ -7,10 +7,10 @@ let index = 0;
 let isActive = false;
 
 // 슬라이드 초기화 설정
-function slideInit(){
-  const {length} = slide.children;
+function slideInit() {
+  const { length } = slide.children;
   const firstLi = slide.children[0].cloneNode(true);
-  const lastLi = slide.children[length-1].cloneNode(true);
+  const lastLi = slide.children[length - 1].cloneNode(true);
 
   slide.children[0].before(lastLi);
   slide.append(firstLi);
@@ -19,43 +19,43 @@ function slideInit(){
 }
 slideInit();
 
-nextBtn.onclick = function(){
-  if(isActive) return;
+nextBtn.onclick = function () {
+  if (isActive) return;
   isActive = true;
   index++;
   slide.style.left = `${-1400 + (-1400 * index)}px`;
 }
 
-slide.addEventListener("transitionend",()=>{
-  if(index === 4){
+slide.addEventListener("transitionend", () => {
+  if (index === 4) {
     index = 0;
     slide.style.transition = "none";
     slide.style.left = "-1400px";
-    setTimeout(()=>{
+    setTimeout(() => {
       slide.style.transition = "left 1s"
-    },500)
+    }, 500)
   }
-  setTimeout(()=>{
+  setTimeout(() => {
     isActive = false;
-  },500)
+  }, 500)
 });
 
-slide.addEventListener("transitionend",()=>{
-  if(index === -1){
+slide.addEventListener("transitionend", () => {
+  if (index === -1) {
     index = 3;
     slide.style.transition = "none";
     slide.style.left = `${-1400 + (-1400 * index)}px`;
-    setTimeout(()=>{
+    setTimeout(() => {
       slide.style.transition = "left 1s"
-    },500)
+    }, 500)
   }
   setTimeout(() => {
     isActive = false;
   }, 500);
 });
 
-prevBtn.onclick = function(){
-  if(isActive) return;
+prevBtn.onclick = function () {
+  if (isActive) return;
   isActive = true;
   index--;
   slide.style.left = `${-1400 + (-1400 * index)}px`;
@@ -63,51 +63,51 @@ prevBtn.onclick = function(){
 
 
 // 슬라이드 배너 호버시 멈춤 기능
-  let slideAuto = setInterval(slideStop, 3000);
-  function slideStop(){
-    if(isActive) return;
-    isActive = true;
-    index++;
-    slide.style.left = `${-1400 + (-1400 * index)}px`;
-  }
-  
-  slide.addEventListener("mouseover",function(){
-    clearInterval(slideAuto);
-  });
-  slide.addEventListener("mouseleave",function(){
-    slideAuto = setInterval(slideStop, 3000);
-  });  
-  nextBtn.addEventListener("mouseover",function(){
-    clearInterval(slideAuto);
-  });
-  nextBtn.addEventListener("mouseleave",function(){
-    slideAuto = setInterval(slideStop, 3000);
-  });
-  prevBtn.addEventListener("mouseover",function(){
-    clearInterval(slideAuto);
-  });
-  prevBtn.addEventListener("mouseleave",function(){
-    slideAuto = setInterval(slideStop, 3000);
-  });
-  
+let slideAuto = setInterval(slideStop, 3000);
+function slideStop() {
+  if (isActive) return;
+  isActive = true;
+  index++;
+  slide.style.left = `${-1400 + (-1400 * index)}px`;
+}
+
+slide.addEventListener("mouseover", function () {
+  clearInterval(slideAuto);
+});
+slide.addEventListener("mouseleave", function () {
+  slideAuto = setInterval(slideStop, 3000);
+});
+nextBtn.addEventListener("mouseover", function () {
+  clearInterval(slideAuto);
+});
+nextBtn.addEventListener("mouseleave", function () {
+  slideAuto = setInterval(slideStop, 3000);
+});
+prevBtn.addEventListener("mouseover", function () {
+  clearInterval(slideAuto);
+});
+prevBtn.addEventListener("mouseleave", function () {
+  slideAuto = setInterval(slideStop, 3000);
+});
+
 
 // 스크롤 기능
 
 const posY = [];
 const mainContent = document.querySelectorAll(".scroll-js");
-for(let i = 0; i < mainContent.length; i++){
+for (let i = 0; i < mainContent.length; i++) {
   posY.push(mainContent[i].getBoundingClientRect().top + window.pageYOffset);
 }
 
 
-window.onscroll = function(){
+window.onscroll = function () {
   let _scroll = 921 + window.pageYOffset;
-  for(let i = 0; i < mainContent.length; i++){  
-    if(_scroll > posY[i]){
-      if(!mainContent[i].classList.contains("is-active1"))
+  for (let i = 0; i < mainContent.length; i++) {
+    if (_scroll > posY[i]) {
+      if (!mainContent[i].classList.contains("is-active1"))
         mainContent[i].classList.add("is-active1")
-    } else{
-      if(mainContent[i].classList.contains("is-active1"))
+    } else {
+      if (mainContent[i].classList.contains("is-active1"))
         mainContent[i].classList.remove("is-active1")
     }
   }
@@ -122,39 +122,41 @@ let flip_bool2 = false
 let flip_bool3 = false
 
 flipCard1.onclick = () => {
-  if(!flip_bool1){
+  if (!flip_bool1) {
     flipCard1.style.transform = "rotateY(180deg)";
     flip_bool1 = true;
-  } else{
+  } else {
     flipCard1.style.transform = "rotateY(0)"
     flip_bool1 = false;
   }
 }
 flipCard2.onclick = () => {
-  if(!flip_bool2){
+  if (!flip_bool2) {
     flipCard2.style.transform = "rotateY(180deg)";
     flip_bool2 = true;
-  } else{
+  } else {
     flipCard2.style.transform = "rotateY(0)"
     flip_bool2 = false;
   }
 }
 
 flipCard3.onclick = () => {
-  if(!flip_bool3){
+  if (!flip_bool3) {
     flipCard3.style.transform = "rotateY(180deg)";
     flip_bool3 = true;
-  } else{
+  } else {
     flipCard3.style.transform = "rotateY(0)"
     flip_bool3 = false;
   }
-}
+} 
 
 // 도넛 게임 이동
 const loginStatus = sessionStorage.getItem("login_status");
 const gameMove = document.getElementById("game-move");
 gameMove.onclick = () => {
-  if(loginStatus){
+  if (loginStatus) {
     location.href = "./donutgame.html";
+  } else {
+    alert("로그인이 필요합니다.")
   }
-}
+} 
