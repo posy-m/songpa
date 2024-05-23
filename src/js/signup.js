@@ -1,9 +1,10 @@
 class UserData {
-    constructor(_userId, _userPw, _userName, _date) {
+    constructor(_userId, _userPw, _userName, _date, _profileImg) {
         this.userId = _userId;
         this.userPw = _userPw;
         this.userName = _userName;
         this.date = _date;
+        this.profileImg = _profileImg;
     }
 }
 class UserDataManager {
@@ -20,7 +21,7 @@ class UserDataManager {
     }
     save() {
         if (localStorage.getItem("sign_data") === null) {
-            const admin = new UserData("a", "1", "admin", "0");
+            const admin = new UserData("a", "1", "admin", "0", "");
             localStorage.setItem("sign_data", JSON.stringify([admin]));
         }
         else
@@ -95,7 +96,7 @@ class UserDataManager {
                     const year = date.getFullYear();
                     const month = date.getMonth();
                     const day = date.getDate();
-                    const newData = new UserData(id_finder.value, pw_finder.value, name_finder.value, `${year}` + `-` + `${month + 1}` + `-` + `${day}`);
+                    const newData = new UserData(id_finder.value, pw_finder.value, name_finder.value, `${year}` + `-` + `${month + 1}` + `-` + `${day}`, "http://127.0.0.1:5500/src/img/mypageIcon.png");
                     this.userList.push(newData);
                     localStorage.setItem("sign_request", JSON.stringify(this.userList));
                     alert("회원가입 성공");

@@ -4,25 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../src/css/mypage.css">
+    <link rel="stylesheet" href="../src/css/cursor.css">
 </head>
 <body>
-    <div id="content">
-        <span>아이디</span>
-        <div>
-            <input type="text" id="id-text">
-            <button id="id-rpl">변경</button>
-        </div>
-        <span>비밀번호</span>
-        <div>
-            <input type="text" id="pw-text">
-            <button id="pw-rpl">변경</button>
-        </div>
-        <span>닉네임</span>
-        <div>
-            <input type="text" id="name-text">
-            <button id="name-rpl">변경</button>
+    <div class="header">
+        <div class="header-content">
+          <ul class="menu">
+            <li><a href="donutgame.html">Game</a></li>
+            <li>Menu</li>
+            <li class="board"><a href="./board.html?index=1&search=">Board</a></li>
+          </ul>
+          <h1 class="logo">
+            <img src="../src/img/logo.png" alt="로고">
+            <span><a href="./main.html">Donut Shop</a></span>
+          </h1>
+          <ul class="user-area">
+            <li style="pointer-events: none;">
+              <span class="loginBtn">Log-in</span>
+            </li>
+          </ul>
         </div>
     </div>
+    <div id="content">
+        <div class="content-wrap">
+            <div class="content">
+                <span>아이디</span>
+                <div>
+                    <span id="id-text"></span>
+                </div>
+                <span>비밀번호</span>
+                <div>
+                    <input class="inputTxt" type="text" id="pw-text1" placeholder="영문 특수문자 포함 8글자 입력해주세요">
+                </div>
+                <span>비밀번호 확인</span>
+                <div>
+                    <input class="inputTxt" type="text" id="pw-text2" placeholder="비밀번호를 다시 입력해주세요">
+                    <button id="pw-rp" class="changeBtn click-cursor">변경</button>
+                </div>
+                <span>닉네임</span>
+                <div>
+                    <input class="inputTxt" type="text" id="name-text" placeholder="변경할 닉네임을 입력해주세요">
+                    <button id="name-rpl" class="changeBtn click-cursor">변경</button>
+                </div>
+            </div>
+            <div class="profile-img">
+                <p class="img">
+                  <img id="profileImg" alt="프로필 사진" src="../src/img/mypageIcon.png">
+                </p>
+                <input type="file" id="profile" accept="image/*">
+                <p class="btnArea click-cursor">
+                  <input type="button" id="imgSave" value="저장" class="changeBtn click-cursor">
+                  <input type="button" id="basicImg" value="초기화" class="changeBtn click-cursor">
+                </p>
+            </div>
+        </div>   
+    </div>
+    <div class="footer">
+        <div class="footer-content">
+          <ul class="footer-list">
+            <li class="footer-logo">
+              Donut Shop
+            </li>
+            <li class="customer-center">
+              <span>고객 만족센터</span>
+              <span>02. 1234. 5678</span>
+            </li>
+            <li class="sns">
+              <img src="../src/img/facebook.png" alt="페북">
+              <img src="../src/img/instagram.png" alt="인스타">
+              <img src="../src/img/youtube.png" alt="유튜브">
+            </li>
+          </ul>
+          <ul class="footer-menu1 footer-menu">
+            <li>단체 및 기업구매</li>
+            <li>마케팅 및 제휴문의</li>
+            <li>사이트 맵</li>
+          </ul>
+          <ul class="footer-menu2 footer-menu">
+            <li>회사소개</li>
+            <li>채용안내</li>
+            <li>찾아오시는 길</li>
+          </ul>
+          <ul class="footer-menu3 footer-menu">
+            <li>개인정보보호처리방침</li>
+            <li>이용약관</li>
+            <li>운영관리 방침</li>
+          </ul>
+        </div>
+        <p class="footer-address">
+          © 2024. Songpa-office. ALL RIGHTS RESERVED.
+        </p>
+      </div>
 </body>
 <script src="../src/js/mypage.js"></script>
+<!-- <script src="../src/js/login.js"></script> -->
 </html>
