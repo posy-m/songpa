@@ -2,6 +2,7 @@ const sign_data = JSON.parse(localStorage.getItem("sign_data"));
 const login_data = JSON.parse(sessionStorage.getItem("login_status"));
 function mypage() {
     const id = document.getElementById("id-text");
+    const loginNickName = document.querySelector(".loginBtn");
     const pw = document.getElementById("pw-text1");
     const pw_re = document.getElementById("pw-text2");
     const pw_btn = document.getElementById("pw-rp");
@@ -9,6 +10,9 @@ function mypage() {
     const name_btn = document.getElementById("name-rpl");
     id.innerHTML = login_data.userId;
     name.value = login_data.userName;
+    loginNickName.innerHTML = `
+        <img src="http://127.0.0.1:5500/src/img/mypageIcon.png" style="width:30px;height:30px;"> ${name.value} 님
+    `;
     pw_btn.addEventListener("click", () => {
         if (!strongPasswordRe(pw.value)) {
             alert("영문 특수문자 포함 8자리 이상 입력해주세요");
