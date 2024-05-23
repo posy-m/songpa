@@ -187,7 +187,7 @@ for (let i = 1; i < 9; i++) {
     arr.push(i);
 }
 function charge() {
-    if (arr.length <= 5) {
+    if (arr.length < 4) {
         for (let i = 4; i < 9; i++) {
             const some1 = (element) => element === 1;
             const some2 = (element) => element === 2;
@@ -270,7 +270,6 @@ function createDonut() {
     donut.src = "../src/img/logo.png";
     randomLine.append(donut);
     charge();
-    console.log(arr)
 }
 function createDonut2() {
     const person = document.getElementById("person");
