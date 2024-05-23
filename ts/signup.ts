@@ -126,3 +126,14 @@ function strongPassword(str) {
 
 const userDataManager = new UserDataManager();
 userDataManager.save();
+
+// 도넛 게임 이동
+const loginStatus2 = sessionStorage.getItem("login_status");
+const gameMove2 = document.getElementById("game-move");
+gameMove2.onclick = () => {
+    if (loginStatus2) {
+        location.href = "./donutgame.html";
+    } else {
+        alert("로그인이 필요합니다.")
+    }
+}
