@@ -193,7 +193,7 @@ for (let i = 1; i < 9; i++) {
 }
 function charge() {
     if (arr.length <= 6) {
-        for (let i = 0; i < 8-arr.length; i++) {
+        for (let i = 0; i < 8 - arr.length; i++) {
             const some1 = (element) => element === 1;
             const some2 = (element) => element === 2;
             const some3 = (element) => element === 3;
@@ -229,7 +229,7 @@ function charge() {
         }
     }
 }
-let point = 2000;
+let point = 0;
 let keyframes = [
     { opacity: 0, transform: "translateY(0)" },
     { opacity: 1, transform: "translateY(100px)" },
@@ -480,7 +480,8 @@ function bomb() {
             });
         }
         let random = Math.floor(Math.random() * 4);
-        if (random === 0) random = 1;
+        if (random === 0)
+            random = 1;
         const randomLine = document.getElementById(`${arr[random - 1]}`);
         randomLine.append(createBomb);
         charge();

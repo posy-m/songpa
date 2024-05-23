@@ -205,8 +205,8 @@ for (let i = 1; i < 9; i++) {
 
 // 배열 채워주기
 function charge() {
-    if (arr.length <= 4) {
-        for (let i = 4; i < 9; i++) {
+    if (arr.length <= 6) {
+        for (let i = 0; i < 8-arr.length; i++) {
             const some1 = (element) => element === 1;
             const some2 = (element) => element === 2;
             const some3 = (element) => element === 3;
