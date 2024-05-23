@@ -5,7 +5,8 @@
 
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .wrap {
@@ -19,6 +20,13 @@ body {
 .contentbox,
 .writerdatebox {
     display: flex;
+}
+
+.boardtitle {
+    margin-top: 80px;
+    margin-bottom: 45px;
+    font-size: 30px;
+    font-weight: 600;
 }
 
 /******************* 제목 라인 *******************/
@@ -39,6 +47,8 @@ body {
     resize: none;
     padding: 11px;
     box-sizing: border-box;
+    background-color: transparent;
+    outline: none;
 }
 
 /******************* 작성자, 날짜 라인 *******************/
@@ -75,6 +85,8 @@ body {
     resize: none;
     padding: 11px;
     box-sizing: border-box;
+    background-color: transparent;
+    outline: none;
 }
 
 /******************* 목록 삭제 수정 버튼 라인 *******************/
@@ -99,7 +111,6 @@ body {
     border: none;
     background-color: rgb(50, 51, 110);
     color: white;
-    cursor: pointer;
     transition: 500ms;
     border-radius: 30px;
 }
