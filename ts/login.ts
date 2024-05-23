@@ -31,8 +31,7 @@ function originState() {
 
   const _span01 = document.querySelector(".user-area > li:nth-child(1) > span") as HTMLElement;
   const _span02 = document.querySelector(".user-area > li:nth-child(2)") as HTMLElement;
-
-  if (login_status !== null || JSON.stringify(login_status)=='"{}"' ) {
+  if (login_status === null || JSON.stringify(login_status) !=='{}' ) {
     _span01.innerHTML = `
       <img src="../src/img/mypageIcon.png" alt="로고">
       ${login_status.userName} 님
