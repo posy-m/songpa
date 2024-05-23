@@ -33,7 +33,7 @@ function originState() {
         logoutList.onclick = function () {
             const logoutQ = confirm("로그아웃을 하시겠습니까?");
             if (logoutQ) {
-                sessionStorage.removeItem("login_status");
+                sessionStorage.setItem("login_status", JSON.stringify({}));
                 _span01.innerHTML = "Log-in";
                 logoutList.innerHTML = "Log-out";
                 logoutList.style.display = "none";

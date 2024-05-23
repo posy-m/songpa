@@ -6,7 +6,7 @@ const searchInput = urlparams.get('search');
 const wirteLink = document.querySelector("#wirtelink");
 const login_status = JSON.parse(sessionStorage.getItem("login_status"));
 wirteLink.onclick = () => {
-    if (login_status === null) {
+    if (login_status === null || JSON.stringify(sessionStorage.getItem("login_status")) == `"{}"`) {
         if (confirm("로그인 해주세요")) {
             const loginPop = document.querySelector(".login-popup");
             loginPop.style.display = "block";
