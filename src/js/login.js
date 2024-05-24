@@ -50,9 +50,9 @@ function originState() {
     }
 }
 function myPage() {
+    const login_status = JSON.parse(sessionStorage.getItem("login_status"));
     if (login_status === null || JSON.stringify(login_status) !== "{}") {
         const _span01 = document.querySelector(".user-area > li:nth-child(1) > span");
-        const login_status = JSON.parse(sessionStorage.getItem("login_status"));
         if (login_status.userId === signData[0].userId && login_status.userPw === signData[0].userPw) {
             _span01.onclick = function () {
                 location.href = "admin.html";
@@ -87,3 +87,13 @@ formbtn.onsubmit = function (e) {
 };
 originState();
 myPage();
+const loginStatus5 = sessionStorage.getItem("login_status");
+const gameMove5 = document.getElementById("game-move");
+gameMove5.onclick = () => {
+    if (loginStatus5) {
+        location.href = "./donutgame.html";
+    }
+    else {
+        alert("로그인이 필요합니다.");
+    }
+};

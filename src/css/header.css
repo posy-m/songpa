@@ -71,11 +71,15 @@ a {
 .header-content .user-area li {
   font-size: 18px;
   padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
 }
 
 .header-content .user-area li:nth-child(1) {
   position: relative;
+
 }
 
 .header-content .user-area li:nth-child(1) span {
@@ -266,4 +270,9 @@ form>button {
 
 .login-content .join-area li {
   margin: 0 20px;
+}
+
+img {
+  width: 30px;
+  height: 30px;
 }
