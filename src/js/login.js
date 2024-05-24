@@ -18,6 +18,7 @@ function originState() {
     const login_status = JSON.parse(sessionStorage.getItem("login_status"));
     const userArea = document.querySelector(".user-area");
     const logoutList = document.createElement("li");
+    logoutList.classList.add("click-cursor");
     const _span01 = document.querySelector(".user-area > li:nth-child(1) > span");
     const _span02 = document.querySelector(".user-area > li:nth-child(2)");
     if (login_status === null || JSON.stringify(login_status) !== "{}") {
@@ -50,9 +51,9 @@ function originState() {
     }
 }
 function myPage() {
+    const login_status = JSON.parse(sessionStorage.getItem("login_status"));
     if (login_status === null || JSON.stringify(login_status) !== "{}") {
         const _span01 = document.querySelector(".user-area > li:nth-child(1) > span");
-        const login_status = JSON.parse(sessionStorage.getItem("login_status"));
         if (login_status.userId === signData[0].userId && login_status.userPw === signData[0].userPw) {
             _span01.onclick = function () {
                 location.href = "admin.html";

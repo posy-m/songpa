@@ -13,26 +13,23 @@
 
     <!-- 헤드영역 -->
     <div class="header">
-        <div class="header-content">
-            <ul class="menu">
-                <li id="game-move" class="click-cursor">Game</li>
-                <li>Menu</li>
-                <li class="board"><a class="gogo " href="./board.html?index=1&search=">Board</a></li>
-            </ul>
-            <h1 class="logo">
-                <img src="../src/img/logo.png" alt="로고">
-                <span> <a href="./main.html"> Donut Shop</a></span>
-            </h1>
-            <ul class="user-area">
-                <li>
-                    <span class="loginBtn">Log-in</span>
-                </li>
-                <li>
-                    <span><a id="myPage" href="./signup.html">Sign up</a></span>
-                </li>
-            </ul>
-        </div>
-    </div>
+      <div class="header-content">
+        <ul class="menu">
+          <li><a href="donutgame.html">Game</a></li>
+          <li>Menu</li>
+          <li class="board"><a href="./board.html?index=1&search=">Board</a></li>
+        </ul>
+        <h1 class="logo">
+          <img src="../src/img/logo.png" alt="로고">
+          <span><a href="./main.html">Donut Shop</a></span>
+        </h1>
+        <ul class="user-area">
+          <li style="pointer-events: none;">
+            <span class="loginBtn">Log-in</span>
+          </li>
+        </ul>
+      </div>
+  </div>
 
     <!-- 중간 -->
     <div id="adminList">
@@ -97,7 +94,32 @@
             © 2024. Songpa-office. ALL RIGHTS RESERVED.
         </p>
     </div>
+    <div class="login-popup" style="display:none">
+        <div class="login-wrap">
+          <h2>로그인</h2>
+          <div class="login-content">
+            <span class="login-delete">
+              <img src="../src/img/x.png" alt="로그인제거">
+            </span>
+            <p>♥️ Welcome to Donut shop ♥️</p>
+            <form action="" id="login_form">
+              <div class="user-info">
+                <input type="text" id="userId" name="userId" placeholder="아이디">
+              </div>
+              <div class="user-info">
+                <input type="password" id="userPw" name="userPw" placeholder="비밀번호">
+              </div>
+              <button class="loginBtn click-cursor">로그인</button>
+            </form>
+            <ul class="join-area">
+              <li>아이디 찾기</li>
+              <li>비밀번호 찾기</li>
+              <li><a href="signup.html">회원가입</a></li>
+            </ul>
+          </div>
+        </div>
+    </div>
 </body>
+<script src="../src/js/login.js"></script>
 <script src="../src/js/admin.js"></script>
-
 </html>

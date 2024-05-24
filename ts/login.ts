@@ -7,6 +7,8 @@ const formbtn = document.querySelector("#login_form") as HTMLElement;
 const userId = document.querySelector("#userId") as HTMLInputElement;
 const userPw = document.querySelector("#userPw") as HTMLInputElement;
 
+
+
 // 로그인 팝업 기능 구현
 const loginPopupBtn = document.querySelector(".loginBtn") as HTMLElement;
 const loginPop = document.querySelector(".login-popup") as HTMLElement;
@@ -28,6 +30,7 @@ function originState() {
   const login_status = JSON.parse(sessionStorage.getItem("login_status"));
   const userArea = document.querySelector(".user-area") as HTMLElement;
   const logoutList = document.createElement("li") as HTMLElement;
+  logoutList.classList.add("click-cursor");
 
   const _span01 = document.querySelector(".user-area > li:nth-child(1) > span") as HTMLElement;
   const _span02 = document.querySelector(".user-area > li:nth-child(2)") as HTMLElement;
@@ -50,8 +53,6 @@ function originState() {
       if (logoutQ) {
         // sessionStorage.removeItem("login_status");
         sessionStorage.setItem("login_status", JSON.stringify({}));
-
-
         _span01.innerHTML = "Log-in"
         logoutList.innerHTML = "Log-out";
         logoutList.style.display = "none";
@@ -71,9 +72,9 @@ function originState() {
 }
 // mypage 및 admin 페이지 접속 함수
 function myPage() {
+  const login_status = JSON.parse(sessionStorage.getItem("login_status"));
   if (login_status === null || JSON.stringify(login_status) !== "{}") {
     const _span01 = document.querySelector(".user-area > li:nth-child(1) > span") as HTMLElement;
-    const login_status = JSON.parse(sessionStorage.getItem("login_status"));
     if (login_status.userId === signData[0].userId && login_status.userPw === signData[0].userPw) {
       _span01.onclick = function () {
         location.href = "admin.html";
