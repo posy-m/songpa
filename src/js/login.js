@@ -87,3 +87,13 @@ formbtn.onsubmit = function (e) {
 };
 originState();
 myPage();
+const loginStatus = sessionStorage.getItem("login_status");
+const gameMove = document.getElementById("game-move");
+gameMove.onclick = () => {
+    if (loginStatus && loginStatus !== "{}") {
+        location.href = "./donutgame.html";
+    }
+    else {
+        alert("로그인이 필요합니다.");
+    }
+};
