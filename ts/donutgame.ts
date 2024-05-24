@@ -69,8 +69,8 @@ class DonutGameManager {
         const rankContent = document.querySelector(".rank-content");
         const myRank = document.querySelector(".my-rank");
         let hi = "hi";
-        for(let i = 0; i < 4; i++){
-            try{
+        for (let i = 0; i < 4; i++) {
+            try {
                 const box = document.createElement("div");
                 box.className = "rankBox"
                 const ranking = document.createElement("span");
@@ -83,7 +83,7 @@ class DonutGameManager {
                 date.innerHTML = `${rankData[i].renewDate}`;
                 box.append(ranking, user, score, date);
                 rankContent.append(box);
-            }catch(e){
+            } catch (e) {
                 console.log(e)
             }
         }
@@ -221,7 +221,7 @@ for (let i = 1; i < 9; i++) {
 // 배열 채워주기
 function charge() {
     if (arr.length <= 6) {
-        for (let i = 0; i < 8-arr.length; i++) {
+        for (let i = 0; i < 8 - arr.length; i++) {
             const some1 = (element) => element === 1;
             const some2 = (element) => element === 2;
             const some3 = (element) => element === 3;

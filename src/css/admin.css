@@ -9,6 +9,7 @@ body {
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 
@@ -164,8 +165,7 @@ li {
 }
 
 .header>.header-content {
-  width: 1400px;
-  /* height: 120px; */
+  width: 80%;
   height: 165px;
   margin: 0 auto;
   display: flex;
@@ -183,7 +183,7 @@ li {
 .header-content>.menu>li {
   font-size: 16px;
   padding: 0 10px;
-  color: #414581;
+  color: #42457D;
 }
 
 /* ################# header logo ################### */
@@ -218,7 +218,6 @@ li {
 .header-content .user-area li {
   font-size: 18px;
   padding: 0 10px;
-  cursor: pointer;
 }
 
 .header-content .user-area li:nth-child(1) {
@@ -234,12 +233,8 @@ li {
 /* #################### footer ###################### */
 .footer {
   width: 100%;
-  /* color: #fff; */
   color: #42457D;
   padding: 40px 0;
-  /* border-top: 1px solid #414581; */
-  /* font-weight: bold; */
-  /* background-color: antiquewhite; */
   background-image: linear-gradient(to bottom, #fff9f5, #ffc098);
 }
 
