@@ -1,4 +1,4 @@
-import { transform } from "../node_modules/typescript/lib/typescript";
+import { createUnparsedSourceFile, transform } from "../node_modules/typescript/lib/typescript";
 
 class DonutGame {
     userName: string;
@@ -160,8 +160,8 @@ start_btn.onclick = () => {
         <span>점수</span>
         <span>갱신날짜</span>
     </div>
-    <div class="rank-content"></div>
-    <div class="my-rank"></div>
+    <div class="rank-content rank"></div>
+    <div class="my-rank rank"></div>
 </div>`
     const donutGameManager = new DonutGameManager();
     donutGameManager.read();
@@ -544,7 +544,12 @@ function move() {
     const gameBox = document.querySelector(".game-box");
     if (person !== null) {
         gameBox.addEventListener("mousemove", (e: any) => {
+<<<<<<< HEAD
             person.style.left = `${e.clientX - 636}px`;
+=======
+            person.style.left = `${e.clientX - 426}px`;
+            (e.target as HTMLDivElement).style.cursor = "none";
+>>>>>>> game
         })
     }
 }
