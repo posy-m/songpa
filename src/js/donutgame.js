@@ -152,8 +152,8 @@ start_btn.onclick = () => {
         <span>점수</span>
         <span>갱신날짜</span>
     </div>
-    <div class="rank-content"></div>
-    <div class="my-rank"></div>
+    <div class="rank-content rank"></div>
+    <div class="my-rank rank"></div>
 </div>`;
     const donutGameManager = new DonutGameManager();
     donutGameManager.read();
@@ -532,7 +532,8 @@ function move() {
     const gameBox = document.querySelector(".game-box");
     if (person !== null) {
         gameBox.addEventListener("mousemove", (e) => {
-            person.style.left = `${e.clientX - 636}px`;
+            person.style.left = `${e.clientX - 426}px`;
+            e.target.style.cursor = "none";
         });
     }
 }
