@@ -1,7 +1,7 @@
 const prevBtn = document.querySelector(".prevBtn") as HTMLElement;
 const nextBtn = document.querySelector(".nextBtn") as HTMLElement;
 const slide = document.querySelector(".slide") as HTMLElement;
-const img_list = document.querySelector(".slide > li") as HTMLElement;
+// const img_list = document.querySelector(".slide > li") as HTMLElement;
 
 let index = 0;
 let isActive = false;
@@ -147,16 +147,5 @@ flipCard3.onclick = () => {
   } else {
     flipCard3.style.transform = "rotateY(0)"
     flip_bool3 = false;
-  }
-} 
-
-// 도넛 게임 이동
-const loginStatus = sessionStorage.getItem("login_status");
-const gameMove = document.getElementById("game-move");
-gameMove.onclick = () => {
-  if (loginStatus) {
-    location.href = "./donutgame.html";
-  } else {
-    alert("로그인이 필요합니다.")
   }
 } 
