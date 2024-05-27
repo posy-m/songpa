@@ -18,9 +18,10 @@ function originState() {
     const login_status = JSON.parse(sessionStorage.getItem("login_status"));
     const userArea = document.querySelector(".user-area");
     const logoutList = document.createElement("li");
+    logoutList.classList.add("click-cursor");
     const _span01 = document.querySelector(".user-area > li:nth-child(1) > span");
     const _span02 = document.querySelector(".user-area > li:nth-child(2)");
-    if (login_status === null || JSON.stringify(login_status) !== "{}") {
+    if (login_status !== null && JSON.stringify(login_status) !== "{}") {
         _span01.innerHTML = `
       <img src="../src/img/mypageIcon.png" alt="로고">
       ${login_status.userName} 님
@@ -40,10 +41,10 @@ function originState() {
                 _span02.style.display = "block";
                 _span01.classList.replace('loginX', 'loginBtn');
                 _span01.onclick = function () {
-                    location.href = "#";
                     loginPop.style.display = "block";
                     userId.value = "";
                     userPw.value = "";
+                    location.href = location.href;
                 };
             }
         };
@@ -84,6 +85,16 @@ formbtn.onsubmit = function (e) {
     }
     text = _bool ? "로그인이 성공했습니다." : "아이디와 비밀번호를 확인해주세요.";
     alert(text);
+};
+const loginStatus4 = sessionStorage.getItem("login_status");
+const gameMove4 = document.getElementById("game-move");
+gameMove4.onclick = () => {
+    if (loginStatus4 !== null && JSON.stringify(loginStatus4) !== '"{}"') {
+        location.href = "./donutgame.html";
+    }
+    else {
+        alert("로그인이 필요합니다.");
+    }
 };
 originState();
 myPage();

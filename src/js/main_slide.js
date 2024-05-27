@@ -1,7 +1,6 @@
 const prevBtn = document.querySelector(".prevBtn");
 const nextBtn = document.querySelector(".nextBtn");
 const slide = document.querySelector(".slide");
-const img_list = document.querySelector(".slide > li");
 let index = 0;
 let isActive = false;
 function slideInit() {

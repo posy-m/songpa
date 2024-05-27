@@ -85,7 +85,7 @@ adminPageManager.render();
 const loginStatus3 = sessionStorage.getItem("login_status");
 const gameMove3 = document.getElementById("game-move");
 gameMove3.onclick = () => {
-    if (loginStatus3) {
+    if (JSON.parse(loginStatus3) !== null || loginStatus3 !== "{}") {
         location.href = "./donutgame.html";
     }
     else {

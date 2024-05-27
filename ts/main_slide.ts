@@ -1,7 +1,7 @@
 const prevBtn = document.querySelector(".prevBtn") as HTMLElement;
 const nextBtn = document.querySelector(".nextBtn") as HTMLElement;
 const slide = document.querySelector(".slide") as HTMLElement;
-const img_list = document.querySelector(".slide > li") as HTMLElement;
+// const img_list = document.querySelector(".slide > li") as HTMLElement;
 
 let index = 0;
 let isActive = false;
@@ -149,4 +149,3 @@ flipCard3.onclick = () => {
     flip_bool3 = false;
   }
 } 
-
