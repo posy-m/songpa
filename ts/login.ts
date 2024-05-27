@@ -123,3 +123,14 @@ gameMove4.onclick = () => {
 // 함수 실행
 originState();
 myPage();
+
+// 도넛 게임 이동
+const loginStatus = sessionStorage.getItem("login_status");
+const gameMove = document.getElementById("game-move");
+gameMove.onclick = () => {
+  if (loginStatus && loginStatus !== "{}") {
+    location.href = "./donutgame.html";
+  } else {
+    alert("로그인이 필요합니다.")
+  }
+} 

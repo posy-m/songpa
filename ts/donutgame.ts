@@ -1,4 +1,4 @@
-import { transform } from "../node_modules/typescript/lib/typescript";
+import { createUnparsedSourceFile, transform } from "../node_modules/typescript/lib/typescript";
 
 class DonutGame {
     userName: string;
@@ -69,8 +69,8 @@ class DonutGameManager {
         const rankContent = document.querySelector(".rank-content");
         const myRank = document.querySelector(".my-rank");
         let hi = "hi";
-        for(let i = 0; i < 4; i++){
-            try{
+        for (let i = 0; i < 4; i++) {
+            try {
                 const box = document.createElement("div");
                 box.className = "rankBox"
                 const ranking = document.createElement("span");
@@ -83,7 +83,7 @@ class DonutGameManager {
                 date.innerHTML = `${rankData[i].renewDate}`;
                 box.append(ranking, user, score, date);
                 rankContent.append(box);
-            }catch(e){
+            } catch (e) {
                 console.log(e)
             }
         }
@@ -160,8 +160,8 @@ start_btn.onclick = () => {
         <span>점수</span>
         <span>갱신날짜</span>
     </div>
-    <div class="rank-content"></div>
-    <div class="my-rank"></div>
+    <div class="rank-content rank"></div>
+    <div class="my-rank rank"></div>
 </div>`
     const donutGameManager = new DonutGameManager();
     donutGameManager.read();
@@ -187,6 +187,15 @@ start_btn.onclick = () => {
     }
 }
 function game() {
+    const game_slide = document.querySelector(".game-slide");
+    game_slide.innerHTML = `<table id="1"></table>
+    <table id="2"></table>
+    <table id="3"></table>
+    <table id="4"></table>
+    <table id="5"></table>
+    <table id="6"></table>
+    <table id="7"></table>
+    <table id="8"></table>`
     createDonut();
     createDonut2();
     createDonut3();
@@ -212,7 +221,7 @@ for (let i = 1; i < 9; i++) {
 // 배열 채워주기
 function charge() {
     if (arr.length <= 6) {
-        for (let i = 0; i < 8-arr.length; i++) {
+        for (let i = 0; i < 8 - arr.length; i++) {
             const some1 = (element) => element === 1;
             const some2 = (element) => element === 2;
             const some3 = (element) => element === 3;
@@ -491,7 +500,7 @@ function bomb() {
         } else if (point >= 4000) {
             createBomb.animate(keyframes, {
                 delay: 300,
-                duration: 4000,
+                duration: 3000,
                 iterations: Infinity,
                 fill: "forwards"
             });
@@ -544,7 +553,8 @@ function move() {
     const gameBox = document.querySelector(".game-box");
     if (person !== null) {
         gameBox.addEventListener("mousemove", (e: any) => {
-            person.style.left = `${e.clientX - 636}px`;
+            person.style.left = `${e.clientX - 466}px`;
+            (gameBox as HTMLDivElement).style.cursor="none";
         })
     }
 }
@@ -552,6 +562,7 @@ function move() {
 function gotcha(donut) {
     setInterval(() => {
         let person = document.getElementById("person");
+        const moveBox = document.querySelector(".move-box") as HTMLDivElement;
         const score = document.getElementById("score");
         if ((donut.getBoundingClientRect().bottom > person.getBoundingClientRect().top) && (donut.getBoundingClientRect().left < person.getBoundingClientRect().right) && (donut.getBoundingClientRect().right > person.getBoundingClientRect().left)) {
             donut.remove();
@@ -560,6 +571,7 @@ function gotcha(donut) {
             console.log(point);
             person.style.width = `${60 + (point / 100)}px`;
             person.style.height = `${60 + (point / 100)}px`;
+            moveBox.style.bottom = `${280 + 5}px`
         }
     }, 200);
 }

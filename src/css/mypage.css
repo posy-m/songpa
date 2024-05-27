@@ -2,7 +2,7 @@
 * {
   margin: 0;
   padding: 0;
-
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
 ul,
@@ -160,74 +160,80 @@ a {
   margin-top: 40px;
   text-align: center;
 }
+
 /* ################# content ################ */
-#content{
+#content {
   width: 100%;
   padding: 80px 0;
   background-color: #FEF9F6;
 }
 
-#content > .content-wrap{
+#content>.content-wrap {
   width: 40%;
-  border:3px solid #b5b6cc;
-  margin:0 auto; 
+  border: 3px solid #b5b6cc;
+  margin: 0 auto;
   border-radius: 30px;
   display: flex;
-  justify-content:center;
+  justify-content: center;
   padding: 60px 0;
 }
 
-#content .content{
+#content .content {
   width: 300px;
 }
 
-#content .content .inputTxt{
-  width:90%;
+#content .content .inputTxt {
+  width: 90%;
   height: 30px;
-  display:block;
-  padding:3px 6px;
-  margin-bottom:10px;
+  display: block;
+  padding: 3px 6px;
+  margin-bottom: 10px;
 }
 
-.content span{
-  display:block;
-  margin-bottom:10px;
+.content span {
+  display: block;
+  margin-bottom: 10px;
 }
 
-#id-text{
-  font-size:20px;
+#id-text {
+  font-size: 20px;
 }
-.profile-img{
+
+.profile-img {
   max-width: 150px;
 }
 
-.img{
+.img {
   height: 190px;
-  border:1px solid #777;
+  border: 1px solid #777;
   /* background-color:#ccc; */
 }
 
-.img img{
-  width:100%;
-  height:100%;
+.img img {
+  width: 100%;
+  height: 100%;
 }
-.btnArea{
+
+.btnArea {
   display: flex;
 }
 
-.content, .profile-img{
-  margin:0 20px;
+.content,
+.profile-img {
+  margin: 0 20px;
 }
-.changeBtn{
-  display:block;
+
+.changeBtn {
+  display: block;
   width: 100px;
   height: 40px;
-  background-color:#b9bacf;
+  background-color: #b9bacf;
   margin-bottom: 10px;
-  border:none;
+  border: none;
   border-radius: 5px;
   margin-right: 20px;
 }
-input[type=file]{
+
+input[type=file] {
   margin-bottom: 20px;
 }

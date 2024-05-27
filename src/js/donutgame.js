@@ -152,8 +152,8 @@ start_btn.onclick = () => {
         <span>점수</span>
         <span>갱신날짜</span>
     </div>
-    <div class="rank-content"></div>
-    <div class="my-rank"></div>
+    <div class="rank-content rank"></div>
+    <div class="my-rank rank"></div>
 </div>`;
     const donutGameManager = new DonutGameManager();
     donutGameManager.read();
@@ -179,6 +179,15 @@ start_btn.onclick = () => {
     }
 };
 function game() {
+    const game_slide = document.querySelector(".game-slide");
+    game_slide.innerHTML = `<table id="1"></table>
+    <table id="2"></table>
+    <table id="3"></table>
+    <table id="4"></table>
+    <table id="5"></table>
+    <table id="6"></table>
+    <table id="7"></table>
+    <table id="8"></table>`;
     createDonut();
     createDonut2();
     createDonut3();
@@ -481,7 +490,7 @@ function bomb() {
         else if (point >= 4000) {
             createBomb.animate(keyframes, {
                 delay: 300,
-                duration: 4000,
+                duration: 3000,
                 iterations: Infinity,
                 fill: "forwards"
             });
@@ -532,13 +541,15 @@ function move() {
     const gameBox = document.querySelector(".game-box");
     if (person !== null) {
         gameBox.addEventListener("mousemove", (e) => {
-            person.style.left = `${e.clientX - 636}px`;
+            person.style.left = `${e.clientX - 466}px`;
+            gameBox.style.cursor = "none";
         });
     }
 }
 function gotcha(donut) {
     setInterval(() => {
         let person = document.getElementById("person");
+        const moveBox = document.querySelector(".move-box");
         const score = document.getElementById("score");
         if ((donut.getBoundingClientRect().bottom > person.getBoundingClientRect().top) && (donut.getBoundingClientRect().left < person.getBoundingClientRect().right) && (donut.getBoundingClientRect().right > person.getBoundingClientRect().left)) {
             donut.remove();
@@ -547,6 +558,7 @@ function gotcha(donut) {
             console.log(point);
             person.style.width = `${60 + (point / 100)}px`;
             person.style.height = `${60 + (point / 100)}px`;
+            moveBox.style.bottom = `${280 + 5}px`;
         }
     }, 200);
 }
