@@ -19,7 +19,7 @@ const wirteLink = <HTMLButtonElement>document.querySelector("#wirtelink")
 const login_status = JSON.parse(sessionStorage.getItem("login_status"))
 
 wirteLink.onclick = () => {
-  if (login_status === null) {
+  if (login_status === null || JSON.stringify(sessionStorage.getItem("login_status")) == `"{}"`) {
     if (confirm("로그인 해주세요")) {
       const loginPop = document.querySelector(".login-popup") as HTMLElement;
       loginPop.style.display = "block";
@@ -37,6 +37,12 @@ let boardList: IBoard[] = JSON.parse(localStorage.getItem("board_data")).reverse
 if (!boardList) {
   boardList = [];
 }
+
+// // 세션스토리지에 값이없으면 빈배열
+// if (sessionStorage.getItem("login_status") === null) {
+//   sessionStorage.setItem("login_status", JSON.stringify({}));
+// }
+
 
 //게시판 총 수
 let totalBoardLength = boardList.length

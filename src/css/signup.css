@@ -30,13 +30,13 @@ body {
 .signup-title {
   font-size: 18px;
   font-weight: 600;
-  margin: 10px;
 }
 
 .signup-input {
   width: 330px;
   height: 30px;
   padding-left: 6px;
+  margin-top: 5px;
 }
 
 .signup-btn {
@@ -85,15 +85,21 @@ body {
   color: green;
 }
 
-/* .name-box {
+.password-box {
   display: flex;
   flex-direction: column;
-} */
+  margin: 20px 0 0 30px;
+}
 
-/* .id-box {
-  display: flex;
-  flex-direction: column;
-} */
+.name-box {
+  margin-top: 14px;
+  margin-left: 36px;
+
+}
+
+.id-box {
+  margin-left: 36px;
+}
 
 
 

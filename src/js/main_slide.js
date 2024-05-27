@@ -1,7 +1,6 @@
 const prevBtn = document.querySelector(".prevBtn");
 const nextBtn = document.querySelector(".nextBtn");
 const slide = document.querySelector(".slide");
-const img_list = document.querySelector(".slide > li");
 let index = 0;
 let isActive = false;
 function slideInit() {
@@ -131,15 +130,5 @@ flipCard3.onclick = () => {
     else {
         flipCard3.style.transform = "rotateY(0)";
         flip_bool3 = false;
-    }
-};
-const loginStatus = sessionStorage.getItem("login_status");
-const gameMove = document.getElementById("game-move");
-gameMove.onclick = () => {
-    if (loginStatus) {
-        location.href = "./donutgame.html";
-    }
-    else {
-        alert("로그인이 필요합니다.");
     }
 };

@@ -134,8 +134,11 @@ class DetailRenderManager {
                 replyDetail.innerHTML = detail_reply;
                 replyDate.innerHTML = detail_replydate;
                 replyReplyBtn.innerHTML = `<img src= "../src/img/reply.png">`;
+                replyReplyBtn.classList.add("click-cursor");
                 replyModify.innerHTML = `<img src= "../src/img/modify.png">`;
+                replyModify.classList.add("click-cursor");
                 replyDelete.innerHTML = `<img src= "../src/img/delete.png">`;
+                replyDelete.classList.add("click-cursor");
                 replyContent.append(replyWriter, replyDetail, replyDate, replyReplyBtn, replyModify, replyDelete);
                 replyList.append(replyContent, replyReplyList, replyReplyinputbox);
 
@@ -155,7 +158,7 @@ class DetailRenderManager {
                         const detail_replyreplydate = localReplyReplyData.replydate;
 
                         const replyReplyimg = <HTMLImageElement>document.createElement("img")
-                        replyReplyimg.src = "../src/img/replyarrow.png"
+                        replyReplyimg.src = "../src/img/replyarrow.png";
 
                         const replyReplyWriter = <HTMLElement>document.createElement("div");
                         const replyReplyDetail = <HTMLElement>document.createElement("div");
@@ -171,7 +174,9 @@ class DetailRenderManager {
                         replyReplyDetail.innerHTML = detail_replyreply;
                         replyReplyDate.innerHTML = detail_replyreplydate;
                         replyReplyModify.innerHTML = `<img src= "../src/img/modify.png">`;
+                        replyReplyModify.classList.add("click-cursor");
                         replyReplyDelete.innerHTML = `<img src= "../src/img/delete.png">`;
+                        replyReplyDelete.classList.add("click-cursor");
                         replyReplyContent.append(replyReplyimg, replyReplyWriter, replyReplyDetail, replyReplyDate, replyReplyModify, replyReplyDelete);
                         replyReplyList.append(replyReplyContent);
 
@@ -234,7 +239,9 @@ class DetailRenderManager {
                         replyReplyimg.src = "../src/img/replyarrownow.png"
 
                         replyReplyCancel.innerHTML = `<img src= "../src/img/replyreplycancel.png">`;
+                        replyReplyCancel.classList.add("click-cursor");
                         replyReplySubmit.innerHTML = `<img src= "../src/img/replyreplyconfirm.png">`;
+                        replyReplySubmit.classList.add("click-cursor");
                         // replyReplyBtn.innerHTML = "";
                         replyReplyBtn.disabled = true;
                         replyReplyinputbox.append(replyReplyimg, replyReplyInput, replyReplySubmit, replyReplyCancel);
@@ -243,7 +250,7 @@ class DetailRenderManager {
                         replyReplyCancel.onclick = () => {
                             replyReplyinputbox.innerHTML = "";
                             replyReplyBtn.disabled = false;
-                            replyReplyBtn.innerHTML = `<img src= "../src/img/reply.png">`;
+                            // replyReplyBtn.innerHTML = `<img src= "../src/img/reply.png">`;
                         }
 
                         // 대댓글작성창 작성 버튼
