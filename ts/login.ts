@@ -34,7 +34,7 @@ function originState() {
 
   const _span01 = document.querySelector(".user-area > li:nth-child(1) > span") as HTMLElement;
   const _span02 = document.querySelector(".user-area > li:nth-child(2)") as HTMLElement;
-  
+
   if (login_status !== null && JSON.stringify(login_status) !== "{}") {
     _span01.innerHTML = `
       <img src="../src/img/mypageIcon.png" alt="로고">
@@ -57,7 +57,7 @@ function originState() {
         logoutList.innerHTML = "Log-out";
         logoutList.style.display = "none";
         _span02.style.display = "block";
-        
+
 
         // 해놓아야 로그아웃시 정상적으로 작동함
         _span01.classList.replace('loginX', 'loginBtn');
@@ -113,11 +113,11 @@ formbtn.onsubmit = function (e) {
 const loginStatus4 = sessionStorage.getItem("login_status");
 const gameMove4 = document.getElementById("game-move");
 gameMove4.onclick = () => {
-    if (loginStatus4 !== null && JSON.stringify(loginStatus4) !== '"{}"') {
-        location.href = "./donutgame.html";
-    } else {
-        alert("로그인이 필요합니다.")
-    }
+  if (loginStatus4 !== null && JSON.stringify(loginStatus4) !== '"{}"') {
+    location.href = "./donutgame.html";
+  } else {
+    alert("로그인이 필요합니다.")
+  }
 }
 
 // 함수 실행

@@ -58,34 +58,62 @@ class UserDataManager {
                 alert("아이디를 규칙에 맞게 다시 입력해주세요");
             }
         };
-        id_finder.onkeyup = (e) => {
+        pw_finder.onkeyup = (e) => {
+            if (document.querySelector(".passwordtest") !== null) {
+                document.querySelector(".passwordtest").remove();
+            }
+            let text = "";
             const target = e.target;
-            console.log(target);
-            if (!onlyNumberAndEnglish(target.value) || !idLength(target.value)) {
-                target.style.borderColor = "red";
+            if (target.value === pw_finder2.value) {
+                text = "비밀번호가 일치합니다.";
+                target.style.borderColor = "green";
+                pw_finder2.style.borderColor = "green";
             }
             else {
-                target.style.borderColor = "black";
-            }
-        };
-        pw_finder.onkeyup = (e) => {
-            const target = e.target;
-            console.log(target);
-            if (!strongPassword(target.value)) {
+                text = "비밀번호를 다시 확인해주세요.";
                 target.style.borderColor = "red";
+                pw_finder2.style.borderColor = "red";
             }
-            else if (strongPassword(target.value)) {
-                target.style.borderColor = "black";
+            const passwordBox = document.querySelector(".password-box");
+            const passwordSmallText = document.createElement("span");
+            if (text === "비밀번호가 일치합니다.") {
+                passwordSmallText.style.color = "green";
             }
+            else if (text === "비밀번호를 다시 확인해주세요.") {
+                passwordSmallText.style.color = "red";
+            }
+            passwordSmallText.classList.add("passwordtest");
+            passwordSmallText.innerHTML = `${text}`;
+            passwordBox.append(passwordSmallText);
         };
         pw_finder2.onkeyup = (e) => {
             const target = e.target;
+            console.log(document.querySelector(".passwordtest"));
+            if (document.querySelector(".passwordtest") !== null) {
+                document.querySelector(".passwordtest").remove();
+            }
+            let text = "";
             if (target.value === pw_finder.value) {
-                target.style.borderColor = "black";
+                text = "비밀번호가 일치합니다.";
+                target.style.borderColor = "green";
+                pw_finder.style.borderColor = "green";
             }
             else {
+                text = "비밀번호를 다시 확인해주세요.";
                 target.style.borderColor = "red";
+                pw_finder.style.borderColor = "red";
             }
+            const passwordBox = document.querySelector(".password-box");
+            const passwordSmallText = document.createElement("span");
+            if (text === "비밀번호가 일치합니다.") {
+                passwordSmallText.style.color = "green";
+            }
+            else if (text === "비밀번호를 다시 확인해주세요.") {
+                passwordSmallText.style.color = "red";
+            }
+            passwordSmallText.classList.add("passwordtest");
+            passwordSmallText.innerHTML = `${text}`;
+            passwordBox.append(passwordSmallText);
         };
         name_dbl.onclick = () => {
             const userdata = JSON.parse(localStorage.getItem("sign_data"));
