@@ -1,0 +1,277 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#content>.game-wrap {
+    width: 95%;
+    /* height: 1000px; */
+    padding: 6px 6px;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-wrap > #start {
+    width: 40%;
+    height: 50px;
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+.game-wrap>.rank-box {
+    margin-top: 60px;
+    width: 40%;
+    height: 190px;
+    border: 1px solid;
+    position: relative;
+}
+
+.rank-info {
+    display: flex;
+    font-size: 18px;
+    font-weight: 600;
+    height: 30px;
+    align-items: center;
+}
+
+.rank-info>span:nth-child(1) {
+    width: 20%;
+    text-align: center;
+}
+
+.rank-info>span:nth-child(2) {
+    width: 20%;
+    text-align: center;
+}
+
+.rank-info>span:nth-child(3) {
+    width: 30%;
+    text-align: center;
+}
+
+.rank-info>span:nth-child(4) {
+    width: 30%;
+    text-align: center;
+}
+
+.rankBox {
+    display: flex;
+    justify-content: space-around;
+}
+
+.rankBox>span:nth-child(1) {
+    width: 20%;
+    text-align: center;
+}
+
+.rankBox>span:nth-child(2) {
+    width: 20%;
+    text-align: center;
+}
+
+.rankBox>span:nth-child(3) {
+    width: 30%;
+    text-align: center;
+}
+
+.rankBox>span:nth-child(4) {
+    width: 30%;
+    text-align: center;
+}
+
+.myRankBox {
+    display: flex;
+    justify-content: space-around;
+    font-size: 18px;
+    font-weight: 600;
+    color: #42457D;
+}
+
+.myRankBox>span:nth-child(1) {
+    width: 20%;
+    text-align: center;
+}
+
+.myRankBox>span:nth-child(2) {
+    width: 20%;
+    text-align: center;
+}
+
+.myRankBox>span:nth-child(3) {
+    width: 30%;
+    text-align: center;
+}
+
+.myRankBox>span:nth-child(4) {
+    width: 30%;
+    text-align: center;
+}
+
+
+.game-wrap>.game-box {
+    width: 900px;
+    height: 400px;
+    border: 1px solid;
+    background-size: 900px 300px;
+    position: relative;  
+    overflow: hidden;
+}
+
+/* 배경화면 박스 */
+
+.game-box > #back1 {
+    width: 900px;
+    height: 200px;
+    background-image: url(../img/sora.jpg);
+    background-repeat: no-repeat;
+    background-size: 900px 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    animation: displace 4s linear infinite;
+}
+.game-box > #back2 {
+    width: 900px;
+    height: 200px;
+    background-image: url(../img/sora.jpg);
+    background-repeat: no-repeat;
+    background-size: 900px 300px;
+    position: absolute;
+    top: 0;
+    left: 900px;
+    background-size: cover;
+    animation: displace2 4s linear infinite;
+}
+
+.game-box > #back3 {
+    width: 900px;
+    height: 200px;
+    background-image: url(../img/chi.jpg);
+    background-repeat: no-repeat;
+    background-size: 900px 300px;
+    position: absolute;
+    top: 200px;
+    left: 00px;
+    background-size: 900px 300px;
+    animation: displace 5s linear infinite;
+}
+.game-box > #back4 {
+    width: 900px;
+    height: 200px;
+    background-image: url(../img/chi.jpg);
+    background-repeat: no-repeat;
+    background-size: 900px 300px;
+    position: absolute;
+    top: 200px;
+    left: 900px;
+    background-size: 900px 300px;
+    animation: displace2 5s linear infinite;
+}
+
+/* 배경화면 움직임 애니메이션 */
+
+@keyframes displace {
+    from { left: 0 ;}
+    to { left: -900px;}
+}
+@keyframes displace2 {
+    from { left: 900px ;}
+    to { left: 0px;}
+}
+
+.game-box > .game-header{
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    left: 700px;
+    top: 30px;
+    font-size: 22px;
+    display: flex;
+}
+
+.game-header > #current-score{
+    margin-right: 50px;
+}
+
+/* .game-header > #score{
+
+} */
+
+.game-box > .game-content{
+    width: 100%;
+    display: flex;
+}
+
+/* 플레이어 */
+
+.game-content > #person{
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 300px;
+    left: 40px;
+}
+
+/* 장애물 생성 라인 */
+
+.game-content > table > tbody > tr{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    margin-top: 80px;
+}
+
+td{
+    width: 900px;
+    height: 60px;
+    position: relative;
+}
+
+td > .obstacle1{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 900px;
+}
+td > .obstacle2{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 900px;
+}
+td > .obstacle3{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 30px;
+    left: 900px;
+}
+
+/* 게임 오버 */
+
+.game-content > .game-over-box{
+    width: 50%;
+    position: absolute;
+    left: 25%;
+    top: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    display: none;
+}
+
+.game-over-box > p:nth-child(1){
+    color: rgb(175, 43, 43);
+    font-size: 70px;
+}

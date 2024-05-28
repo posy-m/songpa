@@ -155,8 +155,10 @@ start_btn.onclick = () => {
     <div class="rank-content rank"></div>
     <div class="my-rank rank"></div>
 </div>`;
-    const donutGameManager = new DonutGameManager();
-    donutGameManager.read();
+    if (rankData !== null) {
+        const donutGameManager = new DonutGameManager();
+        donutGameManager.read();
+    }
     move();
     const heart = document.querySelector("#heart");
     let t = 0;
