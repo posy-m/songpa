@@ -3,8 +3,8 @@ class UserData {
     userPw: string;
     userName: string;
     date: string;
-    profileImg : string;
-    constructor(_userId: string, _userPw: string, _userName: string, _date: string, _profileImg : string) {
+    profileImg: string;
+    constructor(_userId: string, _userPw: string, _userName: string, _date: string, _profileImg: string) {
         this.userId = _userId;
         this.userPw = _userPw;
         this.userName = _userName;
@@ -39,6 +39,8 @@ class UserDataManager {
         const name_finder = <HTMLInputElement>document.getElementById("name_text");
         const id_dbl = <HTMLButtonElement>document.getElementById("id_check");
         const name_dbl = <HTMLButtonElement>document.getElementById("name_check");
+
+
         id_dbl.onclick = () => {
             const userdata = JSON.parse(localStorage.getItem("sign_data"));
             if ((idLength(id_finder.value)) && (onlyNumberAndEnglish(id_finder.value))) {
@@ -64,35 +66,64 @@ class UserDataManager {
             }
         }
 
-        id_finder.onkeyup = (e: Event) => {
-            const target = e.target as HTMLInputElement;
-            console.log(target)
-            // target.style.borderColor = "red";
-            if (!onlyNumberAndEnglish(target.value) || !idLength(target.value)) {
-                target.style.borderColor = "red"
-            } else {
-                target.style.borderColor = "black"
-            }
-        }
         pw_finder.onkeyup = (e: Event) => {
-            const target = e.target as HTMLInputElement;
-            console.log(target)
-            // target.style.borderColor = "red";
-            if (!strongPassword(target.value)) {
-                target.style.borderColor = "red"
-            } else if (strongPassword(target.value)) {
-                target.style.borderColor = "black"
+            if (document.querySelector(".passwordtest") !== null) {
+                document.querySelector(".passwordtest").remove();
             }
+            let text = ""
+            const target = e.target as HTMLInputElement
+            if (target.value === pw_finder2.value) {
+                text = "비밀번호가 일치합니다."
+                target.style.borderColor = "green"
+                pw_finder2.style.borderColor = "green"
+            } else {
+                text = "비밀번호를 다시 확인해주세요."
+                target.style.borderColor = "red"
+                pw_finder2.style.borderColor = "red"
+            }
+            const passwordBox = document.querySelector(".password-box") as HTMLDivElement
+            const passwordSmallText = document.createElement("span")
+            if (text === "비밀번호가 일치합니다.") {
+                passwordSmallText.style.color = "green"
+            } else if (text === "비밀번호를 다시 확인해주세요.") {
+                passwordSmallText.style.color = "red"
+            }
+            passwordSmallText.classList.add("passwordtest")
+            passwordSmallText.innerHTML = `${text}`
+            passwordBox.append(passwordSmallText)
         }
+
+
 
         pw_finder2.onkeyup = (e: Event) => {
             const target = e.target as HTMLInputElement;
-            if (target.value === pw_finder.value) {
-                target.style.borderColor = "black"
-            } else {
-                target.style.borderColor = "red"
+            console.log(document.querySelector(".passwordtest"))
+            if (document.querySelector(".passwordtest") !== null) {
+                document.querySelector(".passwordtest").remove();
             }
+            let text = ""
+            if (target.value === pw_finder.value) {
+                text = "비밀번호가 일치합니다."
+                target.style.borderColor = "green"
+                pw_finder.style.borderColor = "green"
+
+            } else {
+                text = "비밀번호를 다시 확인해주세요."
+                target.style.borderColor = "red"
+                pw_finder.style.borderColor = "red"
+            }
+            const passwordBox = document.querySelector(".password-box") as HTMLDivElement
+            const passwordSmallText = document.createElement("span")
+            if (text === "비밀번호가 일치합니다.") {
+                passwordSmallText.style.color = "green"
+            } else if (text === "비밀번호를 다시 확인해주세요.") {
+                passwordSmallText.style.color = "red"
+            }
+            passwordSmallText.classList.add("passwordtest")
+            passwordSmallText.innerHTML = `${text}`
+            passwordBox.append(passwordSmallText)
         }
+
 
 
 
@@ -135,7 +166,7 @@ class UserDataManager {
                     const year = date.getFullYear();
                     const month = date.getMonth();
                     const day = date.getDate();
-                    const newData = new UserData(id_finder.value, pw_finder.value, name_finder.value, `${year}` + `-` + `${month + 1}` + `-` + `${day}`,"http://127.0.0.1:5500/src/img/mypageIcon.png");
+                    const newData = new UserData(id_finder.value, pw_finder.value, name_finder.value, `${year}` + `-` + `${month + 1}` + `-` + `${day}`, "http://127.0.0.1:5500/src/img/mypageIcon.png");
                     this.userList.push(newData);
                     localStorage.setItem("sign_request", JSON.stringify(this.userList));
                     alert("회원가입 성공");
