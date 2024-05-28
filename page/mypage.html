@@ -12,24 +12,27 @@
 </head>
 
 <body>
-    <div class="header">
-        <div class="header-content">
-          <ul class="menu">
-            <li><a href="donutgame.html">Game</a></li>
-            <li>Menu</li>
-            <li class="board"><a href="./board.html?index=1&search=">Board</a></li>
-          </ul>
-          <h1 class="logo">
-            <img src="../src/img/logo.png" alt="로고">
-            <span><a href="./main.html">Donut Shop</a></span>
-          </h1>
-          <ul class="user-area">
-            <li style="pointer-events: none;">
-              <span class="loginBtn">Log-in</span>
-            </li>
-          </ul>
-        </div>
+  <div class="header">
+    <div class="header-content">
+      <ul class="menu">
+        <li id="game-move" class="click-cursor">Game</li>
+        <li>Menu</li>
+        <li class="board"><a href="./board.html?index=1&search=">Board</a></li>
+      </ul>
+      <h1 class="logo">
+        <img src="../src/img/logo.png" alt="로고">
+        <span><a href="./main.html">Donut Shop</a></span>
+      </h1>
+      <ul class="user-area">
+        <li style="pointer-events: none;">
+          <span class="loginBtn click-cursor">Log-in</span>
+        </li>
+        <li>
+          <span style="display:none;"><a id="myPage" class="click-cursor" href="./signup.html">Sign up</a></span>
+        </li>
+      </ul>
     </div>
+  </div>
     <div id="content">
         <div class="content-wrap">
             <div class="content">
@@ -54,7 +57,7 @@
             </div>
             <div class="profile-img">
                 <p class="img">
-                  <img id="profileImg" alt="프로필 사진" src="../src/img/mypageIcon.png">
+                  <img id="profileImg" id="profileImg" alt="프로필 사진" src="../src/img/mypageIcon.png">
                 </p>
                 <input type="file" id="profile" accept="image/*">
                 <p class="btnArea click-cursor">
@@ -64,39 +67,8 @@
             </div>
         </div>   
     </div>
-  </div>
-  <div id="content">
-    <div class="content-wrap">
-      <div class="content">
-        <span>아이디</span>
-        <div>
-          <span id="id-text"></span>
-        </div>
-        <span>비밀번호</span>
-        <div>
-          <input class="inputTxt" type="text" id="pw-text1" placeholder="영문 특수문자 포함 8글자 입력해주세요">
-        </div>
-        <span>비밀번호 확인</span>
-        <div>
-          <input class="inputTxt" type="text" id="pw-text2" placeholder="비밀번호를 다시 입력해주세요">
-          <button id="pw-rp" class="changeBtn click-cursor">변경</button>
-        </div>
-        <span>닉네임</span>
-        <div>
-          <input class="inputTxt" type="text" id="name-text" placeholder="변경할 닉네임을 입력해주세요">
-          <button id="name-rpl" class="changeBtn click-cursor">변경</button>
-        </div>
-      </div>
-      <div class="profile-img">
-        <p class="img">
-          <img id="profileImg" alt="프로필 사진" src="../src/img/mypageIcon.png">
-        </p>
-        <input type="file" id="profile" accept="image/*">
-        <p class="btnArea click-cursor">
-          <input type="button" id="imgSave" value="저장" class="changeBtn click-cursor">
-          <input type="button" id="basicImg" value="초기화" class="changeBtn click-cursor">
-        </p>
     </div>
+  
 </body>
 <script src="../src/js/mypage.js"></script>
 <script src="../src/js/login.js"></script>
