@@ -25,11 +25,15 @@
           </h1>
           <ul class="user-area">
             <li style="pointer-events: none;">
-              <span class="loginBtn">Log-in</span>
+              <span class="loginBtn click-cursor">Log-in</span>
+            </li>
+            <li>
+              <span style="display:none;"><a id="myPage" class="click-cursor" href="./signup.html">Sign up</a></span>
             </li>
           </ul>
         </div>
     </div>
+  </div>
     <div id="content">
         <div class="content-wrap">
             <div class="content">
@@ -54,7 +58,7 @@
             </div>
             <div class="profile-img">
                 <p class="img">
-                  <img id="profileImg" alt="프로필 사진" src="../src/img/mypageIcon.png">
+                  <img id="profileImg" id="profileImg" alt="프로필 사진" src="../src/img/mypageIcon.png">
                 </p>
                 <input type="file" id="profile" accept="image/*">
                 <p class="btnArea click-cursor">
