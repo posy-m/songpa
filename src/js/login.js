@@ -99,10 +99,10 @@ gameMove4.onclick = () => {
 originState();
 myPage();
 const loginStatus = sessionStorage.getItem("login_status");
-const gameMove = document.getElementById("game-move");
+const gameMove = document.getElementById("game-move2");
 gameMove.onclick = () => {
     if (loginStatus && loginStatus !== "{}") {
-        location.href = "./donutgame.html";
+        location.href = "./jumpgame.html";
     }
     else {
         alert("로그인이 필요합니다.");
