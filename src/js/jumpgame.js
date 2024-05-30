@@ -122,7 +122,7 @@ if (rankData !== null) {
     const jumpGameManager = new JumpGameManager();
     jumpGameManager.read();
 }
-let point = 600;
+let point = 0;
 const start_btn = document.getElementById("start");
 const game_wrap = document.querySelector(".game-wrap");
 start_btn.onclick = () => {
@@ -524,4 +524,4 @@ function remove(s) {
         }
     });
 }
-// export {};
+export {};

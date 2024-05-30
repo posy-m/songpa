@@ -103,8 +103,6 @@ gameMove4.onclick = () => {
         alert("로그인이 필요합니다.");
     }
 };
-originState();
-myPage();
 const loginStatus = sessionStorage.getItem("login_status");
 const gameMove = document.getElementById("game-move2");
 gameMove.onclick = () => {
@@ -115,3 +113,5 @@ gameMove.onclick = () => {
         alert("로그인이 필요합니다.");
     }
 };
+originState();
+myPage();

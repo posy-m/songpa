@@ -543,7 +543,7 @@ function move() {
     const gameBox = document.querySelector(".game-box");
     if (person !== null) {
         gameBox.addEventListener("mousemove", (e) => {
-            person.style.left = `${e.clientX - 466}px`;
+            person.style.left = `${e.clientX - 474}px`;
             gameBox.style.cursor = "none";
         });
     }

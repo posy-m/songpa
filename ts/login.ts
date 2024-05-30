@@ -130,11 +130,6 @@ gameMove4.onclick = () => {
   }
 }
 
-// 함수 실행
-originState();
-myPage();
-
-
 // 점프 게임 이동
 const loginStatus = sessionStorage.getItem("login_status");
 const gameMove = document.getElementById("game-move2");
@@ -145,3 +140,9 @@ gameMove.onclick = () => {
     alert("로그인이 필요합니다.");
   }
 } 
+
+// 함수 실행
+originState();
+myPage();
+
+
