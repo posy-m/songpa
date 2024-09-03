@@ -27,6 +27,7 @@
 "홈페이지에 유입된 고객이 게시판을 통해 자유롭게 얘기할 수 있는 커뮤니케이션 사이트를 제작해보았습니다."
 
 **메인페이지**
+- 고객이 홈페이지에 방문하면 도넛 사진과 직관적인 UI 제공
 <img src="https://github.com/user-attachments/assets/9ec5fc86-69cd-4e92-82b0-8b03ec14bff4" width="1000" height="600"/>
 
 **로그인**
@@ -41,7 +42,7 @@
 <img width="1437" alt="스크린샷 2024-09-03 13 23 47" src="https://github.com/user-attachments/assets/69ed3d9a-ea52-4a2d-9a4e-47490d15a7b9"/>
 
 **Admin Page**
-
+- 회원가입 확인 가능
 <img width="1437" src="https://github.com/user-attachments/assets/dbc63caa-2720-4943-a726-80c049ab04d1"/>
 
 
