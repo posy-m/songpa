@@ -37,7 +37,7 @@
 
 <img width="1437" alt="스크린샷 2024-09-03 13 22 00" src="https://github.com/user-attachments/assets/94a005e4-1eb9-4d26-b72f-edb03d26a254"/>
 
-**게시판 페이지**
+**#게시판-페이지**
 
 <img width="1437" alt="스크린샷 2024-09-03 13 23 47" src="https://github.com/user-attachments/assets/69ed3d9a-ea52-4a2d-9a4e-47490d15a7b9"/>
 
