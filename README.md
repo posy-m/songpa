@@ -32,7 +32,7 @@
 
 **메인페이지**
 - 고객이 홈페이지에 방문하면 도넛 사진과 직관적인 UI 제공
-<img src="https://github.com/user-attachments/assets/9ec5fc86-69cd-4e92-82b0-8b03ec14bff4" width="1000" height="600"/>
+<img src="https://github.com/user-attachments/assets/df2747f9-9895-4265-ab58-85639b17d76d" width="1000" height="600"/>
 
 **회원가입**
 - 회원가입하는 고객들의 회원정보를 세션스토리지에 정보 저장
